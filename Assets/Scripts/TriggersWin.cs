@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class TriggersWin : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.name == "Player") {
+        if (other.gameObject.tag == "Player") {
             SceneManager.LoadScene("GameClearScreen");
         }
     }
