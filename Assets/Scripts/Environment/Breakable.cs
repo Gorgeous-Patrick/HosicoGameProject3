@@ -16,7 +16,9 @@ public class Breakable : MonoBehaviour
 
   void OnCollisionEnter(Collision collisionInfo)
   {
-    Destroy(gameObject);
+    GameObject other = collisionInfo.gameObject;
+    if (other.tag == "Player")
+      Destroy(gameObject);
   }
 
 }
