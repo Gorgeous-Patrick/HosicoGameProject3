@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class HasEnemyVision : MonoBehaviour
 {
+    public bool isAlert = false;
+
     [SerializeField] private GameObject playerObj;
 
     [SerializeField] private float spd;
     [SerializeField] private float range = 0f;
     [SerializeField] private float angle = 0f;
-    [SerializeField] private bool isAlert = false;
     [SerializeField] private Light spotlight;
     [SerializeField] private Light topLight;
     [SerializeField] private LayerMask block;
@@ -27,22 +28,22 @@ public class HasEnemyVision : MonoBehaviour
             spotlight = GetComponent<Light>();
         spotlight.color = Color.yellow;
         topLight.color = Color.yellow;
-        detectTimer = 200f;
+        detectTimer = 100f;
         currTimer = 0f;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (isAlert)
+        /*if (isAlert)
         {
             if (currTimer < detectTimer) currTimer++;
-            else Debug.Log("Welp Player Died"); //EventBus.Publish(new EventPlayerDied());
+            else EventBus.Publish(new EventPlayerDied());
         }
         else
         {
             if (currTimer > 0) currTimer--;
-        }
+        }*/
 
         playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
