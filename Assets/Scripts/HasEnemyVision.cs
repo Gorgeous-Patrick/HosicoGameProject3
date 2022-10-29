@@ -14,6 +14,9 @@ public class HasEnemyVision : MonoBehaviour
     [SerializeField] private Light topLight;
     [SerializeField] private LayerMask block;
 
+    [SerializeField] private float detectTimer;
+    [SerializeField] private float currTimer; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,11 +27,23 @@ public class HasEnemyVision : MonoBehaviour
             spotlight = GetComponent<Light>();
         spotlight.color = Color.yellow;
         topLight.color = Color.yellow;
+        detectTimer = 200f;
+        currTimer = 0f;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        if (isAlert)
+        {
+            if (currTimer < detectTimer) currTimer++;
+            else Debug.Log("Welp Player Died"); //EventBus.Publish(new EventPlayerDied());
+        }
+        else
+        {
+            if (currTimer > 0) currTimer--;
+        }
+
         playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
         {
