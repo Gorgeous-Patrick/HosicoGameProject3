@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 323804889}
+  - component: {fileID: 323804890}
   m_Layer: 0
   m_Name: PlayerContainer
   m_TagString: Untagged
@@ -156,6 +157,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &323804890
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323804888}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &324746154
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,6 +417,7 @@ GameObject:
   - component: {fileID: 762408430}
   - component: {fileID: 762408429}
   - component: {fileID: 762408428}
+  - component: {fileID: 762408431}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -504,6 +522,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &762408431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762408427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eff7f839dcdfeb4faac0a195099331d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1125040304
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -529,7 +559,7 @@ PrefabInstance:
     - target: {fileID: 7784935944091968108, guid: 36c4b59de8dddc3df8cc41f96027a081,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 1.22
       objectReference: {fileID: 0}
     - target: {fileID: 7784935944091968108, guid: 36c4b59de8dddc3df8cc41f96027a081,
         type: 3}
@@ -685,7 +715,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1 &1980347238
 GameObject:
@@ -703,7 +733,7 @@ GameObject:
   - component: {fileID: 1980347244}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -798,7 +828,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f9aeb15bfe9aaa4a9bf0130d0c04943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
+  speed: 5
+  container: {fileID: 323804888}
 --- !u!54 &1980347244
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -813,5 +844,5 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
