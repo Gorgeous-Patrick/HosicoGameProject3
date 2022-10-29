@@ -12,6 +12,7 @@ public class HasEnemyVision : MonoBehaviour
     [SerializeField] private bool isAlert = false;
     [SerializeField] private Light spotlight;
     [SerializeField] private Light topLight;
+    [SerializeField] private LayerMask block;
 
     // Start is called before the first frame update
     void Start()
@@ -29,17 +30,22 @@ public class HasEnemyVision : MonoBehaviour
     void Update()
     {
         playerObj = GameObject.FindGameObjectWithTag("Player");
-        if(playerObj != null)
+        if (playerObj != null)
         {
             Vector3 vec = playerObj.transform.position - transform.position;
-            if(Vector3.Distance(playerObj.transform.position, transform.position) < range)
+            if (Vector3.Distance(playerObj.transform.position, transform.position) < range)
             {
-                if(Vector3.Angle(transform.forward, vec) < angle)
+                bool inRange = Vector3.Angle(transform.forward, vec) < angle ||
+                               Vector3.Distance(transform.position, playerObj.transform.position) < 2;
+                if (inRange)
                 {
-                    isAlert = true;
-                    topLight.color = Color.red;
-                    spotlight.color = Color.red;
-                    return;
+                    if(!Physics.Raycast(transform.position, vec, range, block))
+                    {
+                        isAlert = true;
+                        topLight.color = Color.red;
+                        spotlight.color = Color.red;
+                        return;
+                    }
                 }
             }
         }
