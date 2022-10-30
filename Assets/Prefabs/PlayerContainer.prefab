@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3288869758395396455}
   - component: {fileID: 3288869758395396452}
   - component: {fileID: 3288869758395396451}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -141,14 +141,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3288869758732185810}
-  m_LocalRotation: {x: 0.19393016, y: -0, z: -0, w: 0.9810153}
-  m_LocalPosition: {x: 0, y: 5.07, z: -12.05}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 5.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3288869758852390102}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 22.364, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!20 &3288869758732185808
 Camera:
   m_ObjectHideFlags: 0
@@ -324,14 +324,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3288869758853462437}
-  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 2.6, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.303, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3288869758852390102}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!108 &3288869758853462436
 Light:
   m_ObjectHideFlags: 0
@@ -341,16 +341,16 @@ Light:
   m_GameObject: {fileID: 3288869758853462437}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 0
+  m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.6981132, g: 0.6411302, b: 0.26124355, a: 1}
-  m_Intensity: 50
-  m_Range: 10
-  m_SpotAngle: 135.72687
-  m_InnerSpotAngle: 67.211205
+  m_Color: {r: 0.6792453, g: 0.6735301, b: 0.6369527, a: 1}
+  m_Intensity: 7
+  m_Range: 3
+  m_SpotAngle: 179
+  m_InnerSpotAngle: 0
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -381,7 +381,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 119
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0

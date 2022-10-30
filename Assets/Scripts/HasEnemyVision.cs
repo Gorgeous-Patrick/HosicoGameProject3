@@ -5,6 +5,7 @@ using UnityEngine;
 public class HasEnemyVision : MonoBehaviour
 {
     public bool isAlert = false;
+    public float currTimer;
 
     [SerializeField] private GameObject playerObj;
 
@@ -15,8 +16,10 @@ public class HasEnemyVision : MonoBehaviour
     [SerializeField] private Light topLight;
     [SerializeField] private LayerMask block;
 
-    [SerializeField] private float detectTimer;
-    [SerializeField] private float currTimer; 
+    // [SerializeField] private float detectTimer;
+    [SerializeField] private Color idleColor, detectedColor;
+
+    private float startTime;
 
     // Start is called before the first frame update
     void Start()
@@ -28,22 +31,28 @@ public class HasEnemyVision : MonoBehaviour
             spotlight = GetComponent<Light>();
         spotlight.color = Color.yellow;
         topLight.color = Color.yellow;
-        detectTimer = 100f;
         currTimer = 0f;
+        idleColor = Color.yellow;
+        detectedColor = Color.red;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        /*if (isAlert)
+        if (isAlert)
         {
-            if (currTimer < detectTimer) currTimer++;
-            else EventBus.Publish(new EventPlayerDied());
+            currTimer++;
+            topLight.color = Color.Lerp(topLight.color, detectedColor, Mathf.PingPong(Time.time, 0.21f));
+            spotlight.color = Color.Lerp(spotlight.color, detectedColor, Mathf.PingPong(Time.time, 0.21f));
+            if (currTimer == 27)
+            Debug.Log("End time: " + currTimer);
         }
         else
         {
             if (currTimer > 0) currTimer--;
-        }*/
+            topLight.color = Color.Lerp(topLight.color, idleColor, Mathf.PingPong(Time.time, 0.1f));
+            spotlight.color = Color.Lerp(spotlight.color, idleColor, Mathf.PingPong(Time.time, 0.1f));
+        }
 
         playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
@@ -58,14 +67,11 @@ public class HasEnemyVision : MonoBehaviour
                     if(!Physics.Raycast(transform.position, vec, range, block))
                     {
                         isAlert = true;
-                        topLight.color = Color.red;
-                        spotlight.color = Color.red;
                         return;
                     }
                 }
             }
         }
-        topLight.color = Color.yellow;
-        spotlight.color = Color.yellow;
+        isAlert = false;
     }
 }

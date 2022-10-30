@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3296931377112630803}
   - component: {fileID: 3296931377112630802}
   - component: {fileID: 3296931377112630801}
-  - component: {fileID: 3296931377112630800}
   - component: {fileID: 3296931377112630815}
   - component: {fileID: 7575200071099978055}
+  - component: {fileID: 8325517315246114251}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -88,20 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3296931377112630800
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3296931377112630814}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3296931377112630815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,16 +100,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af9e63a1da2faff4097cf181978a634f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAlert: 0
   playerObj: {fileID: 0}
   spd: 0
   range: 0
   angle: 0
-  isAlert: 0
   spotlight: {fileID: 3296931378041511587}
   topLight: {fileID: 3296931378018261065}
   block:
     serializedVersion: 2
     m_Bits: 64
+  detectTimer: 0
+  currTimer: 0
 --- !u!54 &7575200071099978055
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -132,14 +120,28 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3296931377112630814}
   serializedVersion: 2
-  m_Mass: 0.0000001
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
+  m_UseGravity: 1
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!136 &8325517315246114251
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3296931377112630814}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3296931378018261064
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +283,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3296931378041511586}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 3.16, z: 0}
+  m_LocalPosition: {x: 0, y: 2.89, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -300,8 +302,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.6981132, g: 0.6411302, b: 0.26124355, a: 1}
-  m_Intensity: 100
-  m_Range: 10.723089
+  m_Intensity: 50
+  m_Range: 10
   m_SpotAngle: 40.497902
   m_InnerSpotAngle: 32.89351
   m_CookieSize: 10
@@ -337,7 +339,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 247
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
