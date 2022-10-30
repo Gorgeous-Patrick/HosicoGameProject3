@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HasEnemyVision : MonoBehaviour
 {
+    // public UnityEvent OnDetectPlayer;
+    // public UnityEvent OnLosingPlayer;
+
     public bool isAlert = false;
     public float currTimer;
 
@@ -45,13 +49,16 @@ public class HasEnemyVision : MonoBehaviour
             topLight.color = Color.Lerp(topLight.color, detectedColor, Mathf.PingPong(Time.time, 0.21f));
             spotlight.color = Color.Lerp(spotlight.color, detectedColor, Mathf.PingPong(Time.time, 0.21f));
             if (currTimer == 27)
-            Debug.Log("End time: " + currTimer);
+            {
+                Debug.Log("End time: " + currTimer);
+            }
         }
         else
         {
             if (currTimer > 0) currTimer--;
             topLight.color = Color.Lerp(topLight.color, idleColor, Mathf.PingPong(Time.time, 0.1f));
             spotlight.color = Color.Lerp(spotlight.color, idleColor, Mathf.PingPong(Time.time, 0.1f));
+            // if (currTimer <= 0) OnLosingPlayer?.Invoke();
         }
 
         playerObj = GameObject.FindGameObjectWithTag("Player");
