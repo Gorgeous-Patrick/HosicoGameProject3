@@ -13,6 +13,7 @@ public class HasEnemyMovement : MonoBehaviour
     [SerializeField] private Transform[] checkpoints = { };
     [SerializeField] private float waitTimer = 80f;
     private bool playerFound = false;
+    private bool isEnemyDisabled = false;
 
     [SerializeField] private int currIndex;
 
@@ -23,7 +24,7 @@ public class HasEnemyMovement : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         nav = GetComponent<NavMeshAgent>();
         vision = GetComponent<HasEnemyVision>();
-        if (checkpoints.Length == 0) Debug.LogError("YOU FORGOT TO ADD CHECKPOINTS YOU BIG LUMMOX");
+        if (checkpoints.Length == 1) Debug.LogError("YOU FORGOT TO ADD CHECKPOINTS YOU BIG LUMMOX");
         currIndex = 0;
     }
 
@@ -36,16 +37,19 @@ public class HasEnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if enemy not disabled: 
-        if (vision.currTimer >= 22)
+        if (isEnemyDisabled) return;
+        if (vision.currTimer >= 30)
         {
             nav.SetDestination(player.position);
         }
         else
         {
-            if (Vector3.Distance(targetTransform.position, transform.position) < 2)
-                UpdateCheckpoint();
-            nav.SetDestination(targetTransform.position);
+            if(checkpoints.Length > 1)
+            {
+                if (Vector3.Distance(targetTransform.position, transform.position) < 2)
+                    UpdateCheckpoint();
+                nav.SetDestination(targetTransform.position);
+            }
         }
         /*else
         {
@@ -56,10 +60,36 @@ public class HasEnemyMovement : MonoBehaviour
 
     void UpdateCheckpoint()
     {
-        currIndex += 1;
-        if (currIndex == checkpoints.Length)
-            currIndex = 0;
-        targetTransform = checkpoints[currIndex];
+        if(checkpoints.Length > 1)
+        {
+            currIndex += 1;
+            if (currIndex == checkpoints.Length)
+                currIndex = 0;
+            targetTransform = checkpoints[currIndex];
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.CompareTag("Bullet"))
+        {
+            BlindEnemy();
+            Destroy(collision.gameObject);
+        }
+    }
+
+    public void BlindEnemy()
+    {
+        isEnemyDisabled = true;
+        nav.enabled = false;
+        StartCoroutine(WaitToUnblind());
+    }
+
+    private IEnumerator WaitToUnblind()
+    {
+        yield return new WaitForSeconds(5f);
+        isEnemyDisabled = false;
+        nav.enabled = true;
     }
 }
 

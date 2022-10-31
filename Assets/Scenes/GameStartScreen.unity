@@ -158,8 +158,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000011325, y: -0.0000076294}
-  m_SizeDelta: {x: 347.9456, y: 71.775}
+  m_AnchoredPosition: {x: 0, y: -0.0000038146973}
+  m_SizeDelta: {x: 359.894, y: 174.1632}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &32479276
 MonoBehaviour:
@@ -194,7 +194,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Use WASD or Arrow Keys to move.
+  m_Text: 'Use WASD or Arrow Keys to move.
+
+    Use Mouse 1 to shoot after getting
+    a bucket.'
 --- !u!222 &32479277
 CanvasRenderer:
   m_ObjectHideFlags: 0

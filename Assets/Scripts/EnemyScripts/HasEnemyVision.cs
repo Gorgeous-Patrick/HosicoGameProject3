@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,11 @@ using UnityEngine.Events;
 
 public class HasEnemyVision : MonoBehaviour
 {
+    public UnityEvent OnBlinded;
     // public UnityEvent OnDetectPlayer;
     // public UnityEvent OnLosingPlayer;
+    // Subscription<EventPlayerInvisible> sub_EventPlayerInvisible;
+    // Subscription<EventBlindEnemy> sub_EventBlindEnemy;
 
     public bool isAlert = false;
     public float currTimer;
@@ -18,17 +22,16 @@ public class HasEnemyVision : MonoBehaviour
     [SerializeField] private Light spotlight;
     [SerializeField] private Light topLight;
     [SerializeField] private LayerMask block;
-
-    // [SerializeField] private float detectTimer;
     [SerializeField] private Color idleColor, detectedColor;
 
-    private float startTime;
+    //private bool isBlinded = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        range = 9;
-        angle = 23;
+        // sub_EventPlayerInvisible = EventBus.Subscribe<EventPlayerInvisible>(OnPlayerInvisibleDetected);
+        range = 8;
+        angle = 36;
         isAlert = false;
         if (spotlight == null)
             spotlight = GetComponent<Light>();
@@ -38,6 +41,8 @@ public class HasEnemyVision : MonoBehaviour
         idleColor = Color.yellow;
         detectedColor = Color.red;
     }
+
+    
 
     // Update is called once per frame
     void FixedUpdate()
@@ -63,11 +68,11 @@ public class HasEnemyVision : MonoBehaviour
         playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
         {
-            Vector3 vec = playerObj.transform.position - transform.position;
             if (Vector3.Distance(playerObj.transform.position, transform.position) < range)
             {
+                Vector3 vec = playerObj.transform.position - transform.position;
                 bool inRange = Vector3.Angle(transform.forward, vec) < angle ||
-                               Vector3.Distance(transform.position, playerObj.transform.position) < 2;
+                               Vector3.Distance(transform.position, playerObj.transform.position) < 2.7f;
                 if (inRange)
                 {
                     if(!Physics.Raycast(transform.position, vec, range, block))

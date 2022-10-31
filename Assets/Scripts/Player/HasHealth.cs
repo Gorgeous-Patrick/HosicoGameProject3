@@ -4,23 +4,43 @@ using UnityEngine;
 
 public class HasHealth : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] Color disguiseColor = Color.blue;
+    [SerializeField] private bool isInvisible = false;
+    [SerializeField] private float currTimer = 300f;
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+        if (isInvisible && currTimer > 0)
+        {
+            currTimer--;
+        }
+        if (currTimer <= 0)
+        {
+            isInvisible = false;
+            currTimer = 300f;
+        }
     }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.CompareTag("Enemy"))
         {
             EventBus.Publish(new EventPlayerDied());
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PickupPaint"))
+        {
+            isInvisible = true;
+            currTimer = 390f;
+            Destroy(other.gameObject);
+            EventBus.Publish(new EventpromptShoot());
+        }
+    }
+
+    public bool ReturnInvisibility()
+    {
+        return isInvisible;
     }
 }
