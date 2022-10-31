@@ -1,0 +1,1 @@
+Our gold spike feature is the use of destructible blocks as a main aspect of a stealth game, which can allow for different ways for players to get past enemies. These blocks would be also risky to destroy, as it may allow enemies to see the player, as well as provide have multiple variations in the future that may include dropping pickups, alerting enemies, etc.

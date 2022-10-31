@@ -1,0 +1,13 @@
+3D Models
+	Stylized Western Wooden Bucket
+
+2D Sprites
+	CCO Headgear Icons - https://opengameart.org/content/cc0-headgear-icons
+	[LPC] Items and game effects - https://opengameart.org/content/lpc-items-and-game-effects
+
+Textures
+	Grounds Outdoors - Burned Ground - Seamless Texture with normalmap - https://opengameart.org/content/ground-outdoors-burned-ground-seamless-texture-with-normalmap
+	Stone wall - https://opengameart.org/content/stone-wall-1
+
+Fonts
+	Hana Pixel Font - https://assetstore.unity.com/packages/2d/fonts/hana-pixel-font-29725	
