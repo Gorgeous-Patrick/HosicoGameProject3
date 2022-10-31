@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class RestartsGame : MonoBehaviour
 {
+    [SerializeField] string SceneToLoad = "Level 1";
+
     public void RestartGame() {
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene(SceneToLoad);
     }
 }
