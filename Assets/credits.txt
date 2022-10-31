@@ -11,3 +11,16 @@ Textures
 
 Fonts
 	Hana Pixel Font - https://assetstore.unity.com/packages/2d/fonts/hana-pixel-font-29725	
+
+exploding cube script snippet: 
+https://www.youtube.com/watch?v=wcQqYOSteSs
+Thomas Friday
+
+navmesh tutorial:
+https://www.youtube.com/watch?v=xUl-Agx2cLc&t=496s
+Unity official tutorial
+
+bucket:
+https://assetstore.unity.com/packages/3d/props/tools/stylized-western-wooden-bucket-191513
+Credits: PijayArt
+

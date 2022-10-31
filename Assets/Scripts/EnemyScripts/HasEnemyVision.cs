@@ -13,7 +13,6 @@ public class HasEnemyVision : MonoBehaviour
 
     [SerializeField] private GameObject playerObj;
 
-    [SerializeField] private float spd;
     [SerializeField] private float range = 0f;
     [SerializeField] private float angle = 0f;
     [SerializeField] private Light spotlight;

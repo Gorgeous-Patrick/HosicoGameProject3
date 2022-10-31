@@ -110,3 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bc5e01a4bf681d79cbdb3fe7133d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frag_in: {fileID: 3096721377414403401, guid: 5632502d9b96c164c86082b53d6a7e97, type: 3}
+  numCubes: 2
+  delay: 0.2
+  F: 280
+  radius: 2.1
