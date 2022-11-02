@@ -92,7 +92,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 067ab5e4b2094754782cb31f92773844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GunControl: {fileID: 0}
   TurretControl: {fileID: 0}
   HullControl: {fileID: 0}
 --- !u!1 &5764863849406442380
