@@ -1,14 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerControl : MonoBehaviour
+public class PlayerInputScript : MonoBehaviour
 {
-    public UnityEvent<Vector2> OnRotateFlashLight = new UnityEvent<Vector2>();
-    public UnityEvent<Vector2> OnMovePlayerCharacter = new UnityEvent<Vector2>();
-    public UnityEvent OnMine = new UnityEvent();
-    public UnityEvent OnSwapItem = new UnityEvent();
+    public UnityEvent<Vector2> OnRotateTurretEvent = new UnityEvent<Vector2>();
+    public UnityEvent<Vector2> OnMoveHullEvent = new UnityEvent<Vector2>();
+    public UnityEvent OnFireGunEvent = new UnityEvent();
+    public UnityEvent OnSwitchShell = new UnityEvent();
     public UnityEvent OnChangeForm = new UnityEvent();
 
     private Camera playerCam;
@@ -26,7 +27,7 @@ public class PlayerControl : MonoBehaviour
         float y = Input.GetAxis("Vertical");
         Vector2 moveVec = new Vector2(x, y);
         // call OnMoveHullEvent and invoke it passing the movement Vector
-        OnMovePlayerCharacter?.Invoke(moveVec.normalized);
+        OnMoveHullEvent?.Invoke(moveVec.normalized);
 
         //==============================================================================//
         /*
@@ -41,16 +42,16 @@ public class PlayerControl : MonoBehaviour
         Vector3 MPos = Input.mousePosition;
         MPos.z = playerCam.nearClipPlane;
         Vector2 MPos2D = playerCam.ScreenToWorldPoint(MPos);
-        OnRotateFlashLight?.Invoke(MPos2D);
+        OnRotateTurretEvent?.Invoke(MPos2D);
 
         //==============================================================================//
         if (Input.GetMouseButtonDown(0))
         {
-            OnMine?.Invoke();
+            OnFireGunEvent?.Invoke();
         }
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            OnSwapItem?.Invoke();
+            OnSwitchShell?.Invoke();
         }
         if (Input.GetKeyDown(KeyCode.G))
         {
