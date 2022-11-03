@@ -24,14 +24,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2671331023212849009}
-  m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4922816221441201374}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &4462381601890108943
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 5764863849406442376}
   - component: {fileID: 1268388550}
   - component: {fileID: 1268388549}
-  - component: {fileID: 4499194468473473647}
+  - component: {fileID: 6415927363217469010}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &4499194468473473647
+--- !u!114 &6415927363217469010
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -259,11 +259,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5764863849406442380}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6a1ae03554d109b4afd2ebd78d13b72, type: 3}
+  m_Script: {fileID: 11500000, guid: 02acbb99ec989f5f6ad3a21fb1ed0eec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpPower: 6
+  jumpPower: 3.5
+  flashlight: {fileID: 6015112814299302784}
 --- !u!1 &6015112814299302784
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +347,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 0.78431374, g: 0.49411765, b: 0.14509805, a: 1}
-  m_Intensity: 5
+  m_Intensity: 10
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 000000002fcda2a3cbbf253c6507c38f75ebed265d1c303e
@@ -394,10 +395,10 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 50.5
-  m_PointLightOuterAngle: 67.12
+  m_PointLightInnerAngle: 71.090004
+  m_PointLightOuterAngle: 104.88
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 8.7366905
+  m_PointLightOuterRadius: 10
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
