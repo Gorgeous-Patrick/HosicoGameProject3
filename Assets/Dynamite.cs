@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Dynamite : MonoBehaviour
 {
-    public float explodeDelay = 5.0f;
+    [SerializeField] float explodeDelay = 3.0f;
+    [SerializeField] GameObject explosion;
 
     // Start is called before the first frame update
     void Start()
@@ -12,13 +13,11 @@ public class Dynamite : MonoBehaviour
         StartCoroutine(ExplodeAfterTime());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // To run on spawn - triggers 'explosion' 
     IEnumerator ExplodeAfterTime() {
         yield return new WaitForSeconds(explodeDelay);
+        if (explosion != null)
+            Instantiate(explosion, transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
     }
 }
