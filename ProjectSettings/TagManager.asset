@@ -58,3 +58,6 @@ TagManager:
   - name: Darkness
     uniqueID: 1043340381
     locked: 0
+  - name: KeyPrompt
+    uniqueID: 3062942289
+    locked: 0
