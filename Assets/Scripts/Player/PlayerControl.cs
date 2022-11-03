@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -9,7 +10,10 @@ public class PlayerControl : MonoBehaviour
   Rigidbody2D rb2d;
   Collider2D c2d;
   [SerializeField] float speed = 5f, jumpPower = 3.5f;
+  [SerializeField] GameObject flashlight;
 
+  // dir: a direction to detect collision in
+  // returns: true iff. the player is next to something in the given direction
   bool colliding(Direction dir)
   {
     if (dir == Direction.Undefined) return false;
@@ -17,16 +21,18 @@ public class PlayerControl : MonoBehaviour
     float rayLength = 0.01f;
     switch (dir)
     {
-      case Direction.Down : case Direction.Up:
-        rayLength += c2d.bounds.extents.y;
-        box.x = c2d.bounds.size.x;
-        box.y = 0.1f;
-        break;
-      case Direction.Left : case Direction.Right:
-        rayLength += c2d.bounds.extents.x;
-        box.x = 0.1f;
-        box.y = c2d.bounds.size.y;
-        break;
+    case Direction.Down :
+    case Direction.Up:
+      rayLength += c2d.bounds.extents.y;
+      box.x = c2d.bounds.size.x;
+      box.y = 0.1f;
+      break;
+    case Direction.Left :
+    case Direction.Right:
+      rayLength += c2d.bounds.extents.x;
+      box.x = 0.1f;
+      box.y = c2d.bounds.size.y;
+      break;
     }
     return Physics2D.BoxCast(transform.position, box, 0, Utils.dir2vec(dir), rayLength);
   }
@@ -66,6 +72,10 @@ public class PlayerControl : MonoBehaviour
       rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
       rb2d.velocity += new Vector2(0, jumpPower);
     }
+
+    // process flashlight rotation
+    Vector2 cursorLoc = Camera.main.ScreenToWorldPoint(playerInput.Gameplay.Look.ReadValue<Vector2>());
+    flashlight.transform.right = cursorLoc - Utils.flatten(transform.position);
   }
 
 }
