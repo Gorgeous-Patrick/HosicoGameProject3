@@ -29,7 +29,6 @@ public class TransformToSceneOnCollision : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Player trigger detected");
             isTriggered = true;
             enablePromptUserToPressKey();
         }
@@ -51,5 +50,4 @@ public class TransformToSceneOnCollision : MonoBehaviour
             SceneManager.LoadScene(targetSceneName);
         }
     }
-
 }
