@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerControl : MonoBehaviour
+public class _deprecated_PlayerControl : MonoBehaviour
 {
   public UnityEvent<Vector2> OnRotateFlashLight = new UnityEvent<Vector2>();
   public UnityEvent<Vector2> OnMovePlayerCharacter = new UnityEvent<Vector2>();
