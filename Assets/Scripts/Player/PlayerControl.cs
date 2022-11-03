@@ -11,7 +11,8 @@ public class PlayerControl : MonoBehaviour
   Collider2D c2d;
   [SerializeField] float speed = 5f, jumpPower = 3.5f;
   [SerializeField] GameObject flashlight;
-
+  private Animator anim;
+  private float localScale_x, localScale_y;
   // dir: a direction to detect collision in
   // returns: true iff. the player is next to something in the given direction
   bool colliding(Direction dir)
@@ -39,9 +40,12 @@ public class PlayerControl : MonoBehaviour
 
   void Awake()
   {
+    anim = GetComponent<Animator>();
     playerInput = new PlayerInput();
     rb2d = GetComponent<Rigidbody2D>();
     c2d = GetComponent<Collider2D>();
+    localScale_x = transform.localScale.x;
+    localScale_y = transform.localScale.y;
   }
 
   void OnEnable()
@@ -62,6 +66,27 @@ public class PlayerControl : MonoBehaviour
     // process horizontal movement
     float movementInput = playerInput.Gameplay.Move.ReadValue<float>();
     Vector2 horizontalMovementDelta = new Vector2(movementInput * speed, 0);
+
+    // set the animation to run and let the miner face left
+    if (movementInput > 0) {
+      anim.SetTrigger("Run");
+      anim.ResetTrigger("NotRun");
+      transform.localScale = new Vector3(localScale_x, localScale_y, 1);
+    }
+
+    // set the animation to run and let the miner face right
+    else if (movementInput < 0) {
+      anim.SetTrigger("Run");
+      anim.ResetTrigger("NotRun");
+      Debug.Log(transform.localScale);
+      transform.localScale = new Vector3(-localScale_x, localScale_y, 1);
+    }
+    // set the animation to notrun and let the miner face left
+    else {
+      anim.SetTrigger("NotRun");
+      anim.ResetTrigger("Run");
+    }
+
     // prevent the player sticking to the wall/ceiling due to continuous pressure and friction
     if (!colliding(Utils.vec2dir(horizontalMovementDelta)))
       rb2d.velocity += horizontalMovementDelta;
@@ -71,6 +96,14 @@ public class PlayerControl : MonoBehaviour
     {
       rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
       rb2d.velocity += new Vector2(0, jumpPower);
+      // set to jump animation
+      anim.SetTrigger("Jump");
+      anim.ResetTrigger("NotJump");
+    }
+    else if (!playerInput.Gameplay.Jump.IsPressed() && colliding(Direction.Down) && rb2d.velocity.y <= 0.1f) {
+      // set back to idle animation
+      anim.SetTrigger("NotJump");
+      anim.ResetTrigger("Jump");
     }
 
     // process flashlight rotation
@@ -79,3 +112,5 @@ public class PlayerControl : MonoBehaviour
   }
 
 }
+
+
