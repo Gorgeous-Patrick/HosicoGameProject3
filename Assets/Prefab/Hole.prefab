@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5842849d0807ecf239673f24ad375dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: SampleScene
+  targetSceneName: Main
   keyPrompt: {fileID: 8007092034918247299}
 --- !u!1 &8007092034918247299
 GameObject:
