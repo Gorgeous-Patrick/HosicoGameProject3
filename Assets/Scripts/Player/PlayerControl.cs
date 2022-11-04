@@ -10,7 +10,7 @@ public class PlayerControl : MonoBehaviour
   Collider2D c2d;
   Animator anim;
   SpriteRenderer sr;
-  [SerializeField] float speed = 5f, jumpPower = 3.5f;
+  [SerializeField] float speed = 5f, jumpPower = 7f;
   [SerializeField] GameObject flashlight;
 
   // dir: a direction to detect collision in
@@ -35,7 +35,9 @@ public class PlayerControl : MonoBehaviour
       box.y = c2d.bounds.size.y;
       break;
     }
-    return Physics2D.BoxCast(transform.position, box, 0, Utils.dir2vec(dir), rayLength);
+    var filter = new ContactFilter2D();
+    filter.useTriggers = false;
+    return Physics2D.BoxCast(transform.position, box, 0, Utils.dir2vec(dir), filter, new List<RaycastHit2D>(), rayLength) > 0;
   }
 
   void Awake()
