@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class TransformToSceneOnCollision : MonoBehaviour
 {
@@ -43,9 +44,9 @@ public class TransformToSceneOnCollision : MonoBehaviour
         }
     }
 
-    void Update()
+    public void GoIntoHole(InputAction.CallbackContext context)
     {
-        if (isTriggered && Input.GetKeyDown(KeyCode.E))
+        if (isTriggered)
         {
             SceneManager.LoadScene(targetSceneName);
         }
