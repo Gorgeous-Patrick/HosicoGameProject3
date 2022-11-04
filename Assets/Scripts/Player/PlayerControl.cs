@@ -9,6 +9,7 @@ public class PlayerControl : MonoBehaviour
   Rigidbody2D rb2d;
   Collider2D c2d;
   Animator anim;
+  SpriteRenderer sr;
   [SerializeField] float speed = 5f, jumpPower = 3.5f;
   [SerializeField] GameObject flashlight;
 
@@ -42,6 +43,7 @@ public class PlayerControl : MonoBehaviour
     anim = GetComponent<Animator>();
     rb2d = GetComponent<Rigidbody2D>();
     c2d = GetComponent<Collider2D>();
+    sr = GetComponent<SpriteRenderer>();
   }
 
   void OnEnable()
@@ -56,6 +58,11 @@ public class PlayerControl : MonoBehaviour
 
   void Update()
   {
+    bool grounded = colliding(Direction.Down);
+    anim.SetBool("grounded", grounded);
+    anim.SetFloat("velX", rb2d.velocity.x);
+    anim.SetFloat("velY", rb2d.velocity.y);
+
     // reset horizontal movement
     rb2d.velocity = new Vector2(0, rb2d.velocity.y);
 
@@ -64,19 +71,19 @@ public class PlayerControl : MonoBehaviour
     Vector2 horizontalMovementDelta = new Vector2(movementInput * speed, 0);
 
     // set the animation to run and let the miner face left
-    if (movementInput > 0) {
-      anim.SetTrigger("Run");
-      anim.ResetTrigger("NotRun");
-    }
-    // set the animation to run and let the miner face right
-    else if (movementInput < 0) {
-      anim.SetTrigger("Run");
-      anim.ResetTrigger("NotRun");
-    }
-    // set the animation to notrun and let the miner face left
-    else {
-      anim.SetTrigger("NotRun");
-      anim.ResetTrigger("Run");
+    switch (movementInput)
+    {
+    case >0:
+      sr.flipX = false;
+      anim.SetBool("running", true);
+      break;
+    case <0:
+      sr.flipX = true;
+      anim.SetBool("running", true);
+      break;
+    case 0:
+      anim.SetBool("running", false);
+      break;
     }
 
     // prevent the player sticking to the wall/ceiling due to continuous pressure and friction
@@ -84,21 +91,20 @@ public class PlayerControl : MonoBehaviour
       rb2d.velocity += horizontalMovementDelta;
 
     // process jumps
-    if (Gameplay.playerInput.Gameplay.Jump.IsPressed() && colliding(Direction.Down) && rb2d.velocity.y <= 0.1f)
+    if (Gameplay.playerInput.Gameplay.Jump.IsPressed() && grounded && rb2d.velocity.y <= 0.1f)
     {
       rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
       rb2d.velocity += new Vector2(0, jumpPower);
-      // set to jump animation
-      anim.SetTrigger("Jump");
-      anim.ResetTrigger("NotJump");
-    }
-    else if (!Gameplay.playerInput.Gameplay.Jump.IsPressed() && colliding(Direction.Down) && rb2d.velocity.y <= 0.1f) {
-      // set back to idle animation
-      anim.SetTrigger("NotJump");
-      anim.ResetTrigger("Jump");
+      StartCoroutine(coroutine_jumpAnim());
     }
   }
 
-}
+  IEnumerator coroutine_jumpAnim()
+  {
+    anim.SetBool("jumping", true);
+    yield return new WaitForSeconds(0.5f);
+    anim.SetBool("jumping", false);
+  }
 
+}
 
