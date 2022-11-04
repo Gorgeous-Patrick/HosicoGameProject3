@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class FollowsPlayerLookDirection : MonoBehaviour
 {
-  void Start()
+  void Update()
   {
-    EventBus.Subscribe<Event_PlayerLookDirectionChanged>(updateRotation);
-  }
-
-  void updateRotation(Event_PlayerLookDirectionChanged e)
-  {
-    transform.up = e.dirvec;
+    transform.up = Gameplay.playerLookDirection;
   }
 }
