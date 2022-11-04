@@ -14,13 +14,4 @@ public class IsExplosion : MonoBehaviour
         yield return new WaitForSeconds(respawnTime);
         Destroy(this.gameObject);
     }
-
-    private void OnTriggerStay2D(Collider2D collision) {
-        Debug.Log(collision);
-        if (collision.gameObject.tag == "Boulder") {
-            Debug.Log("Collided");
-            Destroy(collision.gameObject);
-            Destroy(this.gameObject);
-        }
-    }
 }

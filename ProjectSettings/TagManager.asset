@@ -58,6 +58,9 @@ TagManager:
   - name: Player
     uniqueID: 653126517
     locked: 0
+  - name: Item
+    uniqueID: 1261858519
+    locked: 0
   - name: Darkness
     uniqueID: 1043340381
     locked: 0
