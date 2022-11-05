@@ -14,7 +14,7 @@ public class PlayerControl : MonoBehaviour
 
   // dir: a direction to detect collision in
   // returns: true iff. the player is next to something in the given direction
-  bool colliding(Direction dir)
+  bool colliding(Direction dir, bool ignoreDynamic = true)
   {
     if (dir == Direction.Undefined) return false;
     Vector2 box = new Vector2();
@@ -36,7 +36,14 @@ public class PlayerControl : MonoBehaviour
     }
     var filter = new ContactFilter2D();
     filter.useTriggers = false;
-    return Physics2D.BoxCast(transform.position, box, 0, Utils.dir2vec(dir), filter, new List<RaycastHit2D>(), rayLength) > 0;
+    var hits = new List<RaycastHit2D>();
+    Physics2D.BoxCast(transform.position, box, 0, Utils.dir2vec(dir), filter, hits, rayLength);
+    // we do not ignore dynamic objects, so as long as there is any collision we return true
+    if (!ignoreDynamic) return hits.Count > 0;
+    // ignore dynamic objects: go over the list of hits and return true once a non-dynamic object is found
+    foreach (var hit in hits)
+      if (hit.rigidbody.bodyType != RigidbodyType2D.Dynamic) return true;
+    return false;
   }
 
   void Awake()
@@ -49,7 +56,7 @@ public class PlayerControl : MonoBehaviour
 
   void Update()
   {
-    bool grounded = colliding(Direction.Down);
+    bool grounded = colliding(Direction.Down, false); // can jump when standing on dynamic object
     anim.SetBool("grounded", grounded);
     anim.SetFloat("velX", rb2d.velocity.x);
     anim.SetFloat("velY", rb2d.velocity.y);
