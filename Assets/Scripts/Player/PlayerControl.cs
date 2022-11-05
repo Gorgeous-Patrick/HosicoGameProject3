@@ -11,7 +11,6 @@ public class PlayerControl : MonoBehaviour
   Animator anim;
   SpriteRenderer sr;
   [SerializeField] float speed = 5f, jumpPower = 7f;
-  [SerializeField] GameObject flashlight;
 
   // dir: a direction to detect collision in
   // returns: true iff. the player is next to something in the given direction
@@ -46,16 +45,6 @@ public class PlayerControl : MonoBehaviour
     rb2d = GetComponent<Rigidbody2D>();
     c2d = GetComponent<Collider2D>();
     sr = GetComponent<SpriteRenderer>();
-  }
-
-  void OnEnable()
-  {
-    Gameplay.playerInput.Gameplay.Enable();
-  }
-
-  void OnDisable()
-  {
-    Gameplay.playerInput.Gameplay.Disable();
   }
 
   void Update()

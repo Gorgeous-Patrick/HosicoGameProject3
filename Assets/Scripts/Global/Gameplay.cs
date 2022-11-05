@@ -24,8 +24,19 @@ public class Gameplay : MonoBehaviour
     }
   }
 
+  void OnEnable()
+  {
+    playerInput.Gameplay.Enable();
+  }
+
+  void OnDisable()
+  {
+    playerInput.Gameplay.Disable();
+  }
+
   void Awake()
   {
+    print("initializating gameplay");
     if (_instance != null && _instance != this)
       Destroy(this.gameObject);
     else
