@@ -12,6 +12,8 @@ public class PlayerControl : MonoBehaviour
   SpriteRenderer sr;
   [SerializeField] float speed = 5f, jumpPower = 7f;
 
+  GameObject pickaxe;
+
   // dir: a direction to detect collision in
   // returns: true iff. the player is next to something in the given direction
   bool colliding(Direction dir, bool ignoreDynamic = true)
@@ -54,6 +56,13 @@ public class PlayerControl : MonoBehaviour
     sr = GetComponent<SpriteRenderer>();
   }
 
+  void Start()
+  {
+    pickaxe = transform.Find("Pickaxe").gameObject;
+    if (pickaxe == null) Debug.LogError("Pickaxe not found");
+    pickaxe.SetActive(false);
+  }
+
   void Update()
   {
     bool grounded = colliding(Direction.Down, false); // can jump when standing on dynamic object
@@ -73,10 +82,12 @@ public class PlayerControl : MonoBehaviour
     {
     case >0:
       sr.flipX = false;
+      pickaxe.GetComponent<RotatesAround>().reversed = true;
       anim.SetBool("running", true);
       break;
     case <0:
       sr.flipX = true;
+      pickaxe.GetComponent<RotatesAround>().reversed = false;
       anim.SetBool("running", true);
       break;
     case 0:
@@ -95,6 +106,12 @@ public class PlayerControl : MonoBehaviour
       rb2d.velocity += new Vector2(0, jumpPower);
       StartCoroutine(coroutine_jumpAnim());
     }
+
+    // process mining
+    if (Gameplay.playerInput.Gameplay.Mine.WasPressedThisFrame())
+      pickaxe.SetActive(true);
+    if (Gameplay.playerInput.Gameplay.Mine.WasReleasedThisFrame())
+      pickaxe.SetActive(false);
   }
 
   IEnumerator coroutine_jumpAnim()
