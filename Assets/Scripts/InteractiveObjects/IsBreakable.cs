@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class IsBreakable : MonoBehaviour
 {
+    public UnityEvent OnHitFlash;
+
     [SerializeField] float durability = 1.0f;
     [SerializeField] float despawnTimer = 0.5f;
 
     public void AlterDurability(float delta) {
         durability += delta;
-        if (durability <= 0.0f) {
+        if (durability <= 0.0f)
+        {
             StartCoroutine(Destroy());
         }
+        else OnHitFlash?.Invoke();
     }
 
     // called to destroy gameObject
