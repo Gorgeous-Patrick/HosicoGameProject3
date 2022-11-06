@@ -62,6 +62,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleHeadlight"",
+                    ""type"": ""Button"",
+                    ""id"": ""30c9420e-7040-49aa-81da-2c6284180bde"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -130,6 +139,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Mine"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""da6dd5ad-503d-465b-83bc-e97d1d7387ec"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""ToggleHeadlight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -159,6 +179,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_Look = m_Gameplay.FindAction("Look", throwIfNotFound: true);
         m_Gameplay_Mine = m_Gameplay.FindAction("Mine", throwIfNotFound: true);
+        m_Gameplay_ToggleHeadlight = m_Gameplay.FindAction("ToggleHeadlight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -222,6 +243,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Jump;
     private readonly InputAction m_Gameplay_Look;
     private readonly InputAction m_Gameplay_Mine;
+    private readonly InputAction m_Gameplay_ToggleHeadlight;
     public struct GameplayActions
     {
         private @PlayerInput m_Wrapper;
@@ -230,6 +252,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         public InputAction @Look => m_Wrapper.m_Gameplay_Look;
         public InputAction @Mine => m_Wrapper.m_Gameplay_Mine;
+        public InputAction @ToggleHeadlight => m_Wrapper.m_Gameplay_ToggleHeadlight;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -251,6 +274,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Mine.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMine;
                 @Mine.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMine;
                 @Mine.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMine;
+                @ToggleHeadlight.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnToggleHeadlight;
+                @ToggleHeadlight.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnToggleHeadlight;
+                @ToggleHeadlight.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnToggleHeadlight;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -267,6 +293,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Mine.started += instance.OnMine;
                 @Mine.performed += instance.OnMine;
                 @Mine.canceled += instance.OnMine;
+                @ToggleHeadlight.started += instance.OnToggleHeadlight;
+                @ToggleHeadlight.performed += instance.OnToggleHeadlight;
+                @ToggleHeadlight.canceled += instance.OnToggleHeadlight;
             }
         }
     }
@@ -286,5 +315,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnMine(InputAction.CallbackContext context);
+        void OnToggleHeadlight(InputAction.CallbackContext context);
     }
 }

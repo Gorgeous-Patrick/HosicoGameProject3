@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 4922816221441201374}
   - component: {fileID: 1319891785}
   m_Layer: 0
-  m_Name: Flashlight
+  m_Name: Headlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -311,6 +311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1633615246156725965}
   - component: {fileID: 5164404179217338421}
+  - component: {fileID: 1748341737}
   m_Layer: 0
   m_Name: Light
   m_TagString: Untagged
@@ -348,7 +349,7 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
+  m_FalloffIntensity: 0.522
   m_Color: {r: 0.78431374, g: 0.49411765, b: 0.14509805, a: 1}
   m_Intensity: 10
   m_LightVolumeIntensity: 1
@@ -398,8 +399,8 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 71.090004
-  m_PointLightOuterAngle: 104.88
+  m_PointLightInnerAngle: 60.13364
+  m_PointLightOuterAngle: 162.5548
   m_PointLightInnerRadius: 0
   m_PointLightOuterRadius: 10
   m_ShapeLightParametricSides: 5
@@ -412,6 +413,18 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &1748341737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900860922182783511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fab0fd987de95381b84cb548b913b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4759227589043878059
 PrefabInstance:
   m_ObjectHideFlags: 0
