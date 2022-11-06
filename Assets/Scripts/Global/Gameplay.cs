@@ -7,7 +7,17 @@ public class Gameplay : MonoBehaviour
 
   PlayerInput _playerInput;
   [SerializeField] GameObject _player;
+  [SerializeField] float batteryDrainInterval = 7, batteryChargeInterval = 0.1f;
+  float _batteryLevel;
+  Coroutine batteryDrainCoroutine, batteryChargeCoroutine;
 
+  static public float batteryLevel
+  {
+    get
+    {
+      return instance._batteryLevel;
+    }
+  }
   static public PlayerInput playerInput
   {
     get
@@ -15,7 +25,6 @@ public class Gameplay : MonoBehaviour
       return instance._playerInput;
     }
   }
-
   static public GameObject player
   {
     get
@@ -36,12 +45,54 @@ public class Gameplay : MonoBehaviour
 
   void Awake()
   {
-    print("initializating gameplay");
     if (_instance != null && _instance != this)
       Destroy(this.gameObject);
     else
       _instance = this;
     _playerInput = new PlayerInput();
+  }
+
+  void Start()
+  {
+    _batteryLevel = 1;
+    batteryDrainCoroutine = StartCoroutine(coroutine_batteryDrain());
+    EventBus.Subscribe<EventHeadlightStatusChange>(handler_EventHeadlightStatusChange);
+  }
+
+  void handler_EventHeadlightStatusChange(EventHeadlightStatusChange e)
+  {
+    if (e.enabled == true && batteryDrainCoroutine == null)
+    {
+      batteryDrainCoroutine = StartCoroutine(coroutine_batteryDrain());
+      return;
+    }
+    if (e.enabled == false && batteryDrainCoroutine != null)
+    {
+      StopCoroutine(batteryDrainCoroutine);
+      batteryDrainCoroutine = null;
+      return;
+    }
+  }
+
+  IEnumerator coroutine_batteryDrain()
+  {
+    while (_batteryLevel > 0)
+    {
+      yield return new WaitForSeconds(batteryDrainInterval);
+      _batteryLevel -= 0.01f;
+    }
+    // the player failed...
+    EventBus.Publish(new EventFailure());
+  }
+
+  IEnumerator coroutine_batteryCharge()
+  {
+    while (_batteryLevel < 1)
+    {
+      yield return new WaitForSeconds(batteryChargeInterval);
+      _batteryLevel += 0.03f;
+    }
+    if (_batteryLevel > 1) _batteryLevel = 1;
   }
 
   // Singleton
@@ -60,7 +111,7 @@ public class Gameplay : MonoBehaviour
     get
     {
       return Camera.main.ScreenToWorldPoint(playerInput.Gameplay.Look.ReadValue<Vector2>())
-        - player.transform.position;
+             - player.transform.position;
     }
   }
 

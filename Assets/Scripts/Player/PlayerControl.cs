@@ -10,9 +10,11 @@ public class PlayerControl : MonoBehaviour
   Collider2D c2d;
   Animator anim;
   SpriteRenderer sr;
+  GameObject pickaxe;
+  bool headlightOn;
+
   [SerializeField] float speed = 5f, jumpPower = 7f;
 
-  GameObject pickaxe;
 
   // dir: a direction to detect collision in
   // returns: true iff. the player is next to something in the given direction
@@ -61,6 +63,7 @@ public class PlayerControl : MonoBehaviour
     pickaxe = transform.Find("Pickaxe").gameObject;
     if (pickaxe == null) Debug.LogError("Pickaxe not found");
     pickaxe.SetActive(false);
+    headlightOn = true;
   }
 
   void Update()
@@ -112,6 +115,12 @@ public class PlayerControl : MonoBehaviour
       pickaxe.SetActive(true);
     if (Gameplay.playerInput.Gameplay.Mine.WasReleasedThisFrame())
       pickaxe.SetActive(false);
+
+    if (Gameplay.playerInput.Gameplay.ToggleHeadlight.WasPressedThisFrame())
+    {
+      headlightOn = !headlightOn;
+      EventBus.Publish(new EventHeadlightStatusChange {enabled = headlightOn});
+    }
   }
 
   IEnumerator coroutine_jumpAnim()
@@ -122,4 +131,3 @@ public class PlayerControl : MonoBehaviour
   }
 
 }
-

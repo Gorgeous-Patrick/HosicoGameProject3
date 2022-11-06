@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ToggleHeadlight",
+                    "type": "Button",
+                    "id": "30c9420e-7040-49aa-81da-2c6284180bde",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -106,6 +115,17 @@
                     "processors": "",
                     "groups": "Keyboard & Mouse",
                     "action": "Mine",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "da6dd5ad-503d-465b-83bc-e97d1d7387ec",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "ToggleHeadlight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
