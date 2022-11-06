@@ -71,10 +71,7 @@ public class Utils
   Math.Abs(p1.x - p2.x) <= precision
   && Math.Abs(p1.y - p2.y) <= precision;
 
-  static public Vector2 flatten(Vector3 v)
-  {
-    return new Vector2(v.x, v.y);
-  }
+  static public Vector2 flatten(Vector3 v) => new Vector2(v.x, v.y);
 
   static public Vector2 dir2vec(Direction dir)
   {

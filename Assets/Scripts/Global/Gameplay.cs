@@ -11,6 +11,9 @@ public class Gameplay : MonoBehaviour
   float _batteryLevel;
   Coroutine batteryDrainCoroutine, batteryChargeCoroutine;
 
+  // triggered when player presses E to interact with objects in the scene
+  public System.Action funcUseItem;
+
   static public float batteryLevel
   {
     get

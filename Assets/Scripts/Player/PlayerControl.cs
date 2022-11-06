@@ -15,7 +15,6 @@ public class PlayerControl : MonoBehaviour
 
   [SerializeField] float speed = 5f, jumpPower = 7f;
 
-
   // dir: a direction to detect collision in
   // returns: true iff. the player is next to something in the given direction
   bool colliding(Direction dir, bool ignoreDynamic = true)
