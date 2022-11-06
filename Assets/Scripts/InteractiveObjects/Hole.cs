@@ -6,10 +6,10 @@ using UnityEngine.InputSystem;
 
 public class Hole : Interactive
 {
-    [SerializeField] string targetSceneName;
+  [SerializeField] string targetSceneName;
 
-    protected override void Interact()
-    {
-      SceneManager.LoadScene(targetSceneName);
-    }
+  protected override void Interact()
+  {
+    SceneManager.LoadScene(targetSceneName);
+  }
 }
