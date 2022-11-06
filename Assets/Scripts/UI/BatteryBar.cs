@@ -7,8 +7,9 @@ public class BatteryBar : MonoBehaviour
 {
 
   Image img;
+  [SerializeField] List<SerializablePair<float, Color>> colors;
 
-  void  Start()
+  void Start()
   {
     img = GetComponent<Image>();
   }
@@ -16,6 +17,12 @@ public class BatteryBar : MonoBehaviour
   void Update()
   {
     img.fillAmount = Gameplay.batteryLevel;
+    foreach (var kv in colors)
+      if (Gameplay.batteryLevel <= kv.first)
+      {
+        img.color = kv.second;
+        break;
+      }
   }
 
 }

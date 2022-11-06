@@ -8,6 +8,11 @@ public class Headlight : MonoBehaviour
 
   Light2D light;
   float maxIntensity;
+  [SerializeField] float minimumIntensityRatio = 0.3f;
+  float minIntensity
+  {
+    get => maxIntensity * minimumIntensityRatio;
+  }
 
   void Start()
   {
@@ -18,7 +23,7 @@ public class Headlight : MonoBehaviour
 
   void Update()
   {
-    light.intensity = Gameplay.batteryLevel * maxIntensity;
+    light.intensity = minIntensity + Gameplay.batteryLevel * (maxIntensity - minIntensity);
   }
 
   void handler_EventHeadlightStatusChange(EventHeadlightStatusChange e)

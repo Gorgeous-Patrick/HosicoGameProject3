@@ -12,6 +12,19 @@ public enum Direction
   Undefined
 }
 
+[Serializable]
+public class SerializablePair<First, Second>
+{
+  public First first;
+  public Second second;
+  public SerializablePair(First first_, Second second_)
+  {
+    first = first_;
+    second = second_;
+  }
+  public SerializablePair(){}
+}
+
 public class CoroutineUtilities
 {
 
