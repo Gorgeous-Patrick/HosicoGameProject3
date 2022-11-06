@@ -120,6 +120,12 @@ public class PlayerControl : MonoBehaviour
       headlightOn = !headlightOn;
       EventBus.Publish(new EventHeadlightStatusChange {enabled = headlightOn});
     }
+
+    if (Gameplay.playerInput.Gameplay.Interact.WasPressedThisFrame())
+    {
+      Gameplay.funcInteract.Invoke();
+    }
+
   }
 
   IEnumerator coroutine_jumpAnim()

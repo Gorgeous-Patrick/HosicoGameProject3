@@ -27,3 +27,8 @@ public class EventHeadlightStatusChange : Event
 {
   public bool enabled;
 }
+
+public class EventBatteryStatusChange : Event
+{
+  public bool charging;
+}

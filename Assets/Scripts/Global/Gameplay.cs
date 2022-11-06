@@ -12,28 +12,24 @@ public class Gameplay : MonoBehaviour
   Coroutine batteryDrainCoroutine, batteryChargeCoroutine;
 
   // triggered when player presses E to interact with objects in the scene
-  public System.Action funcUseItem;
+  System.Action _funcInteract;
 
   static public float batteryLevel
   {
-    get
-    {
-      return instance._batteryLevel;
-    }
+    get => instance._batteryLevel;
   }
   static public PlayerInput playerInput
   {
-    get
-    {
-      return instance._playerInput;
-    }
+    get => instance._playerInput;
   }
   static public GameObject player
   {
-    get
-    {
-      return instance._player;
-    }
+    get => instance._player;
+  }
+  static public System.Action funcInteract
+  {
+    get => instance._funcInteract;
+    set => instance._funcInteract = value;
   }
 
   void OnEnable()
@@ -60,6 +56,7 @@ public class Gameplay : MonoBehaviour
     _batteryLevel = 1;
     batteryDrainCoroutine = StartCoroutine(coroutine_batteryDrain());
     EventBus.Subscribe<EventHeadlightStatusChange>(handler_EventHeadlightStatusChange);
+    EventBus.Subscribe<EventBatteryStatusChange>(haandler_EventBatteryStatusChange);
   }
 
   void handler_EventHeadlightStatusChange(EventHeadlightStatusChange e)
@@ -73,6 +70,21 @@ public class Gameplay : MonoBehaviour
     {
       StopCoroutine(batteryDrainCoroutine);
       batteryDrainCoroutine = null;
+      return;
+    }
+  }
+
+  void haandler_EventBatteryStatusChange(EventBatteryStatusChange e)
+  {
+    if (e.charging == true && batteryChargeCoroutine == null)
+    {
+      batteryChargeCoroutine = StartCoroutine(coroutine_batteryCharge());
+      return;
+    }
+    if (e.charging == false && batteryChargeCoroutine != null)
+    {
+      StopCoroutine(batteryChargeCoroutine);
+      batteryChargeCoroutine = null;
       return;
     }
   }
