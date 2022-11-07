@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Gameplay : MonoBehaviour
 {
 
   PlayerInput _playerInput;
   [SerializeField] GameObject _player;
+  [SerializeField] string GameOverScene = "Game Over";
   [SerializeField] float batteryDrainInterval = 7, batteryChargeInterval = 0.1f;
   float _batteryLevel;
   Coroutine batteryDrainCoroutine, batteryChargeCoroutine;
@@ -98,6 +100,9 @@ public class Gameplay : MonoBehaviour
     }
     // the player failed...
     EventBus.Publish(new EventFailure());
+
+    // loads Game Over scene
+    SceneManager.LoadScene(GameOverScene);
   }
 
   IEnumerator coroutine_batteryCharge()
