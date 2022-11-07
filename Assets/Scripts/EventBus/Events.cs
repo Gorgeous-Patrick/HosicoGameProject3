@@ -32,3 +32,8 @@ public class EventBatteryStatusChange : Event
 {
   public bool charging;
 }
+
+public class EventChangeCheckpoint : Event
+{
+    public Transform checkpoint;
+}

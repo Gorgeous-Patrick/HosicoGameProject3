@@ -8,6 +8,7 @@ public class Generator : Interactive
   protected override void Interact()
   {
     EventBus.Publish(new EventBatteryStatusChange { charging = true });
+    EventBus.Publish(new EventChangeCheckpoint {checkpoint = transform});
   }
 
   protected override void Interrupt()
