@@ -7,5 +7,6 @@ Sprites
 	Battery UI Icon: https://opengameart.org/content/kind-of-techno-icons
 	"Generator": https://opengameart.org/content/pixel-transformer
 	Energy Symbol on Generator: https://www.pngmart.com/image/230973
+	Miner character: https://opengameart.org/content/treasure-hunter-game-assets
 Fonts
 	Font: https://www.dafont.com/greadown.font
