@@ -286,4 +286,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   speed: 5
-  height: 0.03
+  height: 0.01
