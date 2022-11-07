@@ -9,6 +9,13 @@
 - We should have more freedom when it comes to digging
 - Light to be pixel art
 - Box to be reset when you die
-- Should be able to jump off the ladder
+- Should be able to jump off the ladder or rope
+- Light intense if capacity is low (Austin)
+- Mining nature more
+- Every block is breakable with equipment (Austin)
+- Play Mr driller in p3_research
+- Animations for climbing, if run out of charge there should still be dim light
+- Collapse for boulder
+- Jumping is a little slow
 https://en.wikipedia.org/wiki/Mr._Driller
 https://spelunkyworld.com/
