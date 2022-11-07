@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2862689680926002012}
   - component: {fileID: 2597169357277534309}
   - component: {fileID: 2252195771423225559}
+  - component: {fileID: 5408312988845571384}
   m_Layer: 0
   m_Name: Phone
   m_TagString: Untagged
@@ -226,7 +227,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -271,3 +272,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameClearScene: Game Clear
+--- !u!114 &5408312988845571384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5736461762355085423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bafd3c81610ca334eb99f790dae64756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  speed: 5
+  height: 0.03
