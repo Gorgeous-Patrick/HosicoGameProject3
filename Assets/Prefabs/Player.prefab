@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2d: {fileID: 5764863849406442376}
-  spd: 1
+  spd: 2
 --- !u!1 &6015112814299302784
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,4 +12,12 @@ public class HasKillPlayerOnTouch : MonoBehaviour
             SceneManager.LoadScene("Game Over");
         }
     }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Player"))
+        {
+            SceneManager.LoadScene("Game Over");
+        }
+    }
 }
