@@ -8,7 +8,7 @@ public class IsBreakable : MonoBehaviour
     public UnityEvent OnHitFlash;
 
     [SerializeField] float durability = 1.0f;
-    [SerializeField] float despawnTimer = 0.5f;
+    [SerializeField] float despawnTimer = 1.5f;
 
     public void AlterDurability(float delta) {
         durability += delta;

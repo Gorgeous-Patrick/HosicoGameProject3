@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class Gameplay : MonoBehaviour
 {
-
-  PlayerInput _playerInput;
+    Subscription<EventFailure> sub_EventFailure;
+    PlayerInput _playerInput;
   [SerializeField] GameObject _player;
-  [SerializeField] string GameOverScene = "Game Over";
   [SerializeField] float batteryDrainInterval = 7, batteryChargeInterval = 0.1f;
-  float _batteryLevel;
+    [SerializeField] float maxBattery = 1;
+    float _batteryLevel;
   Coroutine batteryDrainCoroutine, batteryChargeCoroutine;
 
   // triggered when player presses E to interact with objects in the scene
@@ -51,11 +52,12 @@ public class Gameplay : MonoBehaviour
     else
       _instance = this;
     _playerInput = new PlayerInput();
-  }
+        sub_EventFailure = EventBus.Subscribe<EventFailure>(OnEventFailureDo);
+    }
 
-  void Start()
+    void Start()
   {
-    _batteryLevel = 1;
+    _batteryLevel = maxBattery;
     batteryDrainCoroutine = StartCoroutine(coroutine_batteryDrain());
     EventBus.Subscribe<EventHeadlightStatusChange>(handler_EventHeadlightStatusChange);
     EventBus.Subscribe<EventBatteryStatusChange>(haandler_EventBatteryStatusChange);
@@ -100,9 +102,6 @@ public class Gameplay : MonoBehaviour
     }
     // the player failed...
     EventBus.Publish(new EventFailure());
-
-    // loads Game Over scene
-    SceneManager.LoadScene(GameOverScene);
   }
 
   IEnumerator coroutine_batteryCharge()
@@ -134,5 +133,17 @@ public class Gameplay : MonoBehaviour
              - player.transform.position;
     }
   }
+
+    private void OnEventFailureDo(EventFailure obj)
+    {
+        _batteryLevel = maxBattery;
+        StartCoroutine(DelayDrainOnRespawn());
+    }
+
+    private IEnumerator DelayDrainOnRespawn()
+    {
+        yield return new WaitForSeconds(0.5f);
+        batteryDrainCoroutine = StartCoroutine(coroutine_batteryDrain());
+    }
 
 }

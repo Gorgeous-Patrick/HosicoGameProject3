@@ -5,8 +5,8 @@ using System;
 
 public class PlayerControl : MonoBehaviour
 {
-
-  Rigidbody2D rb2d;
+    Subscription<EventResetPlayer> sub_EventFailure;
+    Rigidbody2D rb2d;
   Collider2D c2d;
   Animator anim;
   SpriteRenderer sr;
@@ -55,9 +55,10 @@ public class PlayerControl : MonoBehaviour
     rb2d = GetComponent<Rigidbody2D>();
     c2d = GetComponent<Collider2D>();
     sr = GetComponent<SpriteRenderer>();
-  }
+        sub_EventFailure = EventBus.Subscribe<EventResetPlayer>(OnResetDo);
+    }
 
-  void Start()
+    void Start()
   {
     pickaxe = transform.Find("Pickaxe").gameObject;
     if (pickaxe == null) Debug.LogError("Pickaxe not found");
@@ -134,5 +135,10 @@ public class PlayerControl : MonoBehaviour
     yield return new WaitForSeconds(0.5f);
     anim.SetBool("jumping", false);
   }
+
+    private void OnResetDo(EventResetPlayer obj)
+    {
+        transform.position = obj.pos;
+    }
 
 }

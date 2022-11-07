@@ -8,17 +8,15 @@ public class SpriteFlasher : MonoBehaviour
     private SpriteRenderer sr;
     private Color[] colorList =
     {
-        Color.blue, Color.red, Color.green, Color.blue, Color.yellow
+        Color.blue, Color.red, Color.green, Color.blue
     };
     private Color originalColor;
-    private int i;
     private bool startFlash;
     private float countdown;
 
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
-        i = 0;
         originalColor = sr.color;
         startFlash = false;
         countdown = 100f;

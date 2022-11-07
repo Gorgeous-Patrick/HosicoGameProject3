@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3551392206170499733}
   - component: {fileID: 3551392206170499734}
   - component: {fileID: 1173718717590572646}
+  - component: {fileID: 1091674993650152782}
   m_Layer: 0
   m_Name: GamePlay
   m_TagString: Untagged
@@ -46,8 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
+  GameOverScene: Game Over
   batteryDrainInterval: 1.8
   batteryChargeInterval: 0.1
+  maxBattery: 1
 --- !u!114 &1173718717590572646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,3 +65,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClips: []
   audioNames: []
+--- !u!114 &1091674993650152782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3551392206170499735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7ce3abbf2e974a42a6dbf114b9826c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameOverScene: 
+  firstCheckpoint: {fileID: 0}
+  maxHealth: 3

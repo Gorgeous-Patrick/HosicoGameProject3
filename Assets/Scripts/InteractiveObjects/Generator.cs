@@ -9,10 +9,6 @@ public class Generator : Interactive
   {
     EventBus.Publish(new EventBatteryStatusChange { charging = true });
     EventBus.Publish(new EventChangeCheckpoint {checkpoint = transform});
-        PlayerPrefs.SetFloat("x-pos", transform.position.x);
-        PlayerPrefs.SetFloat("y-pos", transform.position.y);
-        PlayerPrefs.SetFloat("z-pos", transform.position.z);
-        Debug.Log("Player random prefs" + PlayerPrefs.GetFloat("z-pos"));
   }
 
   protected override void Interrupt()

@@ -23,6 +23,11 @@ public class EventFailure : Event
 {
 }
 
+public class EventResetPlayer : Event
+{
+    public Vector2 pos;
+}
+
 public class EventHeadlightStatusChange : Event
 {
   public bool enabled;
@@ -36,4 +41,9 @@ public class EventBatteryStatusChange : Event
 public class EventChangeCheckpoint : Event
 {
     public Transform checkpoint;
+}
+
+public class EventLoseHealth: Event
+{
+    public int health;
 }
