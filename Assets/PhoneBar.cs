@@ -5,20 +5,24 @@ using UnityEngine.UI;
 
 public class PhoneBar : MonoBehaviour
 {
-    public GameObject phone;
     private float fullDistance;
     private Image img;
     // Start is called before the first frame update
     void Start()
     {
-        fullDistance = Vector2.Distance(transform.position, phone.transform.position);
+        GameObject phone = Gameplay.phone;
+        GameObject player = Gameplay.player;
+        fullDistance = Vector2.Distance(player.transform.position, phone.transform.position);
+        Debug.Log(fullDistance);
         img = GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float currentDistance = Vector2.Distance(transform.position, phone.transform.position);
+        GameObject phone = Gameplay.phone;
+        GameObject player = Gameplay.player;
+        float currentDistance = Vector2.Distance(player.transform.position, phone.transform.position);
         float ratio = 1 - currentDistance / fullDistance;
         if (ratio < 0)
         {

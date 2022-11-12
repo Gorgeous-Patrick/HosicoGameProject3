@@ -10,6 +10,7 @@ public class Gameplay : MonoBehaviour
     PlayerInput _playerInput;
   [SerializeField] GameObject _player;
   [SerializeField] float batteryDrainInterval = 7, batteryChargeInterval = 0.1f;
+  [SerializeField] GameObject _phone;
     [SerializeField] float maxBattery = 1;
     float _batteryLevel;
   Coroutine batteryDrainCoroutine, batteryChargeCoroutine;
@@ -28,6 +29,11 @@ public class Gameplay : MonoBehaviour
   static public GameObject player
   {
     get => instance._player;
+  }
+
+  static public GameObject phone
+  {
+    get => instance._phone;
   }
   static public System.Action funcInteract
   {
