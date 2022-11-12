@@ -1,20 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class PlayerControl : MonoBehaviour
 {
-    Subscription<EventResetPlayer> sub_EventFailure;
-    Subscription<EventJumpFromLadder> sub_EventJumpFromLadder;
-    Rigidbody2D rb2d;
+  Rigidbody2D rb2d;
   Collider2D c2d;
   Animator anim;
   SpriteRenderer sr;
-  [SerializeField] GameObject pickaxe;
+  GameObject pickaxe;
   bool headlightOn;
+  bool canClimb, climbing;
+  float gravityScale;
 
-  [SerializeField] float speed = 5f, jumpPower = 7f;
+  [SerializeField] float speed = 5f, jumpPower = 7f, climbSpeed = 3f;
 
   // dir: a direction to detect collision in
   // returns: true iff. the player is next to something in the given direction
@@ -56,16 +55,16 @@ public class PlayerControl : MonoBehaviour
     rb2d = GetComponent<Rigidbody2D>();
     c2d = GetComponent<Collider2D>();
     sr = GetComponent<SpriteRenderer>();
-        sub_EventFailure = EventBus.Subscribe<EventResetPlayer>(OnResetDo);
-        sub_EventJumpFromLadder = EventBus.Subscribe<EventJumpFromLadder>(OnJumpDo);
-    }
+    EventBus.Subscribe<EventResetPlayer>(handler_EventResetPlayer);
+  }
 
-    void Start()
+  void Start()
   {
-    // pickaxe = transform.Find("Pickaxe").gameObject;
+    pickaxe = transform.Find("Pickaxe Container").Find("Pickaxe").gameObject;
     if (pickaxe == null) Debug.LogError("Pickaxe not found");
     pickaxe.SetActive(false);
     headlightOn = true;
+    gravityScale = rb2d.gravityScale;
   }
 
   void Update()
@@ -75,12 +74,22 @@ public class PlayerControl : MonoBehaviour
     anim.SetFloat("velX", rb2d.velocity.x);
     anim.SetFloat("velY", rb2d.velocity.y);
 
-    // reset horizontal movement
-    rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+    // reset movement
+    rb2d.velocity = new Vector2(0, climbing ? 0 : rb2d.velocity.y);
+
+    // set gravity according to climbing status
+    rb2d.gravityScale = climbing ? 0 : gravityScale;
 
     // process horizontal movement
     float movementInput = Gameplay.playerInput.Gameplay.Move.ReadValue<float>();
     Vector2 horizontalMovementDelta = new Vector2(movementInput * speed, 0);
+
+    Vector2 verticalMovementDelta = new Vector2(0, 0);
+    if (climbing)
+    {
+      float climbInput = Gameplay.playerInput.Gameplay.Climb.ReadValue<float>();
+      verticalMovementDelta = new Vector2(0, climbInput * climbSpeed);
+    }
 
     // set the animation to run and let the miner face left
     switch (movementInput)
@@ -102,12 +111,19 @@ public class PlayerControl : MonoBehaviour
 
     // prevent the player sticking to the wall/ceiling due to continuous pressure and friction
     if (!colliding(Utils.vec2dir(horizontalMovementDelta)))
+      // apply horizontal movement
       rb2d.velocity += horizontalMovementDelta;
+    // apply vertical movement
+    rb2d.velocity += verticalMovementDelta;
+
 
     // process jumps
-    if (Gameplay.playerInput.Gameplay.Jump.IsPressed() && grounded && rb2d.velocity.y <= 0.1f)
+    if (Gameplay.playerInput.Gameplay.Jump.IsPressed() && (grounded || climbing) && rb2d.velocity.y <= 0.1f)
     {
-            OnJumpDo(null);
+      rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
+      rb2d.velocity += new Vector2(0, jumpPower);
+      StartCoroutine(coroutine_jumpAnim());
+      StartCoroutine(coroutine_jumpLadder());
     }
 
     // process mining
@@ -124,12 +140,24 @@ public class PlayerControl : MonoBehaviour
     }
 
     // process active interaction with objects
-        if (Gameplay.playerInput.Gameplay.Interact.WasPressedThisFrame())
-        {
-            if (Gameplay.funcInteract != null)
-                Gameplay.funcInteract.Invoke();
-        }
+    if (Gameplay.playerInput.Gameplay.Interact.WasPressedThisFrame())
+    {
+      if (Gameplay.funcInteract != null)
+        Gameplay.funcInteract.Invoke();
+    }
 
+  }
+
+  void OnTriggerEnter2D(Collider2D collisionInfo)
+  {
+    if (collisionInfo.gameObject.GetComponent<Climbable>() != null)
+      canClimb = climbing = true;
+  }
+
+  void OnTriggerExit2D(Collider2D collisionInfo)
+  {
+    if (collisionInfo.gameObject.GetComponent<Climbable>() != null)
+      canClimb = climbing = false;
   }
 
   IEnumerator coroutine_jumpAnim()
@@ -139,16 +167,16 @@ public class PlayerControl : MonoBehaviour
     anim.SetBool("jumping", false);
   }
 
-    private void OnResetDo(EventResetPlayer obj)
-    {
-        transform.position = obj.pos;
-    }
+  IEnumerator coroutine_jumpLadder()
+  {
+    climbing = false;
+    yield return new WaitForSeconds(2f);
+    climbing = canClimb;
+  }
 
-    private void OnJumpDo(EventJumpFromLadder obj)
-    {
-        rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
-        rb2d.velocity += new Vector2(0, jumpPower);
-        StartCoroutine(coroutine_jumpAnim());
-    }
+  void handler_EventResetPlayer(EventResetPlayer e)
+  {
+    transform.position = e.pos;
+  }
 
 }

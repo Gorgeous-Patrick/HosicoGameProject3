@@ -23,11 +23,6 @@ public class EventFailure : Event
 {
 }
 
-public class EventJumpFromLadder: Event
-{
-
-}
-
 public class EventResetPlayer : Event
 {
     public Vector2 pos;
@@ -51,4 +46,16 @@ public class EventChangeCheckpoint : Event
 public class EventLoseHealth: Event
 {
     public int health;
+}
+
+public class EventUpdateInventory : Event
+{
+    public string pickup;
+    public int delta;
+}
+
+public class EventUpdatePickupUI : Event
+{
+    public string pickup;
+    public int newAmount;
 }

@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal; // for Light2D
 public class Headlight : MonoBehaviour
 {
 
-  Light2D light;
+  Light2D light2d;
   float maxIntensity;
   [SerializeField] float minimumIntensityRatio = 0.3f;
   float minIntensity
@@ -16,19 +16,19 @@ public class Headlight : MonoBehaviour
 
   void Start()
   {
-    light = GetComponent<Light2D>();
-    maxIntensity = light.intensity;
+    light2d = GetComponent<Light2D>();
+    maxIntensity = light2d.intensity;
     EventBus.Subscribe<EventHeadlightStatusChange>(handler_EventHeadlightStatusChange);
   }
 
   void Update()
   {
-    light.intensity = minIntensity + Gameplay.batteryLevel * (maxIntensity - minIntensity);
+    light2d.intensity = minIntensity + Gameplay.batteryLevel * (maxIntensity - minIntensity);
   }
 
   void handler_EventHeadlightStatusChange(EventHeadlightStatusChange e)
   {
-    light.enabled = e.enabled;
+    light2d.enabled = e.enabled;
   }
 
 }
