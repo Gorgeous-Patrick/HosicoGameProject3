@@ -7,6 +7,7 @@ public class HasPlayerClimbScript : MonoBehaviour
     private float vertical;
     private bool isObjLadder;
     private bool isOnLadder;
+    private float delayReturn2Ladder = 0;
 
     [SerializeField] private Rigidbody2D rb2d;
     [SerializeField] private float spd;
@@ -25,6 +26,11 @@ public class HasPlayerClimbScript : MonoBehaviour
         {
             rb2d.gravityScale = 0f;
             rb2d.velocity = new Vector2(rb2d.velocity.x, vertical * spd);
+            if (Input.GetKeyDown("space"))
+            {
+                EventBus.Publish(new EventJumpFromLadder());
+                isOnLadder = false;
+            }
         }
         else rb2d.gravityScale = 1f;
     }

@@ -6,6 +6,7 @@ using System;
 public class PlayerControl : MonoBehaviour
 {
     Subscription<EventResetPlayer> sub_EventFailure;
+    Subscription<EventJumpFromLadder> sub_EventJumpFromLadder;
     Rigidbody2D rb2d;
   Collider2D c2d;
   Animator anim;
@@ -56,6 +57,7 @@ public class PlayerControl : MonoBehaviour
     c2d = GetComponent<Collider2D>();
     sr = GetComponent<SpriteRenderer>();
         sub_EventFailure = EventBus.Subscribe<EventResetPlayer>(OnResetDo);
+        sub_EventJumpFromLadder = EventBus.Subscribe<EventJumpFromLadder>(OnJumpDo);
     }
 
     void Start()
@@ -105,9 +107,7 @@ public class PlayerControl : MonoBehaviour
     // process jumps
     if (Gameplay.playerInput.Gameplay.Jump.IsPressed() && grounded && rb2d.velocity.y <= 0.1f)
     {
-      rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
-      rb2d.velocity += new Vector2(0, jumpPower);
-      StartCoroutine(coroutine_jumpAnim());
+            OnJumpDo(null);
     }
 
     // process mining
@@ -139,6 +139,13 @@ public class PlayerControl : MonoBehaviour
     private void OnResetDo(EventResetPlayer obj)
     {
         transform.position = obj.pos;
+    }
+
+    private void OnJumpDo(EventJumpFromLadder obj)
+    {
+        rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
+        rb2d.velocity += new Vector2(0, jumpPower);
+        StartCoroutine(coroutine_jumpAnim());
     }
 
 }
