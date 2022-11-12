@@ -6,6 +6,7 @@ public class MouseInput : MonoBehaviour
 {
     Vector3 MousePosition;
     public LayerMask WhatIsPlatform;
+    bool cheatModeOn = false;
 
     private void OnDrawGizmos()
     {
@@ -15,7 +16,7 @@ public class MouseInput : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && cheatModeOn)
         {
             MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Collider2D overCollider = Physics2D.OverlapCircle(MousePosition, 0.01f, WhatIsPlatform);

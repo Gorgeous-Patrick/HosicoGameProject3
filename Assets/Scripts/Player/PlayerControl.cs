@@ -11,7 +11,7 @@ public class PlayerControl : MonoBehaviour
   Collider2D c2d;
   Animator anim;
   SpriteRenderer sr;
-  GameObject pickaxe;
+  [SerializeField] GameObject pickaxe;
   bool headlightOn;
 
   [SerializeField] float speed = 5f, jumpPower = 7f;
@@ -62,7 +62,7 @@ public class PlayerControl : MonoBehaviour
 
     void Start()
   {
-    pickaxe = transform.Find("Pickaxe").gameObject;
+    // pickaxe = transform.Find("Pickaxe").gameObject;
     if (pickaxe == null) Debug.LogError("Pickaxe not found");
     pickaxe.SetActive(false);
     headlightOn = true;
@@ -87,12 +87,12 @@ public class PlayerControl : MonoBehaviour
     {
     case >0:
       sr.flipX = false;
-      pickaxe.GetComponent<RotatesAround>().reversed = true;
+      pickaxe.GetComponent<SwingPickaxe>().reversed = true;
       anim.SetBool("running", true);
       break;
     case <0:
       sr.flipX = true;
-      pickaxe.GetComponent<RotatesAround>().reversed = false;
+      pickaxe.GetComponent<SwingPickaxe>().reversed = false;
       anim.SetBool("running", true);
       break;
     case 0:
@@ -124,8 +124,11 @@ public class PlayerControl : MonoBehaviour
     }
 
     // process active interaction with objects
-    if (Gameplay.playerInput.Gameplay.Interact.WasPressedThisFrame())
-      Gameplay.funcInteract.Invoke();
+        if (Gameplay.playerInput.Gameplay.Interact.WasPressedThisFrame())
+        {
+            if (Gameplay.funcInteract != null)
+                Gameplay.funcInteract.Invoke();
+        }
 
   }
 

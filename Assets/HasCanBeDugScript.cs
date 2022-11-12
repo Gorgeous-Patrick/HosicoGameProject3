@@ -16,6 +16,12 @@ public class HasCanBeDugScript : MonoBehaviour
     public void DestroyTileMapAtPoint( Vector3 Pos)
     {
         Vector3Int cellPos = destructibleTilemap.WorldToCell(Pos);
+        StartCoroutine(BreakingTileDelay(cellPos));
+    }
+
+    private IEnumerator BreakingTileDelay(Vector3Int cellPos)
+    {
+        yield return new WaitForSeconds(0.12f);
         destructibleTilemap.SetTile(cellPos, null);
     }
 }
