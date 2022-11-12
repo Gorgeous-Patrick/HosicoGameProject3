@@ -80,11 +80,20 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Climb"",
+                    ""type"": ""Value"",
+                    ""id"": ""a2fa2310-f6e6-4ecb-ad3a-9cf01a310e8f"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": ""1D Axis"",
+                    ""name"": ""A/D"",
                     ""id"": ""59d68ebe-e575-416f-a1d7-c30bb399893d"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
@@ -141,7 +150,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8ca950c0-ee2f-41c4-a64d-ae585d69e631"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
@@ -170,6 +179,39 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""W/S"",
+                    ""id"": ""bbd5b570-bf5b-49bd-bc00-0e4b780d0605"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Climb"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""dac36e60-d1b5-4243-823a-719f2edcbc49"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Climb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""812d7566-185f-4fc1-844d-072f7029b8e8"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Climb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -201,6 +243,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Gameplay_Mine = m_Gameplay.FindAction("Mine", throwIfNotFound: true);
         m_Gameplay_ToggleHeadlight = m_Gameplay.FindAction("ToggleHeadlight", throwIfNotFound: true);
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
+        m_Gameplay_Climb = m_Gameplay.FindAction("Climb", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -266,6 +309,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Mine;
     private readonly InputAction m_Gameplay_ToggleHeadlight;
     private readonly InputAction m_Gameplay_Interact;
+    private readonly InputAction m_Gameplay_Climb;
     public struct GameplayActions
     {
         private @PlayerInput m_Wrapper;
@@ -276,6 +320,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Mine => m_Wrapper.m_Gameplay_Mine;
         public InputAction @ToggleHeadlight => m_Wrapper.m_Gameplay_ToggleHeadlight;
         public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
+        public InputAction @Climb => m_Wrapper.m_Gameplay_Climb;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -303,6 +348,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
+                @Climb.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnClimb;
+                @Climb.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnClimb;
+                @Climb.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnClimb;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -325,6 +373,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Climb.started += instance.OnClimb;
+                @Climb.performed += instance.OnClimb;
+                @Climb.canceled += instance.OnClimb;
             }
         }
     }
@@ -346,5 +397,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnMine(InputAction.CallbackContext context);
         void OnToggleHeadlight(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnClimb(InputAction.CallbackContext context);
     }
 }

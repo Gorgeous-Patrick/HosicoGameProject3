@@ -23,11 +23,6 @@ public class EventFailure : Event
 {
 }
 
-public class EventJumpFromLadder: Event
-{
-
-}
-
 public class EventResetPlayer : Event
 {
     public Vector2 pos;
