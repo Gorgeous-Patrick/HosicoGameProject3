@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class HasCanBeDugScript : MonoBehaviour
+public class MineableTile : MonoBehaviour
 {
     public Tilemap destructibleTilemap;
 
