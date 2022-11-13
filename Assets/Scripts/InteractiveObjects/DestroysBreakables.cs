@@ -15,7 +15,7 @@ public class DestroysBreakables : MonoBehaviour
         if (pickPoint == null)
         {
             pickPoint = transform;
-            Debug.LogError("well well well, someone named Danyel didn't do his job well and should be sent to Gulag in Siberia");
+            // Debug.LogError("well well well, someone named Danyel didn't do his job well and should be sent to Gulag in Siberia");
         }
     }
 
