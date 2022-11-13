@@ -10,7 +10,18 @@ public class PlayerControl : MonoBehaviour
   SpriteRenderer sr;
   GameObject pickaxe;
   bool headlightOn;
-  bool canClimb, climbing;
+
+  bool canClimb;
+  bool _climbing;
+  bool climbing
+  {
+    get => _climbing;
+    set
+    {
+      _climbing = value;
+      anim.SetBool("climbing", value);
+    }
+  }
   float gravityScale;
 
   [SerializeField] float speed = 5f, jumpPower = 7f, climbSpeed = 3f;
