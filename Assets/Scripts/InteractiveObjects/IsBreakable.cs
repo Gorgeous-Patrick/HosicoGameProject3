@@ -10,7 +10,7 @@ public class IsBreakable : MonoBehaviour
   [SerializeField] float toughness = 1f; // larger: takes more time to mine
 
   // indicates the time remaining until next durability decrement
-  float countdown;
+  [SerializeField] float countdown;
 
   void Start()
   {
@@ -31,7 +31,7 @@ public class IsBreakable : MonoBehaviour
     DestroysBreakables breaker = collisionInfo.gameObject.GetComponent<DestroysBreakables>();
     if (breaker == null) return;
     countdown -= Time.deltaTime;
-    if (countdown <= 0)
+    if (countdown <= 0 || collisionInfo.gameObject.name == "Explosion")
     {
       countdown = toughness;
       alterDurability(breaker.durabilityImpact);

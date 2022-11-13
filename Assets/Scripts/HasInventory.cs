@@ -20,7 +20,7 @@ public class HasInventory : MonoBehaviour
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.E)) {
+        if (Input.GetKeyDown(KeyCode.X)) {
             if (dynamitePrefab != null && DynamiteCount > 0) {
                 DynamiteCount -= 1;
                 EventBus.Publish(new EventUpdatePickupUI { pickup = "Dynamite", newAmount = DynamiteCount });
