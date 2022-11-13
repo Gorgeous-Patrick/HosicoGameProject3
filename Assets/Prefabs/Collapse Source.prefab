@@ -99,5 +99,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   threshold: 0
   generatedPrefabs:
-  - {fileID: 3136725164476521038, guid: 50b6375c3e80f434887d346217051c81, type: 3}
+  - {fileID: 7029905564881768116, guid: 5bdeeec39957fcc3786edbee287ce8b4, type: 3}
   strength: 2

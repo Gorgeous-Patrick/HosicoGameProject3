@@ -12,7 +12,7 @@ public class CheatKeys : MonoBehaviour
   {
     if (Input.GetKeyDown(KeyCode.Alpha1))
     {
-      EventBus.Publish(new EventQuake {initialStrength = 10, source = transform.position});
+      EventBus.Publish(new EventQuake {initialStrength = 5, source = transform.position});
     }
   }
 
