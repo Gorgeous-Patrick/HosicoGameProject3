@@ -2,50 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// not used anywhere now - should be deprecated very soon
+
 // super spaghetti and cheese time
 public class SpriteFlasher : MonoBehaviour
 {
-    private SpriteRenderer sr;
-    private Color[] colorList =
-    {
-        Color.blue, Color.red, Color.green, Color.blue
-    };
-    private Color originalColor;
-    [SerializeField] bool startFlash;
-    private float countdown;
+  private SpriteRenderer sr;
+  private Color[] colorList =
+  {
+    Color.blue, Color.red, Color.green, Color.blue
+  };
+  private Color originalColor;
+  [SerializeField] bool startFlash;
+  private float countdown;
 
-    private void Start()
+  private void Start()
+  {
+    sr = GetComponent<SpriteRenderer>();
+    originalColor = sr.color;
+    startFlash = false;
+    countdown = 100f;
+  }
+
+  private void Update()
+  {
+    if (startFlash)
     {
-        sr = GetComponent<SpriteRenderer>();
-        originalColor = sr.color;
-        startFlash = false;
+      bool renderOff = Time.frameCount % 4 == 0;
+      sr.color = colorList[Random.Range(0, 4)];
+      if (countdown <= 0)
+      {
         countdown = 100f;
+        startFlash = false;
+        return;
+      }
+      countdown--;
     }
-
-    private void Update()
+    else
     {
-        if (startFlash)
-        {
-            bool renderOff = Time.frameCount % 4 == 0;
-            sr.color = colorList[Random.Range(0, 4)];
-            if (countdown <= 0)
-            {
-                countdown = 100f;
-                startFlash = false;
-                return;
-            }
-            countdown--;
-        }
-        else
-        {
-            sr.color = originalColor;
-        }
+      sr.color = originalColor;
     }
+  }
 
-    public void FlashFunc()
-    {
-        startFlash = true;
-    }
+  public void FlashFunc()
+  {
+    startFlash = true;
+  }
 
 
 }

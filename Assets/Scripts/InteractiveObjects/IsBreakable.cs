@@ -1,45 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class IsBreakable : MonoBehaviour
 {
-    public UnityEvent OnHitFlash;
 
-    [SerializeField] float durability = 1.0f;
-    [SerializeField] float despawnTimer = 1.5f;
-    [SerializeField] bool canHit = true;
+  [SerializeField] int durability = 3; // takew how many hits to be destroyed
+  [SerializeField] bool canHit = true;
+  float toughness = 0.3f; // larger: takes more time to mine
 
-    public void AlterDurability(float delta) {
-        if (!canHit) {
-            return;
-        }
+  // indicates the time remaining until next durability decrement
+  [SerializeField] float countdown;
 
-        durability += delta;
-        if (OnHitFlash != null) {
-            OnHitFlash?.Invoke();
-        }
-        ParticleSystemManager.RequestParticlesAtPositionAndDirection(transform.position, Vector3.up);
+  void Start()
+  {
+    countdown = toughness;
+  }
 
-        if (durability <= 0.0f)
-        {
-            StartCoroutine(Destroy());
-        }
+  void alterDurability(int delta)
+  {
+    if (!canHit) return;
+    durability += delta;
+    // plays animation
+    ParticleSystemManager.RequestParticlesAtPositionAndDirection(transform.position, Vector3.up);
+    if (durability <= 0) Destroy(gameObject);
+  }
+
+  void OnTriggerStay2D(Collider2D collisionInfo)
+  {
+    DestroysBreakables breaker = collisionInfo.gameObject.GetComponent<DestroysBreakables>();
+    if (breaker == null) return;
+    countdown -= Time.deltaTime;
+    if (countdown <= 0 || collisionInfo.gameObject.name == "Explosion")
+    {
+      countdown = toughness;
+      alterDurability(breaker.durabilityImpact);
     }
+  }
 
-    // called to destroy gameObject
-    // Could add call for more detailed destroyed animations later down the line
-    IEnumerator Destroy() {
-        canHit = false;
-
-        // if sprite exists, change to black
-        if (gameObject.GetComponent<SpriteRenderer>() != null) {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.black;
-        }
-
-        // wait for time specified by despawnTimer, then despawn
-        yield return new WaitForSeconds(despawnTimer);
-        Destroy(this.gameObject);
-    }
 }
