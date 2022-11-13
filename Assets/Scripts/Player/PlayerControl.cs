@@ -143,6 +143,10 @@ public class PlayerControl : MonoBehaviour
     if (Gameplay.playerInput.Gameplay.Mine.WasReleasedThisFrame())
       pickaxe.SetActive(false);
 
+    // process item use
+    if (Gameplay.playerInput.Gameplay.UseItem.WasPressedThisFrame())
+      EventBus.Publish(new EventUseItem());
+
     // process headlight toggle
     if (Gameplay.playerInput.Gameplay.ToggleHeadlight.WasPressedThisFrame())
     {

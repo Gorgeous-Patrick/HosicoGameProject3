@@ -22,7 +22,7 @@ public class SerializablePair<First, Second>
     first = first_;
     second = second_;
   }
-  public SerializablePair(){}
+  public SerializablePair() {}
 }
 
 public class CoroutineUtilities

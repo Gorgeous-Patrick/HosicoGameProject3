@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,13 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class Gameplay : MonoBehaviour
 {
-    Subscription<EventFailure> sub_EventFailure;
-    PlayerInput _playerInput;
+
+  PlayerInput _playerInput;
+
   [SerializeField] GameObject _player;
+  [SerializeField] GameObject _destination;
+
   [SerializeField] float batteryDrainInterval = 7, batteryChargeInterval = 0.1f;
-  [SerializeField] GameObject _phone;
-    [SerializeField] float maxBattery = 1;
-    float _batteryLevel;
+  [SerializeField] float maxBattery = 1;
+
+  float _batteryLevel;
   Coroutine batteryDrainCoroutine, batteryChargeCoroutine;
 
   // triggered when player presses E to interact with objects in the scene
@@ -31,9 +33,9 @@ public class Gameplay : MonoBehaviour
     get => instance._player;
   }
 
-  static public GameObject phone
+  static public GameObject destination
   {
-    get => instance._phone;
+    get => instance._destination;
   }
   static public System.Action funcInteract
   {
@@ -58,10 +60,10 @@ public class Gameplay : MonoBehaviour
     else
       _instance = this;
     _playerInput = new PlayerInput();
-        sub_EventFailure = EventBus.Subscribe<EventFailure>(OnEventFailureDo);
-    }
+    EventBus.Subscribe<EventFailure>(handler_EventFailure);
+  }
 
-    void Start()
+  void Start()
   {
     _batteryLevel = maxBattery;
     batteryDrainCoroutine = StartCoroutine(coroutine_batteryDrain());
@@ -130,7 +132,6 @@ public class Gameplay : MonoBehaviour
     }
   }
 
-
   static public Vector2 playerLookDirection
   {
     get
@@ -140,16 +141,21 @@ public class Gameplay : MonoBehaviour
     }
   }
 
-    private void OnEventFailureDo(EventFailure obj)
-    {
-        _batteryLevel = maxBattery;
-        StartCoroutine(DelayDrainOnRespawn());
-    }
+  static public Inventory inventory
+  {
+    get => instance._player.GetComponent<Inventory>();
+  }
 
-    private IEnumerator DelayDrainOnRespawn()
-    {
-        yield return new WaitForSeconds(0.5f);
-        batteryDrainCoroutine = StartCoroutine(coroutine_batteryDrain());
-    }
+  private void handler_EventFailure(EventFailure obj)
+  {
+    _batteryLevel = maxBattery;
+    StartCoroutine(coroutine_DelayedBatteryDrain());
+  }
+
+  private IEnumerator coroutine_DelayedBatteryDrain()
+  {
+    yield return new WaitForSeconds(0.5f);
+    batteryDrainCoroutine = StartCoroutine(coroutine_batteryDrain());
+  }
 
 }

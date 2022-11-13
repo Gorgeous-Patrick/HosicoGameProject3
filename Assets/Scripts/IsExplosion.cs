@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class IsExplosion : MonoBehaviour
 {
-    [SerializeField] float DespawnTime = 1.0f;
+  [SerializeField] float DespawnTime = 1.0f;
+  [SerializeField] int quakeStrength = 5;
 
-    private void Start() {
-        StartCoroutine(DestroyAfterTime());
-    }
+  void Start()
+  {
+    EventBus.Publish(new EventQuake{source = transform.position, initialStrength = quakeStrength});
+    StartCoroutine(DestroyAfterTime());
+  }
 
-    IEnumerator DestroyAfterTime() {
-        yield return new WaitForSeconds(DespawnTime);
-        Destroy(this.gameObject);
-    }
+  IEnumerator DestroyAfterTime()
+  {
+    yield return new WaitForSeconds(DespawnTime);
+    Destroy(this.gameObject);
+  }
 }

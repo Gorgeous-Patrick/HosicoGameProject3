@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
-  GameOverScene: Game Over
+  _destination: {fileID: 0}
   batteryDrainInterval: 1.8
   batteryChargeInterval: 0.1
   maxBattery: 1
@@ -77,6 +77,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ce3abbf2e974a42a6dbf114b9826c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameOverScene: 
+  GameOverScene: Game Over
   firstCheckpoint: {fileID: 0}
   maxHealth: 3

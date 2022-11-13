@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83801532da146d543be66b7c53262581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupName: Dynamite
+  pickupName: dynamite
   amount: 2
 --- !u!50 &3792420939954798796
 Rigidbody2D:

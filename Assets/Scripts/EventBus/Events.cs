@@ -55,9 +55,10 @@ public class EventUpdateInventory : Event
   public int delta;
 }
 
-public class EventUpdatePickupUI : Event
+// perhaps not needed - can be merged with EventUpdateInventory
+public class EventUpdateInventoryUI : Event
 {
-  public string pickup;
+  public string item;
   public int newAmount;
 }
 
@@ -71,4 +72,8 @@ public class EventQuake: Event
     if (attenuation > initialStrength) return 0;
     else return initialStrength - attenuation;
   }
+}
+
+public class EventUseItem: Event
+{
 }

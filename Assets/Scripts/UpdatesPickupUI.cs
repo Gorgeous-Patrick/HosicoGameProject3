@@ -6,22 +6,26 @@ using TMPro;
 
 public class UpdatesPickupUI : MonoBehaviour
 {
-    Subscription<EventUpdatePickupUI> sub_EventUpdatePickup;
+  Subscription<EventUpdateInventoryUI> sub_EventUpdatePickup;
 
-    private TextMeshProUGUI DynamiteCounterText;
+  private TextMeshProUGUI DynamiteCounterText;
 
-    private void Awake() {
-        DynamiteCounterText = GetComponent<TextMeshProUGUI>();
-        sub_EventUpdatePickup = EventBus.Subscribe<EventUpdatePickupUI>(_UpdateCount);
+  private void Awake()
+  {
+    DynamiteCounterText = GetComponent<TextMeshProUGUI>();
+    sub_EventUpdatePickup = EventBus.Subscribe<EventUpdateInventoryUI>(_UpdateCount);
+  }
+
+  private void _UpdateCount(EventUpdateInventoryUI e)
+  {
+    if (e.item == "dynamite")
+    {
+      DynamiteCounterText.text = "x " + e.newAmount;
     }
+  }
 
-    private void _UpdateCount(EventUpdatePickupUI e) {
-        if (e.pickup == "Dynamite") {
-            DynamiteCounterText.text = "x " + e.newAmount;
-        }
-    }
-
-    private void OnDestroy() {
-        EventBus.Unsubscribe(sub_EventUpdatePickup);
-    }
+  private void OnDestroy()
+  {
+    EventBus.Unsubscribe(sub_EventUpdatePickup);
+  }
 }

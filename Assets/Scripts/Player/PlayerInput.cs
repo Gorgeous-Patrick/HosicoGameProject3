@@ -89,6 +89,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""UseItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""72db27b4-e00a-449f-90b4-eae3c2ffce42"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -212,6 +221,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Climb"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""15858cda-d69b-406a-999e-d17c9b794b6f"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""UseItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -244,6 +264,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Gameplay_ToggleHeadlight = m_Gameplay.FindAction("ToggleHeadlight", throwIfNotFound: true);
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
         m_Gameplay_Climb = m_Gameplay.FindAction("Climb", throwIfNotFound: true);
+        m_Gameplay_UseItem = m_Gameplay.FindAction("UseItem", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -310,6 +331,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_ToggleHeadlight;
     private readonly InputAction m_Gameplay_Interact;
     private readonly InputAction m_Gameplay_Climb;
+    private readonly InputAction m_Gameplay_UseItem;
     public struct GameplayActions
     {
         private @PlayerInput m_Wrapper;
@@ -321,6 +343,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @ToggleHeadlight => m_Wrapper.m_Gameplay_ToggleHeadlight;
         public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
         public InputAction @Climb => m_Wrapper.m_Gameplay_Climb;
+        public InputAction @UseItem => m_Wrapper.m_Gameplay_UseItem;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -351,6 +374,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Climb.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnClimb;
                 @Climb.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnClimb;
                 @Climb.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnClimb;
+                @UseItem.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseItem;
+                @UseItem.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseItem;
+                @UseItem.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseItem;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -376,6 +402,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Climb.started += instance.OnClimb;
                 @Climb.performed += instance.OnClimb;
                 @Climb.canceled += instance.OnClimb;
+                @UseItem.started += instance.OnUseItem;
+                @UseItem.performed += instance.OnUseItem;
+                @UseItem.canceled += instance.OnUseItem;
             }
         }
     }
@@ -398,5 +427,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnToggleHeadlight(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnClimb(InputAction.CallbackContext context);
+        void OnUseItem(InputAction.CallbackContext context);
     }
 }
