@@ -121,24 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecce1da82ada52b43aede3e601494338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnHitFlash:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6462873114086247988}
-        m_TargetAssemblyTypeName: SpriteFlasher, Assembly-CSharp
-        m_MethodName: FlashFunc
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  durability: 2
+  durability: 4
   canHit: 1
-  toughness: 1
+  toughness: 0.5
 --- !u!114 &6462873114086247988
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,9 +5,9 @@ using UnityEngine;
 public class IsBreakable : MonoBehaviour
 {
 
-  [SerializeField] int durability = 1; // takew how many hits to be destroyed
+  [SerializeField] int durability = 3; // takew how many hits to be destroyed
   [SerializeField] bool canHit = true;
-  [SerializeField] float toughness = 1f; // larger: takes more time to mine
+  float toughness = 0.3f; // larger: takes more time to mine
 
   // indicates the time remaining until next durability decrement
   [SerializeField] float countdown;
