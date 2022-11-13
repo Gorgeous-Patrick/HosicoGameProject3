@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1481394271914890353}
   - component: {fileID: 3792420939954798796}
   - component: {fileID: 2403560320926478203}
+  - component: {fileID: 1285830891864579237}
   m_Layer: 0
   m_Name: DynamitePickup
   m_TagString: Untagged
@@ -148,3 +149,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1285830891864579237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7868340323629280423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fda6c8361c18b47a8ba6ebdf490adf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  period: 1
+  sizeMultiplier: 1.2
