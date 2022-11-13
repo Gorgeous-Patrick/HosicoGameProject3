@@ -15,7 +15,7 @@ public abstract class Event
                        BindingFlags.Public |
                        BindingFlags.Instance);
     foreach (var p in ps)
-      ret += $"{p.Name}: {p.GetValue(this)}";
+      ret += $"{p.Name}: {p.GetValue(this)}; ";
     return ret;
   }
 }
