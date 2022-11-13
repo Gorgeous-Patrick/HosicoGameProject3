@@ -11,7 +11,7 @@ public class SpriteFlasher : MonoBehaviour
         Color.blue, Color.red, Color.green, Color.blue
     };
     private Color originalColor;
-    private bool startFlash;
+    [SerializeField] bool startFlash;
     private float countdown;
 
     private void Start()
