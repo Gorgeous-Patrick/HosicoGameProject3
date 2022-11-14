@@ -33,7 +33,6 @@ public class IsBreakable : MonoBehaviour
   void OnTriggerStay2D(Collider2D collisionInfo)
   {
     DestroysBreakables breaker = collisionInfo.gameObject.GetComponent<DestroysBreakables>();
-        Debug.Log(breaker);
     if (breaker == null || (onlyDynamite && !breaker.isExplosion)) return;
     countdown -= Time.deltaTime;
     if (countdown <= 0 || breaker.isExplosion)
