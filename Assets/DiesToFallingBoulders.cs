@@ -13,7 +13,7 @@ public class DiesToFallingBoulders : MonoBehaviour
                 return;
             }
 
-            if (BoulderRigidbody.velocity.y < 0) {
+            if (BoulderRigidbody.velocity.y < 0 && collision.GetContact(0).point.y > transform.position.y) {
                 SceneManager.LoadScene("Game Over");
             }
         }
