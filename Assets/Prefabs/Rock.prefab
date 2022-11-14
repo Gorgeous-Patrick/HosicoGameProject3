@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -1551618648141763975}
   m_Layer: 0
   m_Name: Rock
-  m_TagString: Untagged
+  m_TagString: Boulder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,4 +158,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durability: 3
   canHit: 1
-  toughness: 0.3
+  onlyDynamite: 0
+  countdown: 0
