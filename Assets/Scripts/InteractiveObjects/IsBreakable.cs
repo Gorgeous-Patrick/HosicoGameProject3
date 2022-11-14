@@ -24,6 +24,9 @@ public class IsBreakable : MonoBehaviour
     durability += delta;
     // plays animation
     ParticleSystemManager.RequestParticlesAtPositionAndDirection(transform.position, Vector3.up);
+    if (GetComponent<SpriteFlasher>() != null) {
+            GetComponent<SpriteFlasher>().FlashFunc();
+    }
     if (durability <= 0) Destroy(gameObject);
   }
 

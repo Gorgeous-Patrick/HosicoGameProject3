@@ -10,7 +10,7 @@ public class SpriteFlasher : MonoBehaviour
   private SpriteRenderer sr;
   private Color[] colorList =
   {
-    Color.blue, Color.red, Color.green, Color.blue
+    Color.black, Color.white, Color.gray
   };
   private Color originalColor;
   [SerializeField] bool startFlash;
@@ -29,7 +29,7 @@ public class SpriteFlasher : MonoBehaviour
     if (startFlash)
     {
       bool renderOff = Time.frameCount % 4 == 0;
-      sr.color = colorList[Random.Range(0, 4)];
+      sr.color = colorList[Random.Range(0, 3)];
       if (countdown <= 0)
       {
         countdown = 100f;
@@ -48,6 +48,4 @@ public class SpriteFlasher : MonoBehaviour
   {
     startFlash = true;
   }
-
-
 }
