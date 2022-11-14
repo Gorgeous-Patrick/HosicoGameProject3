@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 1100861949}
   - component: {fileID: 8256162571040393012}
   - component: {fileID: 1100861942}
+  - component: {fileID: 9074146879868451707}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -308,7 +309,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb9853098eb68a42b56cd0cc28511ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DynamiteCount: 0
   dynamitePrefab: {fileID: 5202955572957398337, guid: 9471380ee1cf91348a4a7e388e566a28, type: 3}
 --- !u!114 &1100861942
 MonoBehaviour:
@@ -320,6 +320,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a72fada6caf79fa180a20b41c1ee9c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9074146879868451707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5764863849406442380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8530bb8a1bffb04ca3006ba0f3cbbb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6015112814299302784

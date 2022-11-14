@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1946455262398325322}
   m_Layer: 0
   m_Name: Unbreakable Boulders
-  m_TagString: Untagged
+  m_TagString: Boulder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,7 +107,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!60 &3520559702964575788
 PolygonCollider2D:
   m_ObjectHideFlags: 0
