@@ -8,6 +8,7 @@ public class IsBreakable : MonoBehaviour
   [SerializeField] int durability = 3; // takew how many hits to be destroyed
   [SerializeField] bool canHit = true;
   float toughness = 0.3f; // larger: takes more time to mine
+  [SerializeField] bool onlyDynamite = false;
 
   // indicates the time remaining until next durability decrement
   [SerializeField] float countdown;
@@ -29,9 +30,10 @@ public class IsBreakable : MonoBehaviour
   void OnTriggerStay2D(Collider2D collisionInfo)
   {
     DestroysBreakables breaker = collisionInfo.gameObject.GetComponent<DestroysBreakables>();
-    if (breaker == null) return;
+        Debug.Log(breaker);
+    if (breaker == null || (onlyDynamite && !breaker.isExplosion)) return;
     countdown -= Time.deltaTime;
-    if (countdown <= 0 || collisionInfo.gameObject.name == "Explosion")
+    if (countdown <= 0 || breaker.isExplosion)
     {
       countdown = toughness;
       alterDurability(breaker.durabilityImpact);

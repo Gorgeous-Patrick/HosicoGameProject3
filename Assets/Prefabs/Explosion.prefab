@@ -131,6 +131,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   durabilityImpact: -2
+  isExplosion: 1
   pickPoint: {fileID: 3960508519330301007}
   pickaxeHitBoxSize: 1
 --- !u!114 &853101112
@@ -146,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DespawnTime: 1.25
+  quakeStrength: 5
 --- !u!114 &1972641759734700366
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class DestroysBreakables : MonoBehaviour
   public LayerMask WhatIsPlatform;
 
   public int durabilityImpact = -1;
+    public bool isExplosion = false;
   [SerializeField] Transform pickPoint;
   [SerializeField] float pickaxeHitBoxSize = 0.1f;
 
