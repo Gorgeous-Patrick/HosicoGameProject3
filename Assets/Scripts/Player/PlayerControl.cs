@@ -10,6 +10,7 @@ public class PlayerControl : MonoBehaviour
   SpriteRenderer sr;
   GameObject pickaxe;
   bool headlightOn;
+    [SerializeField] bool isInTutorial = false;
 
   bool canClimb;
   bool _climbing;
@@ -138,7 +139,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     // process mining
-    if (Gameplay.playerInput.Gameplay.Mine.WasPressedThisFrame())
+    if (Gameplay.playerInput.Gameplay.Mine.WasPressedThisFrame() && !isInTutorial)
       pickaxe.SetActive(true);
     if (Gameplay.playerInput.Gameplay.Mine.WasReleasedThisFrame())
       pickaxe.SetActive(false);

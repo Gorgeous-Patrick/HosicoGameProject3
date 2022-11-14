@@ -6,12 +6,13 @@ using UnityEngine.InputSystem;
 
 public class Hole : Interactive
 {
-  [SerializeField] Transform destination;
-  // [SerializeField] string targetSceneName;
+  [SerializeField] Transform destination = null;
+  [SerializeField] string targetSceneName;
 
   protected override void Interact()
   {
-    GameObject.Find("Player").transform.position = destination.transform.position;
-    // SceneManager.LoadScene(targetSceneName);
+        if (targetSceneName != null)
+            GameObject.Find("Player").transform.position = destination.transform.position;
+    else SceneManager.LoadScene(targetSceneName);
   }
 }
