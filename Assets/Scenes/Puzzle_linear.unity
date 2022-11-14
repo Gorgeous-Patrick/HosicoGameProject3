@@ -119041,7 +119041,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3073201334556857711, guid: 8a67e8d6d791005daa7eca6b0ed00ccc, type: 3}
       propertyPath: m_text
-      value: Fully Charged! Now I just need to pickaxe
+      value: Fully charged! Now I just need to find a pickaxe.
       objectReference: {fileID: 0}
     - target: {fileID: 5534490872521267089, guid: 8a67e8d6d791005daa7eca6b0ed00ccc, type: 3}
       propertyPath: m_Sprite

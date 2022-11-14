@@ -29622,6 +29622,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3073201334556857711, guid: 8a67e8d6d791005daa7eca6b0ed00ccc, type: 3}
+      propertyPath: m_text
+      value: Ugh. I'm trapped in a mine and my flashlight is running low. Gotta find
+        a charging station...
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a67e8d6d791005daa7eca6b0ed00ccc, type: 3}
 --- !u!1 &1606981751
