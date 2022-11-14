@@ -10,5 +10,7 @@ Sprites
 	Miner character: https://opengameart.org/content/treasure-hunter-game-assets
 	lightbulb: https://opengameart.org/content/cc0-light-icons
 	textBox: https://opengameart.org/content/speech-box
+Images
+	Ocean Sunrise: https://opengameart.org/content/ocean-sunrise
 Fonts
 	Font: https://www.dafont.com/greadown.font
