@@ -29,6 +29,7 @@ public class HasGameOverController : MonoBehaviour
         {
             playerHealth = maxHealth;
             // loads Game Over scene
+            PlayerPrefs.SetString("currScene", SceneManager.GetActiveScene().name);
             SceneManager.LoadScene(GameOverScene);
         }
     }

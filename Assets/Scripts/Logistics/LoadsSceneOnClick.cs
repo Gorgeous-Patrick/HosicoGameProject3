@@ -28,6 +28,8 @@ public class LoadsSceneOnClick : MonoBehaviour
 
     public void LoadScene() {
         Debug.Log("Clicked.");
+        if (SceneManager.GetActiveScene().name != "Title")
+            SceneToLoad = PlayerPrefs.GetString("currScene");
         SceneManager.LoadScene(SceneToLoad);
         if (UserConsent.GetComponent<Toggle>().isOn)
         {
