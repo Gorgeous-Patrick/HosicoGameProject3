@@ -1,8 +1,10 @@
-For our P3 Milestone, we used the advice from the first playtesting session
-to make the game more engaging and more fitting to the theme of mining. We decided
-to rework the game into 2D since our gold spike was more of a 2D game with extra steps.
-We also decided to use mining related assets and environment to conform better to the
-theme we chose. We also added a pickaxe and animation to it in response to the fact that 
-our gold spike lacked such feedback and to add novelty to the game. Finally, we 
-implemented our levels and integrated the flashlight idea from our gold spike to allow 
-for interesting player decisions.
+For our P3 Milestone 2, we improved the climbing animation using the feedback we got from
+the last playtesting session. We also added the ability for the player to jump off the 
+ladder using space. We also removed the flashlight sprite and improved the menu and game clear
+screens thanks to the feedback we received. Furthermore, we improved the mining animation to be
+more controllable by the player, which also serves to accomodate for the new minable tile block 
+feature we added in our milestone 2. We changed the controls for digging to be the left mouse button, 
+which was reported as being more natural for players during our last playtesting session. As for player
+guidance and interaction, we created short dialogue lines to better inform players what objective 
+they are supposed to accomplish. Lastly, we changed the recharging stations or generators to be automatically
+charging the player's flashlight when they come into range instead of prompting them. 

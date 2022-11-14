@@ -48,9 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
   _destination: {fileID: 0}
-  batteryDrainInterval: 1.8
+  batteryDrainInterval: 1.5
   batteryChargeInterval: 0.1
   maxBattery: 1
+  _batteryLevel: 0
 --- !u!114 &1173718717590572646
 MonoBehaviour:
   m_ObjectHideFlags: 0
