@@ -13,6 +13,14 @@ public class HasKillPlayerOnTouch : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Player"))
+        {
+            EventBus.Publish(new EventFailure());
+        }
+    }
+
     /*private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("Player"))

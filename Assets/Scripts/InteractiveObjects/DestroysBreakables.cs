@@ -34,7 +34,7 @@ public class DestroysBreakables : MonoBehaviour
     Collider2D overCollider = Physics2D.OverlapCircle(pickPoint.position, pickaxeHitBoxSize, WhatIsPlatform);
     if (overCollider != null)
     {
-      overCollider.transform.GetComponent<MineableTile>().DestroyTileMapAtPoint(pickPoint.position);
+      overCollider.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(pickPoint.position);
     }
   }
 

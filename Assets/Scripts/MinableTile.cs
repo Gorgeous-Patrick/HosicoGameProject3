@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class MineableTile : MonoBehaviour
+public class MinableTile : MonoBehaviour
 {
     public Tilemap destructibleTilemap;
 
@@ -21,7 +21,8 @@ public class MineableTile : MonoBehaviour
 
     private IEnumerator BreakingTileDelay(Vector3Int cellPos)
     {
-        yield return new WaitForSeconds(0.12f);
+        ParticleSystemManager.RequestParticlesAtPositionAndDirection(cellPos, Vector3.up);
+        yield return new WaitForSeconds(0.28f);
         destructibleTilemap.SetTile(cellPos, null);
     }
 }

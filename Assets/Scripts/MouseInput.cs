@@ -22,7 +22,7 @@ public class MouseInput : MonoBehaviour
       Collider2D overCollider = Physics2D.OverlapCircle(MousePosition, 0.01f, WhatIsPlatform);
       if (overCollider != null)
       {
-        overCollider.transform.GetComponent<MineableTile>().DestroyTileMapAtPoint(MousePosition);
+        overCollider.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(MousePosition);
       }
     }
   }
