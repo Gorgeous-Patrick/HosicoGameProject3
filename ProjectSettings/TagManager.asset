@@ -10,6 +10,7 @@ TagManager:
   - BreakableGround
   - Generator
   - PickaxePickup
+  - FallingRubble
   layers:
   - Default
   - TransparentFX

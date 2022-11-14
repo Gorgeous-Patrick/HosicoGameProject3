@@ -27,7 +27,11 @@ public class IsBreakable : MonoBehaviour
     if (GetComponent<SpriteFlasher>() != null) {
             GetComponent<SpriteFlasher>().FlashFunc();
     }
-    if (durability <= 0) Destroy(gameObject);
+        if (durability <= 0)
+        {
+            if (!transform.CompareTag("BreakableGround"))
+                Destroy(gameObject);
+        }
   }
 
   void OnTriggerStay2D(Collider2D collisionInfo)

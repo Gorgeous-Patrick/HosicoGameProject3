@@ -53,7 +53,9 @@ public class PlayerControl : MonoBehaviour
     filter.useTriggers = false;
     var hits = new List<RaycastHit2D>();
     Physics2D.BoxCast(transform.position, box, 0, Utils.dir2vec(dir), filter, hits, rayLength);
-    // we do not ignore dynamic objects, so as long as there is any collision we return true
+        // we do not ignore dynamic objects, so as long as there is any collision we return true
+        foreach (var hit in hits)
+            if (hit.transform.CompareTag("FallingRubble")) return true;
     if (!ignoreDynamic) return hits.Count > 0;
     // ignore dynamic objects: go over the list of hits and return true once a non-dynamic object is found
     foreach (var hit in hits)
@@ -191,7 +193,7 @@ public class PlayerControl : MonoBehaviour
   IEnumerator coroutine_jumpLadder()
   {
     climbing = false;
-    yield return new WaitForSeconds(2f);
+    yield return new WaitForSeconds(1f);
     climbing = canClimb;
   }
 

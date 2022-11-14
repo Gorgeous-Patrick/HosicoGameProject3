@@ -14,6 +14,7 @@ public class Inventory : MonoBehaviour
   Dictionary<string, System.Action> funcUseItem;
 
   [SerializeField] GameObject dynamitePrefab;
+    [SerializeField] int numDynamite = 0;
 
   void Awake()
   {
@@ -38,10 +39,11 @@ public class Inventory : MonoBehaviour
     {
       funcUseItem[heldItem].Invoke();
     });
-    inventory["dynamite"] = 0;
+    inventory["dynamite"] = numDynamite;
     inventory["health"] = 5;
     funcUseItem["dynamite"] = useDynamite;
-  }
+        EventBus.Publish(new EventUpdateInventoryUI { item = "dynamite", newAmount = inventory["dynamite"] });
+    }
 
   void updateItem(string item, int delta)
   {

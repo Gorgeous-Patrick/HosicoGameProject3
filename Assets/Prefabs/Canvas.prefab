@@ -669,6 +669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c4ac2654cb3a464b9901cf0eca0c3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextGoal: {fileID: 0}
 --- !u!1 &1751997649213382871
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,7 +961,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Miner
+  m_text: Bob
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aef441232941218a4a114bcb75aa69c7, type: 2}
   m_sharedMaterial: {fileID: -6962560642730333295, guid: aef441232941218a4a114bcb75aa69c7, type: 2}

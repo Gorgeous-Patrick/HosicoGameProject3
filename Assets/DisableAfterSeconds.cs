@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DisableAfterSeconds : MonoBehaviour
 {
+    [SerializeField] private Transform nextGoal;
     // Start is called before the first frame update
     void Update()
     {
@@ -14,6 +15,7 @@ public class DisableAfterSeconds : MonoBehaviour
     public void StartDisable()
     {
         StartCoroutine(DisableCountdown());
+        EventBus.Publish(new OnChangeGoal() { _nextGoal = nextGoal });
     }
     private IEnumerator DisableCountdown()
     {

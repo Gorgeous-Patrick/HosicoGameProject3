@@ -74,6 +74,12 @@ public class EventQuake: Event
   }
 }
 
+public class OnChangeGoal : Event
+{
+    public Transform _nextGoal;
+
+}
+
 public class EventUseItem: Event
 {
 }
