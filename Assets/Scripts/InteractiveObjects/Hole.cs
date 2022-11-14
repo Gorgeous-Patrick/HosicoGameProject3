@@ -11,8 +11,15 @@ public class Hole : Interactive
 
   protected override void Interact()
   {
-        if (targetSceneName != null)
-            GameObject.Find("Player").transform.position = destination.transform.position;
-    else SceneManager.LoadScene(targetSceneName);
+        if (destination != null)
+        {
+            if (GameObject.Find("Player") != null)
+                GameObject.Find("Player").transform.position = destination.transform.position;
+            else GameObject.Find("PlayerTutorial").transform.position = destination.transform.position;
+
+        }
+
+        else if (targetSceneName != "None") SceneManager.LoadScene(targetSceneName);
+        else return;
   }
 }

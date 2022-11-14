@@ -14,7 +14,7 @@ public class Gameplay : MonoBehaviour
   [SerializeField] float batteryDrainInterval = 7, batteryChargeInterval = 0.1f;
   [SerializeField] float maxBattery = 1;
 
-  float _batteryLevel;
+  [SerializeField] float _batteryLevel = 0;
   Coroutine batteryDrainCoroutine, batteryChargeCoroutine;
 
   // triggered when player presses E to interact with objects in the scene
@@ -65,7 +65,9 @@ public class Gameplay : MonoBehaviour
 
   void Start()
   {
-    _batteryLevel = maxBattery;
+        if (_batteryLevel == 0)
+            _batteryLevel = maxBattery;
+        else maxBattery = _batteryLevel;
     batteryDrainCoroutine = StartCoroutine(coroutine_batteryDrain());
     EventBus.Subscribe<EventHeadlightStatusChange>(handler_EventHeadlightStatusChange);
     EventBus.Subscribe<EventBatteryStatusChange>(haandler_EventBatteryStatusChange);

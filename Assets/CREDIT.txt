@@ -9,5 +9,6 @@ Sprites
 	Energy Symbol on Generator: https://www.pngmart.com/image/230973
 	Miner character: https://opengameart.org/content/treasure-hunter-game-assets
 	lightbulb: https://opengameart.org/content/cc0-light-icons
+	textBox: https://opengameart.org/content/speech-box
 Fonts
 	Font: https://www.dafont.com/greadown.font

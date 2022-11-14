@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 3873190653184108702}
   m_Layer: 0
   m_Name: Generator
-  m_TagString: Untagged
+  m_TagString: Generator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -238,8 +238,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c10497df581f61d9816288c570cb10f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 38365020, guid: 28df3d73651b9e4f6bcd99664c0b8da2, type: 3}
-  text: charge battery
+  icon: {fileID: 405558107, guid: b0c024cd748c9894a931833c96d96c9c, type: 3}
+  text: Charging...
   offset: {x: 1, y: 0}
 --- !u!114 &3873190653184108702
 MonoBehaviour:

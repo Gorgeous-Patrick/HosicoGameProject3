@@ -168,6 +168,11 @@ public class PlayerControl : MonoBehaviour
   {
     if (collisionInfo.gameObject.GetComponent<Climbable>() != null)
       canClimb = climbing = true;
+        if (collisionInfo.gameObject.CompareTag("PickaxePickup"))
+        {
+            isInTutorial = false;
+            collisionInfo.gameObject.GetComponent<DisableAfterSeconds>().StartDisable();
+        }
   }
 
   void OnTriggerExit2D(Collider2D collisionInfo)

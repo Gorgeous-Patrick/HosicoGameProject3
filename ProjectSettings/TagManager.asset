@@ -8,6 +8,8 @@ TagManager:
   - Boulder
   - Spike
   - BreakableGround
+  - Generator
+  - PickaxePickup
   layers:
   - Default
   - TransparentFX
