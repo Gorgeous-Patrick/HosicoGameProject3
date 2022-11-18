@@ -311,6 +311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dynamitePrefab: {fileID: 5202955572957398337, guid: 9471380ee1cf91348a4a7e388e566a28, type: 3}
+  numDynamite: 0
 --- !u!114 &1100861942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,7 +431,7 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.522
+  m_FalloffIntensity: 0
   m_Color: {r: 0.78431374, g: 0.49411765, b: 0.14509805, a: 1}
   m_Intensity: 3
   m_LightVolumeIntensity: 1
