@@ -129,7 +129,8 @@ MonoBehaviour:
   WhatIsPlatform:
     serializedVersion: 2
     m_Bits: 512
-  durabilityDamage: -0.5
+  durabilityImpact: -1
+  isExplosion: 0
   pickPoint: {fileID: 0}
   pickaxeHitBoxSize: 1
 --- !u!50 &5227151964453406554
@@ -167,6 +168,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pivot: {fileID: 0}
   angularSpeed: 660
-  offset: 150
+  offset: 120
   swingRange: 90
   reversed: 0
