@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(HingeJoint2D))]
 public class PlayerControl : MonoBehaviour
 {
   Rigidbody2D rb2d;
@@ -26,6 +27,7 @@ public class PlayerControl : MonoBehaviour
   float gravityScale;
 
   [SerializeField] float speed = 5f, jumpPower = 7f, climbSpeed = 3f;
+  HingeJoint2D hinge;
 
   // dir: a direction to detect collision in
   // returns: true iff. the player is next to something in the given direction
@@ -79,6 +81,10 @@ public class PlayerControl : MonoBehaviour
     pickaxe.SetActive(false);
     headlightOn = true;
     gravityScale = rb2d.gravityScale;
+
+    // Init a hinge joint so that it can be used to climb. Disabled by default.
+    hinge = GetComponent<HingeJoint2D>();
+    hinge.enabled = false;
   }
 
   void Update()
@@ -166,6 +172,19 @@ public class PlayerControl : MonoBehaviour
 
   }
 
+  void OnCollisionEnter2D(Collision2D collisionInfo)
+  {
+    Debug.Log("Player collided with " + collisionInfo.name);
+    if (collisionInfo.gameObject.GetComponent<HingeRope>() != null)
+    {
+      // enable the hinge joint so that the player can climb
+      Debug.Log("HingeRope entered");
+      hinge.enabled = true;
+      hinge.connectedBody = collisionInfo.attachedRigidbody;
+      /* hinge.connectedAnchor = collisionInfo.transform.InverseTransformPoint(transform.position); */
+      climbing = true;
+    }
+  }
   void OnTriggerEnter2D(Collider2D collisionInfo)
   {
     if (collisionInfo.gameObject.GetComponent<Climbable>() != null)
