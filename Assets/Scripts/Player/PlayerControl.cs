@@ -138,7 +138,8 @@ public class PlayerControl : MonoBehaviour
     // prevent the player sticking to the wall/ceiling due to continuous pressure and friction
     if (!colliding(Utils.vec2dir(horizontalMovementDelta)))
       // apply horizontal movement
-      rb2d.velocity += horizontalMovementDelta;
+      /* rb2d.velocity += horizontalMovementDelta; */
+        rb2d.AddForce(horizontalMovementDelta* 500);
     // apply vertical movement
     rb2d.velocity += verticalMovementDelta;
 
