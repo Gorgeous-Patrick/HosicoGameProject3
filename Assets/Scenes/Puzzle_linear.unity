@@ -3388,19 +3388,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7968929816911379148, guid: 2a25f2dea52c61d40bc9d04936273201, type: 3}
       propertyPath: m_Size.x
-      value: 10.61805
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7968929816911379148, guid: 2a25f2dea52c61d40bc9d04936273201, type: 3}
       propertyPath: m_Size.y
-      value: 3.0715163
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7968929816911379148, guid: 2a25f2dea52c61d40bc9d04936273201, type: 3}
       propertyPath: m_Offset.x
-      value: 1.9220314
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 7968929816911379148, guid: 2a25f2dea52c61d40bc9d04936273201, type: 3}
       propertyPath: m_Offset.y
-      value: 1.4535221
+      value: 1.55
       objectReference: {fileID: 0}
     - target: {fileID: 7968929816911379149, guid: 2a25f2dea52c61d40bc9d04936273201, type: 3}
       propertyPath: m_RootOrder
@@ -84558,6 +84558,14 @@ PrefabInstance:
     - target: {fileID: 1424049525563097734, guid: 9e450a31fa0b5d21aae957aa7ac3a1bf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3806354122725037998, guid: 9e450a31fa0b5d21aae957aa7ac3a1bf, type: 3}
+      propertyPath: m_FalloffIntensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3806354122725037998, guid: 9e450a31fa0b5d21aae957aa7ac3a1bf, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e450a31fa0b5d21aae957aa7ac3a1bf, type: 3}
