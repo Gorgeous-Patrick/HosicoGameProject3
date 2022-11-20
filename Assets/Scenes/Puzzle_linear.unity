@@ -764,6 +764,14 @@ PrefabInstance:
       propertyPath: pickaxeHitBoxSize
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6652758850200188650, guid: 70d68144274957943ae39cbb51e837f2, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -108.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6652758850200188650, guid: 70d68144274957943ae39cbb51e837f2, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -1.52
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70d68144274957943ae39cbb51e837f2, type: 3}
 --- !u!4 &86874492 stripped
@@ -84558,14 +84566,6 @@ PrefabInstance:
     - target: {fileID: 1424049525563097734, guid: 9e450a31fa0b5d21aae957aa7ac3a1bf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3806354122725037998, guid: 9e450a31fa0b5d21aae957aa7ac3a1bf, type: 3}
-      propertyPath: m_FalloffIntensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3806354122725037998, guid: 9e450a31fa0b5d21aae957aa7ac3a1bf, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e450a31fa0b5d21aae957aa7ac3a1bf, type: 3}
