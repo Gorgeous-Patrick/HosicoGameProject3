@@ -1465,6 +1465,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4895611684586497980, guid: 9ec6d57bb5aead047aa790399bb96201, type: 3}
   m_PrefabInstance: {fileID: 1243886081}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &318972496 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5764863849406442380, guid: 63476566c9054f6678bddbdc2000920e, type: 3}
+  m_PrefabInstance: {fileID: 606262560}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &325710833 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3175463658298902843, guid: e282484d6a97121449cd6747afac8105, type: 3}
@@ -2745,11 +2750,11 @@ PrefabInstance:
     - target: {fileID: 3551392206170499734, guid: 5d0ae72ebc63e38e7bec10f50f63abf3, type: 3}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 318972496}
     - target: {fileID: 3551392206170499734, guid: 5d0ae72ebc63e38e7bec10f50f63abf3, type: 3}
       propertyPath: _destination
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1777659348}
     - target: {fileID: 3551392206170499734, guid: 5d0ae72ebc63e38e7bec10f50f63abf3, type: 3}
       propertyPath: batteryDrainInterval
       value: 1.2
@@ -49160,6 +49165,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e282484d6a97121449cd6747afac8105, type: 3}
+--- !u!1 &1777659348 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5736461762355085423, guid: 861abd03ce106963a8ecc3754507620e, type: 3}
+  m_PrefabInstance: {fileID: 1975494082}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1786561517 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3175463658298902843, guid: e282484d6a97121449cd6747afac8105, type: 3}
