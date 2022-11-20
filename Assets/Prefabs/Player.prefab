@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 8256162571040393012}
   - component: {fileID: 1100861942}
   - component: {fileID: 9074146879868451707}
+  - component: {fileID: 8191693350995174765}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -191,6 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInTutorial: 0
+  _climb: 2
   speed: 5
   jumpPower: 6
   climbSpeed: 3
@@ -252,6 +254,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8530bb8a1bffb04ca3006ba0f3cbbb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!255 &8191693350995174765
+FixedJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5764863849406442380}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: -146.87, y: -2.47}
+  m_DampingRatio: 0
+  m_Frequency: 0
 --- !u!1 &6015112814299302784
 GameObject:
   m_ObjectHideFlags: 0
