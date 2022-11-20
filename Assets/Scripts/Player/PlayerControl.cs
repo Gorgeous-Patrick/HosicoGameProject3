@@ -18,7 +18,7 @@ public class PlayerControl : MonoBehaviour
   Rigidbody2D ropeInContact;
   bool touchingLadder;
   bool flying;
-  [SerializeField] ClimbStatus _climb;
+  ClimbStatus _climb;
   ClimbStatus climb
   {
     get => _climb;
@@ -122,12 +122,10 @@ public class PlayerControl : MonoBehaviour
     {
     case >0:
       sr.flipX = false;
-      pickaxe.GetComponent<SwingPickaxe>().reversed = true;
       anim.SetBool("running", true);
       break;
     case <0:
       sr.flipX = true;
-      pickaxe.GetComponent<SwingPickaxe>().reversed = false;
       anim.SetBool("running", true);
       break;
     case 0:
@@ -138,11 +136,10 @@ public class PlayerControl : MonoBehaviour
     // prevent the player sticking to the wall/ceiling due to continuous pressure and friction
     if (!colliding(Utils.vec2dir(horizontalMovementDelta)))
       // apply horizontal movement
-      /* rb2d.velocity += horizontalMovementDelta; */
-        rb2d.AddForce(horizontalMovementDelta* 500);
+      // rb2d.AddForce(horizontalMovementDelta * 500);
+      rb2d.velocity += horizontalMovementDelta;
     // apply vertical movement
     rb2d.velocity += verticalMovementDelta;
-
 
     // process jumps
     if (Gameplay.playerInput.Gameplay.Jump.IsPressed()
