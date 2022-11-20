@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 8204027235977647869}
   - component: {fileID: 880268799008914544}
   - component: {fileID: 6652758850200188650}
+  - component: {fileID: 782788326576539842}
   m_Layer: 0
   m_Name: PlayerTutorial
   m_TagString: Player
@@ -306,7 +307,7 @@ HingeJoint2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2439374766710369415}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 0}
@@ -323,6 +324,24 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
+--- !u!255 &782788326576539842
+FixedJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2439374766710369415}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: -146.87, y: -2.47}
+  m_DampingRatio: 0
+  m_Frequency: 0
 --- !u!1 &2495968848843099275
 GameObject:
   m_ObjectHideFlags: 0

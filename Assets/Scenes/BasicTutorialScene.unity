@@ -9569,7 +9569,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 590691020201604434, guid: 8a67e8d6d791005daa7eca6b0ed00ccc, type: 3}
       propertyPath: m_Name
-      value: UI Canvas
+      value: Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 590691020201604438, guid: 8a67e8d6d791005daa7eca6b0ed00ccc, type: 3}
       propertyPath: m_Pivot.x
@@ -46265,6 +46265,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 782788326576539842, guid: 70d68144274957943ae39cbb51e837f2, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -146.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 782788326576539842, guid: 70d68144274957943ae39cbb51e837f2, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -2.47
+      objectReference: {fileID: 0}
     - target: {fileID: 2439374766710369409, guid: 70d68144274957943ae39cbb51e837f2, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -46312,6 +46320,10 @@ PrefabInstance:
     - target: {fileID: 2439374766710369415, guid: 70d68144274957943ae39cbb51e837f2, type: 3}
       propertyPath: m_Name
       value: PlayerTutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 2941832129384229209, guid: 70d68144274957943ae39cbb51e837f2, type: 3}
+      propertyPath: isInTutorial
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70d68144274957943ae39cbb51e837f2, type: 3}
