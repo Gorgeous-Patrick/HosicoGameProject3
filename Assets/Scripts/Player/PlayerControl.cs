@@ -209,7 +209,7 @@ public class PlayerControl : MonoBehaviour
         // disable movement and change to death animation
         canMove = false;
         anim.SetBool("dead", true);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.25f);
 
         // pause sequence
         Time.timeScale = 0;
