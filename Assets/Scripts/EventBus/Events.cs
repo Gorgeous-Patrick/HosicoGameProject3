@@ -44,7 +44,7 @@ public class EventChangeCheckpoint : Event
   public Transform checkpoint;
 }
 
-public class EventLoseHealth: Event
+public class EventLoseHealth : Event
 {
   public int health;
 }
@@ -76,8 +76,7 @@ public class EventQuake: Event
 
 public class OnChangeGoal : Event
 {
-    public Transform _nextGoal;
-
+  public Transform _nextGoal;
 }
 
 public class EventUseItem: Event
