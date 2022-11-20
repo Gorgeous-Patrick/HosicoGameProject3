@@ -7,11 +7,15 @@ public class SpriteWaver : MonoBehaviour
   [SerializeField] float speed = 5f;
   [SerializeField] float height = 0.5f;
 
+  float y;
+
+  void Start()
+  {
+    y = transform.position.y;
+  }
+
   void Update()
   {
-    Vector2 pos = transform.position;
-    float newY = Mathf.Sin(Time.time * speed) * height + pos.y;
-    //set the object's Y to the new calculated Y
-    transform.position = new Vector3(pos.x, newY, 1);
+    transform.position = new Vector3(transform.position.x, y + Mathf.Abs(Mathf.Sin(Time.time * speed) * height));
   }
 }
