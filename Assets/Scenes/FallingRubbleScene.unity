@@ -2741,6 +2741,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2212724020556706307, guid: 63476566c9054f6678bddbdc2000920e, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -114.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 2212724020556706307, guid: 63476566c9054f6678bddbdc2000920e, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -4.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 5164404179217338421, guid: 63476566c9054f6678bddbdc2000920e, type: 3}
+      propertyPath: m_PointLightInnerAngle
+      value: 30.701466
+      objectReference: {fileID: 0}
+    - target: {fileID: 5164404179217338421, guid: 63476566c9054f6678bddbdc2000920e, type: 3}
+      propertyPath: m_PointLightOuterAngle
+      value: 75.64146
+      objectReference: {fileID: 0}
     - target: {fileID: 5764863849406442378, guid: 63476566c9054f6678bddbdc2000920e, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2788,6 +2804,14 @@ PrefabInstance:
     - target: {fileID: 5764863849406442380, guid: 63476566c9054f6678bddbdc2000920e, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8191693350995174765, guid: 63476566c9054f6678bddbdc2000920e, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -114.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 8191693350995174765, guid: 63476566c9054f6678bddbdc2000920e, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -4.45
       objectReference: {fileID: 0}
     - target: {fileID: 8256162571040393012, guid: 63476566c9054f6678bddbdc2000920e, type: 3}
       propertyPath: numDynamite
