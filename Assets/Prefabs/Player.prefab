@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dynamitePrefab: {fileID: 5202955572957398337, guid: 9471380ee1cf91348a4a7e388e566a28, type: 3}
-  numDynamite: 0
+  numDynamite: 3
 --- !u!114 &1100861942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,7 +269,7 @@ FixedJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -146.87, y: -2.47}
+  m_ConnectedAnchor: {x: -114.44, y: -4.45}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!1 &6015112814299302784
@@ -416,8 +416,8 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 68.899994
-  m_PointLightOuterAngle: 113.84
+  m_PointLightInnerAngle: 68.89999
+  m_PointLightOuterAngle: 75.64146
   m_PointLightInnerRadius: 0
   m_PointLightOuterRadius: 7
   m_ShapeLightParametricSides: 5

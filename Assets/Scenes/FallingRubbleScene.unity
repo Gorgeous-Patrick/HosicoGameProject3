@@ -2714,7 +2714,7 @@ PrefabInstance:
     - target: {fileID: 3551392206170499734, guid: 5d0ae72ebc63e38e7bec10f50f63abf3, type: 3}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 606262562}
+      objectReference: {fileID: 0}
     - target: {fileID: 3551392206170499734, guid: 5d0ae72ebc63e38e7bec10f50f63abf3, type: 3}
       propertyPath: _destination
       value: 
@@ -2741,22 +2741,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2212724020556706307, guid: 63476566c9054f6678bddbdc2000920e, type: 3}
-      propertyPath: m_ConnectedAnchor.x
-      value: -114.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 2212724020556706307, guid: 63476566c9054f6678bddbdc2000920e, type: 3}
-      propertyPath: m_ConnectedAnchor.y
-      value: -4.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 5164404179217338421, guid: 63476566c9054f6678bddbdc2000920e, type: 3}
-      propertyPath: m_PointLightInnerAngle
-      value: 30.701466
-      objectReference: {fileID: 0}
-    - target: {fileID: 5164404179217338421, guid: 63476566c9054f6678bddbdc2000920e, type: 3}
-      propertyPath: m_PointLightOuterAngle
-      value: 75.64146
-      objectReference: {fileID: 0}
     - target: {fileID: 5764863849406442378, guid: 63476566c9054f6678bddbdc2000920e, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2805,28 +2789,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8191693350995174765, guid: 63476566c9054f6678bddbdc2000920e, type: 3}
-      propertyPath: m_ConnectedAnchor.x
-      value: -114.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 8191693350995174765, guid: 63476566c9054f6678bddbdc2000920e, type: 3}
-      propertyPath: m_ConnectedAnchor.y
-      value: -4.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 8256162571040393012, guid: 63476566c9054f6678bddbdc2000920e, type: 3}
-      propertyPath: numDynamite
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63476566c9054f6678bddbdc2000920e, type: 3}
 --- !u!4 &606262561 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5764863849406442378, guid: 63476566c9054f6678bddbdc2000920e, type: 3}
-  m_PrefabInstance: {fileID: 606262560}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &606262562 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5764863849406442380, guid: 63476566c9054f6678bddbdc2000920e, type: 3}
   m_PrefabInstance: {fileID: 606262560}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &606801583 stripped
