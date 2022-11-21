@@ -28,7 +28,7 @@ public class LavaLight : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            AudioManager.instance.playSound("Lava");
+            AudioManager.instance.playSound("12-lava_hurt");
             EventBus.Publish(new EventFailure());
         }
     }
