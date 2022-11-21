@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 880268799008914544}
   - component: {fileID: 6652758850200188650}
   - component: {fileID: 782788326576539842}
+  - component: {fileID: 7977781253574529713}
   m_Layer: 0
   m_Name: PlayerTutorial
   m_TagString: Player
@@ -239,6 +240,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInTutorial: 1
+  touchingLadderCnt: 0
+  _climb: 0
   speed: 5
   jumpPower: 6
   climbSpeed: 3
@@ -339,9 +342,22 @@ FixedJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -146.87, y: -2.47}
+  m_ConnectedAnchor: {x: -108.15, y: -1.52}
   m_DampingRatio: 0
   m_Frequency: 0
+--- !u!114 &7977781253574529713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2439374766710369415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b5b7e3056bc4247b40a6c398df8441, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startFlash: 0
 --- !u!1 &2495968848843099275
 GameObject:
   m_ObjectHideFlags: 0

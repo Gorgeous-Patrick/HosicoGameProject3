@@ -51704,6 +51704,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6696775629955389794, guid: 598ee65a7635fc3408c07a19fef11842, type: 3}
+      propertyPath: m_Intensity
+      value: 1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 6696775629955389795, guid: 598ee65a7635fc3408c07a19fef11842, type: 3}
       propertyPath: m_Name
       value: Cave Ceiling Light
@@ -61809,7 +61813,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
   m_Origin: {x: -119, y: -25, z: 0}
   m_Size: {x: 119, y: 50, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
