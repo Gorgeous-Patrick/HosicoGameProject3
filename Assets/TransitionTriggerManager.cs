@@ -26,7 +26,7 @@ public class TransitionTriggerManager : MonoBehaviour
         // fade from black to full view
         else if (!e.isStart) {
             anim.SetTrigger("end");
-
+  
         }
     }
 }

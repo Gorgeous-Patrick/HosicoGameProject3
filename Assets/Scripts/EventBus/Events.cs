@@ -87,7 +87,7 @@ public class EventUseItem: Event
 {
 }
 
-public class EventStartTransition: Event
+public class EventStartTransition : Event
 {
-  public bool isStart;
+    public bool isStart;
 }

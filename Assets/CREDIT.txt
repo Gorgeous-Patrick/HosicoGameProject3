@@ -31,3 +31,7 @@ Audio Sources
 	11-lava: https://pixabay.com/sound-effects/search/lava/
 	12-lava_hurt: https://pixabay.com/sound-effects/search/grill/
 	Power up: https://opengameart.org/content/power-up-level-up-beansjam
+	Loopable Dungeon Ambience: https://opengameart.org/content/loopable-dungeon-ambience
+	Exploring a Cave: https://opengameart.org/content/exploring-a-cave
+	Cave In: https://opengameart.org/content/cave-in
+	Falling Rock: https://opengameart.org/content/falling-rock
