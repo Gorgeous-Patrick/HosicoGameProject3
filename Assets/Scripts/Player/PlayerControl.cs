@@ -17,9 +17,35 @@ public class PlayerControl : MonoBehaviour
   [SerializeField] bool isInTutorial = false;
 
   Rigidbody2D ropeInContact;
-  bool touchingLadder;
-  bool flying;
-  ClimbStatus _climb;
+  [SerializeField] int touchingLadderCnt;
+  bool touchingLadder
+  {
+    get => touchingLadderCnt > 0;
+  }
+  bool _flying;
+  bool flying
+  {
+    get => _flying;
+    set
+    {
+      _flying = value;
+      if (value == false)
+      {
+        if (ropeInContact != null && touchingLadder)
+        {
+          if (lastClimbStatus == ClimbStatus.Ladder)
+            attachToRope();
+          else if (lastClimbStatus == ClimbStatus.Rope)
+            climb = ClimbStatus.Ladder;
+        }
+        else if (ropeInContact != null)
+          attachToRope();
+        else if (touchingLadder)
+          climb = ClimbStatus.Ladder;
+      }
+    }
+  }
+  [SerializeField] ClimbStatus _climb;
   ClimbStatus climb
   {
     get => _climb;
@@ -30,6 +56,7 @@ public class PlayerControl : MonoBehaviour
       anim.SetBool("climbing", value != ClimbStatus.None);
     }
   }
+  ClimbStatus lastClimbStatus;
   float gravityScale;
 
   [SerializeField] float speed = 5f, jumpPower = 7f, climbSpeed = 3f;
@@ -93,7 +120,7 @@ public class PlayerControl : MonoBehaviour
 
     flying = false;
     climb = ClimbStatus.None;
-    touchingLadder = false;
+    touchingLadderCnt = 0;
     ropeInContact = null;
   }
 
@@ -113,9 +140,11 @@ public class PlayerControl : MonoBehaviour
     Vector2 horizontalMovementDelta = new Vector2(movementInput * speed, 0);
 
     Vector2 verticalMovementDelta = new Vector2(0, 0);
+    float climbInput = Gameplay.playerInput.Gameplay.Climb.ReadValue<float>();
+    // allow player to re-grab the ladder
+    if (climbInput != 0 && flying && touchingLadder) flying = false;
     if (climb == ClimbStatus.Ladder)
     {
-      float climbInput = Gameplay.playerInput.Gameplay.Climb.ReadValue<float>();
       verticalMovementDelta = new Vector2(0, climbInput * climbSpeed);
     }
 
@@ -149,6 +178,7 @@ public class PlayerControl : MonoBehaviour
     {
       if (climb != ClimbStatus.None)
         StartCoroutine(coroutine_jumpOff());
+      // fix jumping on spikes issue - pull the player down a little bit so that they touch the spikes
       transform.position += new Vector3(0, -0.01f);
       rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
       rb2d.velocity += new Vector2(0, jumpPower);
@@ -187,14 +217,12 @@ public class PlayerControl : MonoBehaviour
     if (c != null)
     {
       if (c.type == ClimbStatus.Ladder)
-        touchingLadder = true;
+        touchingLadderCnt++;
       else if (c.type == ClimbStatus.Rope)
         ropeInContact = collisionInfo.gameObject.GetComponent<Rigidbody2D>();
       if (!flying)
       {
-        print(c.type);
         climb = c.type;
-        print(climb);
         if (climb == ClimbStatus.Rope)
           attachToRope();
       }
@@ -212,10 +240,12 @@ public class PlayerControl : MonoBehaviour
     Climbable c = collisionInfo.gameObject.GetComponent<Climbable>();
     if (c != null)
     {
+      flying = false;
       if (c.type == ClimbStatus.Ladder)
       {
-        touchingLadder = false;
-        climb = ClimbStatus.None;
+        touchingLadderCnt--;
+        if (!touchingLadder)
+          climb = ClimbStatus.None;
       }
       else if (c.type == ClimbStatus.Rope)
         ropeInContact = null;
@@ -232,22 +262,10 @@ public class PlayerControl : MonoBehaviour
   IEnumerator coroutine_jumpOff()
   {
     flying = true;
-    ClimbStatus s = climb;
+    lastClimbStatus = climb;
     detachFromRope();
     yield return new WaitForSeconds(1f);
     flying = false;
-
-    if (ropeInContact != null && touchingLadder)
-    {
-      if (s == ClimbStatus.Ladder)
-        attachToRope();
-      else if (s == ClimbStatus.Rope)
-        climb = ClimbStatus.Ladder;
-    }
-    else if (ropeInContact != null)
-      attachToRope();
-    else if (touchingLadder)
-      climb = ClimbStatus.Ladder;
   }
 
   void attachToRope()

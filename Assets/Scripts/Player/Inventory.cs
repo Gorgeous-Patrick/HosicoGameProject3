@@ -40,7 +40,6 @@ public class Inventory : MonoBehaviour
       funcUseItem[heldItem].Invoke();
     });
     inventory["dynamite"] = numDynamite;
-    inventory["health"] = 5;
     funcUseItem["dynamite"] = useDynamite;
         EventBus.Publish(new EventUpdateInventoryUI { item = "dynamite", newAmount = inventory["dynamite"] });
     }
