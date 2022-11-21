@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3175463658298902841}
   - component: {fileID: 3175463658298902840}
   - component: {fileID: -7761030286071056313}
+  - component: {fileID: 26529907946042201}
   m_Layer: 0
   m_Name: FallingRubbleTile
   m_TagString: FallingRubble
@@ -151,6 +152,18 @@ MonoBehaviour:
   canHit: 1
   onlyDynamite: 1
   countdown: 0
+--- !u!114 &26529907946042201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3175463658298902847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c26b5da2b9f296f42b055e62cccc0c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5178688455594149249
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +182,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8349107415601300941
 Transform:
   m_ObjectHideFlags: 0

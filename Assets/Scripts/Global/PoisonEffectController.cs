@@ -33,8 +33,12 @@ public class PoisonEffectController : MonoBehaviour
     get => instance.enabled;
     set
     {
-      instance.v.enabled = value;
-      instance.enabled = value;
+            if(value != null)
+            {
+                instance.v.enabled = value;
+                instance.enabled = value;
+            }
+    
     }
   }
 
