@@ -29,6 +29,8 @@ public class LoadsSceneOnClick : MonoBehaviour
     [SerializeField] string SceneToLoad = "Level 1";
     [SerializeField] GameObject UserConsent;
     [SerializeField] bool isClicked = false;
+    [SerializeField] bool isButton = false;
+
     AudioSource clickSFX;
     private void Start() {
         clickSFX = GetComponent<AudioSource>();
@@ -55,7 +57,7 @@ public class LoadsSceneOnClick : MonoBehaviour
         // additional time to allow audio to finish playing - currently for title screen
         yield return new WaitForSeconds(2.25f);
 
-        if (SceneManager.GetActiveScene().name != "Title")
+        if (SceneManager.GetActiveScene().name != "Title" && !isButton)
             SceneToLoad = PlayerPrefs.GetString("currScene");
         SceneManager.LoadScene(SceneToLoad);
         if (UserConsent.GetComponent<Toggle>().isOn) {

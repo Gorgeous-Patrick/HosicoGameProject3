@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class DestroysBreakables : MonoBehaviour
 {
-  public LayerMask WhatIsPlatform;
+    public LayerMask WhatIsPlatform;
 
-  public int durabilityImpact = -1;
+    public int durabilityImpact = -1;
     public bool isExplosion = false;
-  [SerializeField] Transform pickPoint;
-  [SerializeField] float pickaxeHitBoxSize = 0.1f;
+    [SerializeField] Transform pickPoint;
+    [SerializeField] float pickaxeHitBoxSize = 0.1f;
     [SerializeField] CircleCollider2D blastRadius;
+    [SerializeField] bool playingSound = false;
 
   private void Awake()
   {
@@ -33,11 +34,14 @@ public class DestroysBreakables : MonoBehaviour
   private void breakTileHelper()
   {
     Collider2D[] overCollider = Physics2D.OverlapCircleAll(pickPoint.position, pickaxeHitBoxSize, WhatIsPlatform);
-    foreach (var hit in overCollider)
+
+        foreach (var hit in overCollider)
         {
             if (hit != null)
-            {
-                AudioManager.instance.playSound("3-dig_rocks", 1.0f);
+            {   
+                if (!playingSound) {
+                    StartCoroutine(PlaySound());
+                }
                 hit.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(pickPoint.position);
             }
         }
@@ -46,6 +50,14 @@ public class DestroysBreakables : MonoBehaviour
     private void Start()
     {
         StartCoroutine(ExplosionActivated());
+    }
+
+    IEnumerator PlaySound() {
+        playingSound = true;
+        AudioManager.instance.playSound("3-dig_rocks", 1.0f);
+        yield return new WaitForSeconds(0.5f);
+        playingSound = false;
+        Debug.Log(playingSound);
     }
 
     private IEnumerator ExplosionActivated()

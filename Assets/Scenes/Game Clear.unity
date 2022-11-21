@@ -374,9 +374,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea6f63b42c1d564aa6d52803b380b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isClicked: 0
   SceneToLoad: Title
   UserConsent: {fileID: 0}
+  isClicked: 0
+  isButton: 1
 --- !u!114 &1003710927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,6 +628,10 @@ PrefabInstance:
     - target: {fileID: 6172103313315236970, guid: 793da8f402c4ac34a98bceca5d5860e1, type: 3}
       propertyPath: m_Name
       value: Crossfade
+      objectReference: {fileID: 0}
+    - target: {fileID: 6172103313315236970, guid: 793da8f402c4ac34a98bceca5d5860e1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6172103313315236975, guid: 793da8f402c4ac34a98bceca5d5860e1, type: 3}
       propertyPath: m_Pivot.x

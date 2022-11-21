@@ -1402,6 +1402,7 @@ MonoBehaviour:
   SceneToLoad: BasicTutorialScene
   UserConsent: {fileID: 1426687159}
   isClicked: 0
+  isButton: 1
 --- !u!114 &1003710927
 MonoBehaviour:
   m_ObjectHideFlags: 0
