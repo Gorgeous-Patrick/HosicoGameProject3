@@ -138,8 +138,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 200
+  m_UseAutoMass: 1
+  m_Mass: 0.4505431
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1.2
@@ -261,7 +261,7 @@ FixedJoint2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5764863849406442380}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 0}
@@ -284,8 +284,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ae3a00d43b875a7971df1042896081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inPoison: 1
+  _health: 0
   damage: 10
-  restoration: 5
+  restoration: 30
 --- !u!1 &6015112814299302784
 GameObject:
   m_ObjectHideFlags: 0

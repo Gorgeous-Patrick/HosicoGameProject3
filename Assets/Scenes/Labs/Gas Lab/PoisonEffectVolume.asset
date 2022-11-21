@@ -14,29 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   mode:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 2
   gaussianStart:
-    m_OverrideState: 0
-    m_Value: 10
+    m_OverrideState: 1
+    m_Value: 0
   gaussianEnd:
-    m_OverrideState: 0
-    m_Value: 30
+    m_OverrideState: 1
+    m_Value: 0
   gaussianMaxRadius:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   highQualitySampling:
     m_OverrideState: 0
     m_Value: 0
   focusDistance:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 10
   aperture:
     m_OverrideState: 0
     m_Value: 5.6
   focalLength:
-    m_OverrideState: 0
-    m_Value: 50
+    m_OverrideState: 1
+    m_Value: 1
   bladeCount:
     m_OverrideState: 0
     m_Value: 5
@@ -77,13 +77,13 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: 2.27
+    m_Value: 1.5
   contrast:
     m_OverrideState: 0
     m_Value: 1
   colorFilter:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0.6964404, b: 0.02731139, a: 1}
+    m_Value: {r: 0.253986, g: 0.7830189, b: 0.21791564, a: 1}
   hueShift:
     m_OverrideState: 0
     m_Value: 0
@@ -105,15 +105,15 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.52
+    m_Value: 0.13
   xMultiplier:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1
   yMultiplier:
     m_OverrideState: 0
     m_Value: 1
   center:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: {x: 0.5, y: 0.5}
   scale:
     m_OverrideState: 0
