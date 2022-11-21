@@ -16,3 +16,17 @@ Images
 	Ocean Sunrise: https://opengameart.org/content/ocean-sunrise
 Fonts
 	Font: https://www.dafont.com/greadown.font
+Audio Sources
+	0-steo_rocks: https://opengameart.org/content/step-sound-walking
+	1-falling_rocks: https://opengameart.org/content/falling-rock
+	2-dynamite_explode: https://opengameart.org/content/big-explosion
+	3-dig_rocks: https://opengameart.org/content/breaking-rock
+	4-player_death: https://opengameart.org/content/hurt-death-sound-effect-for-character
+	5-noise: https://opengameart.org/content/big-low-frequency-explosion-boom
+	6-climb_ladder: https://opengameart.org/content/12-player-movement-sfx
+	7-pick_up: https://opengameart.org/content/inventory-sound-effects
+	8-low_battery: https://opengameart.org/content/short-alarm 
+	9-generator: https://opengameart.org/content/force-field-electric-hum 
+	10-dripping_water: https://opengameart.org/content/dripping-water
+	11-lava: https://pixabay.com/sound-effects/search/lava/
+	12-lava_hurt: https://pixabay.com/sound-effects/search/grill/
