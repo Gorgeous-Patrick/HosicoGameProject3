@@ -60,7 +60,7 @@ public class Gameplay : MonoBehaviour
     else
       _instance = this;
     _playerInput = new PlayerInput();
-    EventBus.Subscribe<EventFailure>(handler_EventFailure);
+    // EventBus.Subscribe<EventFailure>(handler_EventFailure);
   }
 
   void Start()
@@ -98,7 +98,8 @@ public class Gameplay : MonoBehaviour
     }
     if (e.charging == false && batteryChargeCoroutine != null)
     {
-      StopCoroutine(batteryChargeCoroutine);
+      if (batteryChargeCoroutine != null)
+        StopCoroutine(batteryChargeCoroutine);
       batteryChargeCoroutine = null;
       return;
     }
@@ -116,18 +117,18 @@ public class Gameplay : MonoBehaviour
       yield return new WaitForSeconds(batteryDrainInterval);
       _batteryLevel -= 0.01f;
     }
-    // the player failed...
+    // the player failed - for now. planning on changing this
     EventBus.Publish(new EventFailure());
   }
 
   IEnumerator coroutine_batteryCharge()
   {
-    while (_batteryLevel < 1)
+    while (true)
     {
       yield return new WaitForSeconds(batteryChargeInterval);
       _batteryLevel += 0.03f;
+      if (_batteryLevel > 1) _batteryLevel = 1;
     }
-    if (_batteryLevel > 1) _batteryLevel = 1;
   }
 
   // Singleton
@@ -154,16 +155,10 @@ public class Gameplay : MonoBehaviour
     get => instance._player.GetComponent<Inventory>();
   }
 
-  private void handler_EventFailure(EventFailure obj)
-  {
-    _batteryLevel = maxBattery;
-    StartCoroutine(coroutine_DelayedBatteryDrain());
-  }
-
-  private IEnumerator coroutine_DelayedBatteryDrain()
-  {
-    yield return new WaitForSeconds(0.5f);
-    batteryDrainCoroutine = StartCoroutine(coroutine_batteryDrain());
-  }
+  // void handler_EventFailure(EventFailure obj)
+  // {
+  //   _batteryLevel = maxBattery;
+  //   StartCoroutine(coroutine_DelayedBatteryDrain());
+  // }
 
 }
