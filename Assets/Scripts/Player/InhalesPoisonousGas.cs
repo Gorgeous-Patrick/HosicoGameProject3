@@ -21,7 +21,7 @@ public class InhalesPoisonousGas : MonoBehaviour
         _health = value;
     }
   }
-  [SerializeField] int damage = 10, restoration = 5;
+  [SerializeField] int damage = 10, restoration = 30;
 
   float restoreCountdown, hurtCountdown;
 
