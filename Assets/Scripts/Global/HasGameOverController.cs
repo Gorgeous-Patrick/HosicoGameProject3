@@ -25,6 +25,9 @@ public class HasGameOverController : MonoBehaviour
         if (playerHealth <= 0) {
             playerHealth = maxHealth;
             // loads Game Over scene
+            // 
+
+            
             PlayerPrefs.SetString("currScene", SceneManager.GetActiveScene().name);
             SceneManager.LoadScene(GameOverScene);
         }
@@ -40,6 +43,11 @@ public class HasGameOverController : MonoBehaviour
         if (playerHealth > 0) {
             EventBus.Publish(new EventLoseHealth { health = playerHealth });
             EventBus.Publish(new EventResetPlayer { pos = respawnPos });
+        }
+        else {
+            AudioManager.instance.playSound("4-player_death", 1.0f);
+            // AudioManager.instance.playSound("3-dig_rocks", 1.0f);
+            Debug.Log("Gameover");
         }
     }
 }

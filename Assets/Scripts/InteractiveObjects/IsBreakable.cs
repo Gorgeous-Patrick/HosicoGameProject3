@@ -29,8 +29,11 @@ public class IsBreakable : MonoBehaviour
     }
         if (durability <= 0)
         {
-            if (!transform.CompareTag("BreakableGround"))
-                Destroy(gameObject);
+            if (!transform.CompareTag("BreakableGround")) {
+              AudioManager.instance.playSound("3-dig_rocks", 1.0f);
+              Destroy(gameObject);
+            }
+                
         }
   }
 

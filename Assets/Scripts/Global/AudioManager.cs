@@ -35,7 +35,9 @@ public class AudioManager : MonoBehaviour
     for (int i = 0; i < audioClips.Count; i++)
     {
       audioSources.Add(audioNames[i], audioClips[i]);
+      // Debug.Log(audioNames[i]);
     }
+    
   }
 
   public void playSound(string name, float volume = 1.0f)
