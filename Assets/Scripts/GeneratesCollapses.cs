@@ -29,6 +29,8 @@ public class GeneratesCollapses : MonoBehaviour
     int quakeStrength = e.strengthAt(Utils.flatten(transform.position));
     if (quakeStrength >= threshold)
       remaining += strength * quakeStrength;
+      AudioManager.instance.playSound("1-falling_rocks", 1.0f);
+
   }
 
   void Update()
@@ -46,6 +48,7 @@ public class GeneratesCollapses : MonoBehaviour
           Random.Range(transform.position.y - transform.localScale.y / 2,
             transform.position.y + transform.localScale.y / 2) );
       Instantiate(generatedObject, pos, Quaternion.Euler(0, 0, Random.Range(0, 360)));
+      
     }
   }
 

@@ -12,6 +12,8 @@ public class PickupOnTouch : MonoBehaviour
     if (collision.gameObject.tag == "Player")
     {
       EventBus.Publish(new EventUpdateInventory { pickup = pickupName, delta = amount });
+      AudioManager.instance.playSound("7-pick_up", 1.0f);
+      
       Destroy(this.gameObject);
     }
   }

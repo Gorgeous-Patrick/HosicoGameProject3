@@ -36,6 +36,7 @@ public class DestroysBreakables : MonoBehaviour
         {
             if (hit != null)
             {
+                AudioManager.instance.playSound("3-dig_rocks", 1.0f);
                 hit.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(pickPoint.position);
             }
         }
