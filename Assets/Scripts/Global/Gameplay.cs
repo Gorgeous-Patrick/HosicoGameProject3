@@ -70,7 +70,7 @@ public class Gameplay : MonoBehaviour
     else maxBattery = _batteryLevel;
     batteryDrainCoroutine = StartCoroutine(coroutine_batteryDrain());
     EventBus.Subscribe<EventHeadlightStatusChange>(handler_EventHeadlightStatusChange);
-    EventBus.Subscribe<EventBatteryStatusChange>(haandler_EventBatteryStatusChange);
+    EventBus.Subscribe<EventBatteryStatusChange>(handler_EventBatteryStatusChange);
     EventBus.Subscribe<OnChangeGoal>(handler_EventChangeGoal);
   }
 
@@ -89,7 +89,7 @@ public class Gameplay : MonoBehaviour
     }
   }
 
-  void haandler_EventBatteryStatusChange(EventBatteryStatusChange e)
+  void handler_EventBatteryStatusChange(EventBatteryStatusChange e)
   {
     if (e.charging == true && batteryChargeCoroutine == null)
     {

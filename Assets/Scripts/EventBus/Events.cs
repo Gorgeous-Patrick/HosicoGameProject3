@@ -89,8 +89,5 @@ public class EventUseItem: Event
 
 public class EventStartTransition: Event
 {
-    public bool isStart;
-    public EventStartTransition(bool _isStart) {
-        isStart = _isStart;
-    }
+  public bool isStart;
 }
