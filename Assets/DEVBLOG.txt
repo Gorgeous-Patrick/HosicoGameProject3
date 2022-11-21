@@ -1,3 +1,5 @@
-This week, we redesigned parts of our map. The old map did not have perfect guidance for the players and sometimes confuses them. So to make the purpose of the game clearer, we tweaked some parts of the map. In the play test session, we noticed that our game needs more juice. So we decided to add some basic audio effects so to the game to the game less dull and more joyful to play. We also refined our checkpoint system. We noticed that the gameplay was a bit frustrating when the player dies after they spend a long time in our game. The checkpoint system helps us to better limit the difficulty of the entire game. We have also introduced poisonous gas. It helps enrich the game-play experience. We also added an ambient light on the player so that they can somehow walk when the headlight is out. The player might find it easier to play.
+Devblog posts links:
 
-For the next iteration, we will add some more interactive objects including an enhanced rope, and lava. These objects will enrich the gameplay. We will also focus more on more and better level designs. We will also add new scenes to introduce some background information to the player. They need some background knowledge to understand the goal of the entire game.
+https://www.indiedb.com/members/eratos/blogs/cavelit-game-alpha-build-devblog#articlesformhttps://www.indiedb.com/members/eratos/blogs/cavelit-game-alpha-build-devblog#articlesform
+
+https://forums.tigsource.com/index.php?topic=73888.0
