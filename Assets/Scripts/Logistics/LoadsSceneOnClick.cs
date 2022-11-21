@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 public class LoadsSceneOnClick : MonoBehaviour
 {
+    [SerializeField] bool isClicked = false;
+
     async void startAnalytics()
     {
         Debug.Log("Analytics Start");
@@ -27,14 +29,20 @@ public class LoadsSceneOnClick : MonoBehaviour
     [SerializeField] GameObject UserConsent;
 
     public void LoadScene() {
-        Debug.Log("Clicked.");
+        if (isClicked) { return;  };
+        StartCoroutine(ClickSequence());
+    }
+
+    IEnumerator ClickSequence() {
+        isClicked = true;
+        EventBus.Publish<EventStartTransition>(new EventStartTransition{ isStart = true });
+        yield return new WaitForSeconds(1.75f);
+
         if (SceneManager.GetActiveScene().name != "Title")
             SceneToLoad = PlayerPrefs.GetString("currScene");
         SceneManager.LoadScene(SceneToLoad);
-        if (UserConsent.GetComponent<Toggle>().isOn)
-        {
+        if (UserConsent.GetComponent<Toggle>().isOn) {
             startAnalytics();
         }
     }
-
 }
