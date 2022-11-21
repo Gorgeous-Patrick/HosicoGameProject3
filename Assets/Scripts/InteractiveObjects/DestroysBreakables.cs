@@ -4,52 +4,88 @@ using UnityEngine;
 
 public class DestroysBreakables : MonoBehaviour
 {
-  public LayerMask WhatIsPlatform;
+    public LayerMask WhatIsPlatform;
 
-  public int durabilityImpact = -1;
+    public int durabilityImpact = -1;
     public bool isExplosion = false;
-  [SerializeField] Transform pickPoint;
-  [SerializeField] float pickaxeHitBoxSize = 0.1f;
+    [SerializeField] Transform pickPoint;
+    [SerializeField] float pickaxeHitBoxSize = 0.1f;
+    [SerializeField] CircleCollider2D blastRadius;
+    [SerializeField] bool playingSound = false;
+    [SerializeField] int indexTimer = 0;
 
-  private void Awake()
-  {
-    if (pickPoint == null)
-    {
-      pickPoint = transform;
+    private void Awake() {
+        if (pickPoint == null) {
+            pickPoint = transform;
+        }
     }
-  }
 
-  private void OnTriggerEnter2D(Collider2D collision)
-  {
-    breakTileHelper();
-  }
+    private void OnTriggerEnter2D(Collider2D collision) {
+        breakTileHelper();
+    }
 
-  private void OnTriggerStay2D(Collider2D collision)
-  {
-    breakTileHelper();
-  }
+    private void OnTriggerStay2D(Collider2D collision) {
+        breakTileHelper();
+    }
 
-  private void breakTileHelper()
-  {
-    Collider2D[] overCollider = Physics2D.OverlapCircleAll(pickPoint.position, pickaxeHitBoxSize, WhatIsPlatform);
-    foreach (var hit in overCollider)
-        {
-            if (hit != null)
-            {
-                AudioManager.instance.playSound("3-dig_rocks", 1.0f);
+    private void breakTileHelper() {
+        Collider2D[] overCollider = Physics2D.OverlapCircleAll(pickPoint.position, pickaxeHitBoxSize, WhatIsPlatform);
+
+        if (!playingSound) {
+            playingSound = true;
+            AudioManager.instance.playSound("3-dig_rocks", 1.0f);
+        }
+
+        foreach (var hit in overCollider) {
+            if (hit != null) {
                 hit.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(pickPoint.position);
             }
         }
-  }
+    }
 
+    private void Start()
+    {
+        StartCoroutine(ExplosionActivated());
+    }
 
-  /*if (collision.gameObject.CompareTag("BreakableGround"))
-  {
+    private void Update() {
+        if (playingSound) {
+            indexTimer++;
+            if (indexTimer >= 85) {
+                playingSound = false;
+                indexTimer = 0;
+            }
+        }
+    }
 
-      Vector2 hitPos = transform.position;
-      hitPos.x = Mathf.Floor(hitPos.x);
-      hitPos.y = Mathf.Floor(hitPos.y);
-      Debug.Log("hit breakable ground at " + hitPos);
-      collision.gameObject.GetComponent<HasCanBeDugScript>().DestroyTileMapAtPoint(hitPos);
-  }*/
+    private IEnumerator ExplosionActivated()
+    {
+        yield return new WaitForSeconds(0.2f);
+        DestroyTilesArea();
+    }
+
+    private void DestroyTilesArea()
+    {
+        if (blastRadius != null)
+        {
+            int radius = Mathf.RoundToInt(blastRadius.radius);
+            for (var x = -radius; x <= radius; x++)
+            {
+                for (var y = -radius; y < radius; y++)
+                {
+                    Vector3 tilePos = new Vector3(transform.position.x + x, transform.position.y + y, 0);
+                    float dist = Vector2.Distance(transform.position, tilePos) - 0.001f;
+
+                    if (dist <= radius)
+                    {
+                        Collider2D overCollider2d = Physics2D.OverlapCircle(tilePos, 0.01f, WhatIsPlatform);
+                        if (overCollider2d != null)
+                        {
+                            overCollider2d.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(tilePos);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

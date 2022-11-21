@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class Generator : MonoBehaviour
 {
+    AudioSource chargeSFX;
+    [SerializeField] int generatorIndex = 0;
 
-  void OnTriggerEnter2D(Collider2D collision)
-  {
-    EventBus.Publish(new EventBatteryStatusChange { charging = true });
-  }
+    private void Start() {
+        chargeSFX = GetComponent<AudioSource>();
+    }
 
-  void OnTriggerExit2D(Collider2D collision)
-  {
-    EventBus.Publish(new EventBatteryStatusChange { charging = false });
-  }
+    void OnTriggerEnter2D(Collider2D collision) {
+        if (chargeSFX != null) {
+            chargeSFX.Play();
+        }
+        EventBus.Publish(new EventBatteryStatusChange { charging = true });
+    }
+
+    void OnTriggerExit2D(Collider2D collision) {
+        EventBus.Publish(new EventBatteryStatusChange { charging = false });
+    }
 
 }

@@ -11,6 +11,7 @@ TagManager:
   - Generator
   - PickaxePickup
   - FallingRubble
+  - PushableBlock
   layers:
   - Default
   - TransparentFX
