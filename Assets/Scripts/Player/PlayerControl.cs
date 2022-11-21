@@ -43,13 +43,13 @@ public class PlayerControl : MonoBehaviour
     float rayLength = 0.01f;
     switch (dir)
     {
-    case Direction.Down :
+    case Direction.Down:
     case Direction.Up:
       rayLength += c2d.bounds.extents.y;
       box.x = c2d.bounds.size.x;
       box.y = 0.1f;
       break;
-    case Direction.Left :
+    case Direction.Left:
     case Direction.Right:
       rayLength += c2d.bounds.extents.x;
       box.x = 0.1f;
@@ -84,7 +84,7 @@ public class PlayerControl : MonoBehaviour
     pickaxe = transform.Find("Pickaxe Container").Find("Pickaxe").gameObject;
     if (pickaxe == null) Debug.LogError("Pickaxe not found");
     pickaxe.SetActive(false);
-    headlightOn = true;
+    headlightOn = false;
     gravityScale = rb2d.gravityScale;
 
     // Init a hinge joint so that it can be used to climb. Disabled by default.
@@ -99,6 +99,7 @@ public class PlayerControl : MonoBehaviour
 
   void Update()
   {
+
     bool grounded = colliding(Direction.Down, false); // can jump when standing on dynamic object
     anim.SetBool("grounded", grounded);
     anim.SetFloat("velX", rb2d.velocity.x);
@@ -121,11 +122,11 @@ public class PlayerControl : MonoBehaviour
     // set the animation to run and let the miner face left
     switch (movementInput)
     {
-    case >0:
+    case > 0:
       sr.flipX = false;
       anim.SetBool("running", true);
       break;
-    case <0:
+    case < 0:
       sr.flipX = true;
       anim.SetBool("running", true);
       break;
@@ -144,10 +145,11 @@ public class PlayerControl : MonoBehaviour
 
     // process jumps
     if (Gameplay.playerInput.Gameplay.Jump.IsPressed()
-        && ((grounded && rb2d.velocity.y <= 0.1f) || climb != ClimbStatus.None) )
+        && ((grounded && rb2d.velocity.y <= 0.1f) || climb != ClimbStatus.None))
     {
       if (climb != ClimbStatus.None)
         StartCoroutine(coroutine_jumpOff());
+      transform.position += new Vector3(0, -0.01f);
       rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
       rb2d.velocity += new Vector2(0, jumpPower);
       StartCoroutine(coroutine_jumpAnim());
@@ -167,7 +169,7 @@ public class PlayerControl : MonoBehaviour
     if (Gameplay.playerInput.Gameplay.ToggleHeadlight.WasPressedThisFrame())
     {
       headlightOn = !headlightOn;
-      EventBus.Publish(new EventHeadlightStatusChange {enabled = headlightOn});
+      EventBus.Publish(new EventHeadlightStatusChange { enabled = headlightOn });
     }
 
     // process active interaction with objects
@@ -261,22 +263,42 @@ public class PlayerControl : MonoBehaviour
     hinge.enabled = false;
   }
 
+  // plays out death sequence
   IEnumerator coroutine_Death(EventReset e)
   {
+    // play death grunt
     AudioManager.instance.playSound("4-player_death", 1.0f);
+
+    // disable player movement
+    Gameplay.playerInput.Gameplay.Disable();
+    var original_constraints = rb2d.constraints;
+    rb2d.constraints |= RigidbodyConstraints2D.FreezePositionX;
+    rb2d.constraints |= RigidbodyConstraints2D.FreezePositionY;
+
+    // play player death animation
     anim.SetBool("dead", true);
-    yield return new WaitForSeconds(2);
+    yield return new WaitForSeconds(2.5f);
+
+    // call and wait for fade out transition to play out
     if (e.resetEntireLevel)
     {
       SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-      // PlayerPrefs.SetString("currScene", SceneManager.GetActiveScene().name);
+      PlayerPrefs.SetString("currScene", SceneManager.GetActiveScene().name);
     }
     else
     {
       anim.SetBool("dead", false);
       transform.position = CheckpointController.checkpoint;
-    }
-    EventBus.Publish(new EventToggleInvincibility {invincible = false});
-  }
 
+      // enable player movement
+      Gameplay.playerInput.Gameplay.Enable();
+      rb2d.constraints = original_constraints;
+
+      // call and wait for fade in transition
+      // call and wait for transition to play out
+      EventBus.Publish(new EventStartTransition { isStart = false });
+      yield return new WaitForSeconds(1.75f);
+    }
+    EventBus.Publish(new EventToggleInvincibility { invincible = false });
+  }
 }
