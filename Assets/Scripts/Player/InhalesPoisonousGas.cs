@@ -30,6 +30,7 @@ public class InhalesPoisonousGas : MonoBehaviour
     health = 100;
     restoreCountdown = hurtCountdown = 1f;
     inPoison = false;
+    EventBus.Subscribe<EventReset>((_) => health = 100);
   }
 
   // a very dirty solution to work around Unity's limitations

@@ -240,8 +240,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 405558107, guid: b0c024cd748c9894a931833c96d96c9c, type: 3}
-  text: Charging...
-  offset: {x: 1, y: 0}
+  text: charging...
+  offset: {x: 1.5, y: 0}
 --- !u!114 &3873190653184108702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,7 +268,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.15
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

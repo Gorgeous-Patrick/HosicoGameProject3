@@ -8,14 +8,10 @@ public class DisplaysHealth : MonoBehaviour
 
   private TextMeshProUGUI healthText;
 
-  void Awake()
+  void Start()
   {
     healthText = GetComponent<TextMeshProUGUI>();
-    EventBus.Subscribe<EventLoseHealth>(OnEventLoseHealthDo);
+    EventBus.Subscribe<EventUpdateHealth>((e) => healthText.text = $"x {e.newHealth}");
   }
 
-  private void OnEventLoseHealthDo(EventLoseHealth obj)
-  {
-    healthText.text = "x " + obj.health;
-  }
 }

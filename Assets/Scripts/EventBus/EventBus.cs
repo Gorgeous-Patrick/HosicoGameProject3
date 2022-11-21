@@ -28,16 +28,16 @@ public class EventBus
         /* Use type T to identify correct subscriber list (correct "topic") */
         Type t = typeof(T);
 
-        // if (DEBUG_MODE)
-        //     Debug.Log("[Publish] event of type " + t + " with contents (" + published_event.ToString() + ")");
+        if (DEBUG_MODE)
+            Debug.Log("[Publish] event of type " + t + " with contents (" + published_event.ToString() + ")");
 
         if (_topics.ContainsKey(t))
         {
             IList subscriber_list = new List<Subscription<T>>(_topics[t].Cast<Subscription<T>>());
 
             /* iterate through the subscribers and pass along the event T */
-            // if (DEBUG_MODE)
-            //     Debug.Log("..." + subscriber_list.Count + " subscriptions being executed for this event.");
+            if (DEBUG_MODE)
+                Debug.Log("..." + subscriber_list.Count + " subscriptions being executed for this event.");
 
             /* This is a collection of subscriptions that have lost their target object. */
             List<Subscription<T>> orphaned_subscriptions = new List<Subscription<T>>();
@@ -66,8 +66,8 @@ public class EventBus
         }
         else
         {
-            // if (DEBUG_MODE)
-            //     Debug.Log("...but no one is subscribed to this event right now.");
+            if (DEBUG_MODE)
+                Debug.Log("...but no one is subscribed to this event right now.");
         }
     }
 
@@ -88,8 +88,8 @@ public class EventBus
 
         _topics[t].Add(new_subscription);
 
-        // if (DEBUG_MODE)
-        //     Debug.Log("[Subscribe] subscription of function (" + callback.Target.ToString() + "." + callback.Method.Name + ") to type " + t + ". There are now " + _topics[t].Count + " subscriptions to this type.");
+        if (DEBUG_MODE)
+            Debug.Log("[Subscribe] subscription of function (" + callback.Target.ToString() + "." + callback.Method.Name + ") to type " + t + ". There are now " + _topics[t].Count + " subscriptions to this type.");
 
         return new_subscription;
     }
@@ -98,20 +98,20 @@ public class EventBus
     {
         Type t = typeof(T);
 
-        // if (DEBUG_MODE)
-        //     Debug.Log("[Unsubscribe] attempting to remove subscription to type " + t);
+        if (DEBUG_MODE)
+            Debug.Log("[Unsubscribe] attempting to remove subscription to type " + t);
 
         if (_topics.ContainsKey(t) && _topics[t].Count > 0)
         {
             _topics[t].Remove(subscription);
 
-            // if (DEBUG_MODE)
-            //     Debug.Log("...there are now " + _topics[t].Count + " subscriptions to this type.");
+            if (DEBUG_MODE)
+                Debug.Log("...there are now " + _topics[t].Count + " subscriptions to this type.");
         }
         else
         {
-            // if (DEBUG_MODE)
-            //     Debug.Log("...but this subscription is not currently valid (perhaps you already unsubscribed?)");
+            if (DEBUG_MODE)
+                Debug.Log("...but this subscription is not currently valid (perhaps you already unsubscribed?)");
         }
     }
 }

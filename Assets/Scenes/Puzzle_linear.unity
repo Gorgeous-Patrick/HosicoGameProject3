@@ -4467,10 +4467,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 764185073207462177, guid: 5d0ae72ebc63e38e7bec10f50f63abf3, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 86874493}
     - target: {fileID: 1091674993650152782, guid: 5d0ae72ebc63e38e7bec10f50f63abf3, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 869450831}
+      objectReference: {fileID: 0}
     - target: {fileID: 1091674993650152782, guid: 5d0ae72ebc63e38e7bec10f50f63abf3, type: 3}
       propertyPath: GameOverScene
       value: Game Over
@@ -4534,6 +4538,10 @@ PrefabInstance:
     - target: {fileID: 3551392206170499735, guid: 5d0ae72ebc63e38e7bec10f50f63abf3, type: 3}
       propertyPath: m_Name
       value: GamePlay
+      objectReference: {fileID: 0}
+    - target: {fileID: 6450248588250093605, guid: 5d0ae72ebc63e38e7bec10f50f63abf3, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d0ae72ebc63e38e7bec10f50f63abf3, type: 3}
@@ -85962,11 +85970,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33d98b49d3896eb659b506becb1b2775, type: 3}
---- !u!4 &869450831 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3551392206170499733, guid: 5d0ae72ebc63e38e7bec10f50f63abf3, type: 3}
-  m_PrefabInstance: {fileID: 607759587}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &870202962
 PrefabInstance:
   m_ObjectHideFlags: 0

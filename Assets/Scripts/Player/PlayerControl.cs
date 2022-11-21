@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(FixedJoint2D))]
 public class PlayerControl : MonoBehaviour
@@ -75,7 +76,7 @@ public class PlayerControl : MonoBehaviour
     rb2d = GetComponent<Rigidbody2D>();
     c2d = GetComponent<Collider2D>();
     sr = GetComponent<SpriteRenderer>();
-    EventBus.Subscribe<EventResetPlayer>(handler_EventResetPlayer);
+    EventBus.Subscribe<EventReset>((e) => StartCoroutine(coroutine_Death(e)));
   }
 
   void Start()
@@ -193,7 +194,7 @@ public class PlayerControl : MonoBehaviour
         climb = c.type;
         print(climb);
         if (climb == ClimbStatus.Rope)
-          attach2Rope();
+          attachToRope();
       }
     }
 
@@ -237,17 +238,17 @@ public class PlayerControl : MonoBehaviour
     if (ropeInContact != null && touchingLadder)
     {
       if (s == ClimbStatus.Ladder)
-        attach2Rope();
+        attachToRope();
       else if (s == ClimbStatus.Rope)
         climb = ClimbStatus.Ladder;
     }
     else if (ropeInContact != null)
-      attach2Rope();
+      attachToRope();
     else if (touchingLadder)
       climb = ClimbStatus.Ladder;
   }
 
-  void attach2Rope()
+  void attachToRope()
   {
     climb = ClimbStatus.Rope;
     hinge.connectedBody = ropeInContact;
@@ -260,9 +261,22 @@ public class PlayerControl : MonoBehaviour
     hinge.enabled = false;
   }
 
-  void handler_EventResetPlayer(EventResetPlayer e)
+  IEnumerator coroutine_Death(EventReset e)
   {
-    transform.position = e.pos;
+    AudioManager.instance.playSound("4-player_death", 1.0f);
+    anim.SetBool("dead", true);
+    yield return new WaitForSeconds(2);
+    if (e.resetEntireLevel)
+    {
+      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+      // PlayerPrefs.SetString("currScene", SceneManager.GetActiveScene().name);
+    }
+    else
+    {
+      anim.SetBool("dead", false);
+      transform.position = CheckpointController.checkpoint;
+    }
+    EventBus.Publish(new EventToggleInvincibility {invincible = false});
   }
 
 }

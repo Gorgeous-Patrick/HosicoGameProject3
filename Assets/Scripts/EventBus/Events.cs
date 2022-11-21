@@ -24,9 +24,19 @@ public class EventFailure : Event
 {
 }
 
-public class EventResetPlayer : Event
+public class EventReset : Event
 {
-  public Vector2 pos;
+  public bool resetEntireLevel;
+}
+
+public class EventUpdateHealth : Event
+{
+  public int newHealth;
+}
+
+public class EventToggleInvincibility : Event
+{
+  public bool invincible;
 }
 
 public class EventHeadlightStatusChange : Event
@@ -39,14 +49,8 @@ public class EventBatteryStatusChange : Event
   public bool charging;
 }
 
-public class EventChangeCheckpoint : Event
-{
-  public Transform checkpoint;
-}
-
 public class EventLoseHealth : Event
 {
-  public int health;
 }
 
 public class EventUpdateInventory : Event
@@ -80,5 +84,9 @@ public class OnChangeGoal : Event
 }
 
 public class EventUseItem: Event
+{
+}
+
+public class EventStartTransition: Event
 {
 }
