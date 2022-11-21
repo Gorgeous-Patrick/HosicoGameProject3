@@ -82,3 +82,7 @@ public class OnChangeGoal : Event
 public class EventUseItem: Event
 {
 }
+
+public class EventStartTransition: Event
+{
+}
