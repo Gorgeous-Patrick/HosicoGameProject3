@@ -12,52 +12,50 @@ public class DestroysBreakables : MonoBehaviour
     [SerializeField] float pickaxeHitBoxSize = 0.1f;
     [SerializeField] CircleCollider2D blastRadius;
     [SerializeField] bool playingSound = false;
+    [SerializeField] int indexTimer = 0;
 
-  private void Awake()
-  {
-    if (pickPoint == null)
-    {
-      pickPoint = transform;
+    private void Awake() {
+        if (pickPoint == null) {
+            pickPoint = transform;
+        }
     }
-  }
 
-  private void OnTriggerEnter2D(Collider2D collision)
-  {
-    breakTileHelper();
-  }
+    private void OnTriggerEnter2D(Collider2D collision) {
+        breakTileHelper();
+    }
 
-  private void OnTriggerStay2D(Collider2D collision)
-  {
-    breakTileHelper();
-  }
+    private void OnTriggerStay2D(Collider2D collision) {
+        breakTileHelper();
+    }
 
-  private void breakTileHelper()
-  {
-    Collider2D[] overCollider = Physics2D.OverlapCircleAll(pickPoint.position, pickaxeHitBoxSize, WhatIsPlatform);
+    private void breakTileHelper() {
+        Collider2D[] overCollider = Physics2D.OverlapCircleAll(pickPoint.position, pickaxeHitBoxSize, WhatIsPlatform);
 
-        foreach (var hit in overCollider)
-        {
-            if (hit != null)
-            {   
-                if (!playingSound) {
-                    StartCoroutine(PlaySound());
-                }
+        if (!playingSound) {
+            playingSound = true;
+            AudioManager.instance.playSound("3-dig_rocks", 1.0f);
+        }
+
+        foreach (var hit in overCollider) {
+            if (hit != null) {
                 hit.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(pickPoint.position);
             }
         }
-  }
+    }
 
     private void Start()
     {
         StartCoroutine(ExplosionActivated());
     }
 
-    IEnumerator PlaySound() {
-        playingSound = true;
-        AudioManager.instance.playSound("3-dig_rocks", 1.0f);
-        yield return new WaitForSeconds(0.5f);
-        playingSound = false;
-        Debug.Log(playingSound);
+    private void Update() {
+        if (playingSound) {
+            indexTimer++;
+            if (indexTimer >= 75) {
+                playingSound = false;
+                indexTimer = 0;
+            }
+        }
     }
 
     private IEnumerator ExplosionActivated()
