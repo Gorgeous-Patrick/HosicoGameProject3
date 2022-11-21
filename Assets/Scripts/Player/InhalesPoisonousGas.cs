@@ -39,6 +39,7 @@ public class InhalesPoisonousGas : MonoBehaviour
   {
     if (!inPoison)
     {
+      PoisonEffectController.active = false;
       restoreCountdown -= Time.deltaTime;
       if (restoreCountdown <= 0)
       {
@@ -48,6 +49,7 @@ public class InhalesPoisonousGas : MonoBehaviour
     }
     else
     {
+      PoisonEffectController.active = true;
       hurtCountdown -= Time.deltaTime;
       if (hurtCountdown <= 0)
       {
