@@ -18,13 +18,19 @@ public class SpriteFlasher : MonoBehaviour
 
   private void Start()
   {
-    sr = GetComponent<SpriteRenderer>();
+        EventBus.Subscribe<EventFailure>(handler_EventFailure);
+        sr = GetComponent<SpriteRenderer>();
     originalColor = sr.color;
     startFlash = false;
     countdown = 100f;
   }
 
-  private void Update()
+    private void handler_EventFailure(EventFailure obj)
+    {
+        FlashFunc();
+    }
+
+    private void Update()
   {
     if (startFlash)
     {

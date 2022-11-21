@@ -85,7 +85,7 @@ public class PlayerControl : MonoBehaviour
         Physics2D.BoxCast(transform.position, box, 0, Utils.dir2vec(dir), filter, hits, rayLength);
         // we do not ignore dynamic objects, so as long as there is any collision we return true
         foreach (var hit in hits)
-            if (hit.transform.CompareTag("FallingRubble")) return true;
+            if (hit.transform.CompareTag("FallingRubble") /*|| (hit.transform.CompareTag("PushableBlock"))*/) return true;
         if (!ignoreDynamic) return hits.Count > 0;
         // ignore dynamic objects: go over the list of hits and return true once a non-dynamic object is found
         foreach (var hit in hits)
@@ -263,15 +263,16 @@ public class PlayerControl : MonoBehaviour
         // play death grunt
         AudioManager.instance.playSound("4-player_death", 1.0f);
 
-        // disable player movement
-        Gameplay.playerInput.Gameplay.Disable();
-        var original_constraints = rb2d.constraints;
-        rb2d.constraints |= RigidbodyConstraints2D.FreezePositionX;
-        rb2d.constraints |= RigidbodyConstraints2D.FreezePositionY;
+    // disable player movement
+    Gameplay.playerInput.Gameplay.Disable();
+    var original_constraints = rb2d.constraints;
+    rb2d.constraints |= RigidbodyConstraints2D.FreezePositionX;
+    pickaxe.SetActive(false);
+    rb2d.constraints |= RigidbodyConstraints2D.FreezePositionY;
 
-        // play player death animation
-        anim.SetBool("dead", true);
-        yield return new WaitForSeconds(2.0f);
+    // play player death animation
+    anim.SetBool("dead", true);
+    yield return new WaitForSeconds(2.5f);
 
         // call and wait for fade out transition to play out
         EventBus.Publish(new EventStartTransition { isStart = true });

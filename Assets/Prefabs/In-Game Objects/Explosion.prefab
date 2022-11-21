@@ -110,6 +110,7 @@ MonoBehaviour:
   isExplosion: 1
   pickPoint: {fileID: 3960508519330301007}
   pickaxeHitBoxSize: 5
+  blastRadius: {fileID: 3350154774104710385}
 --- !u!114 &853101112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,4 +275,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 4.3
+  m_Radius: 2
