@@ -149,6 +149,7 @@ public class PlayerControl : MonoBehaviour
     {
       if (climb != ClimbStatus.None)
         StartCoroutine(coroutine_jumpOff());
+      transform.position += new Vector3(0, -0.01f);
       rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
       rb2d.velocity += new Vector2(0, jumpPower);
       StartCoroutine(coroutine_jumpAnim());
