@@ -1,10 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CheckpointController : MonoBehaviour
 {
-
   static CheckpointController _instance;
   public static CheckpointController instance
   {
@@ -46,8 +46,9 @@ public class CheckpointController : MonoBehaviour
     invincible = false;
   }
 
-  static public void updateCheckpoint(int index, Vector2 checkpoint)
+    static public void updateCheckpoint(int index, Vector2 checkpoint)
   {
+
     if (index > instance.checkpointIdx)
       instance._checkpoint = checkpoint;
   }

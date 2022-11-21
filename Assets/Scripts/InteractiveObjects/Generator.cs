@@ -5,6 +5,7 @@ using UnityEngine;
 public class Generator : MonoBehaviour
 {
     AudioSource chargeSFX;
+    [SerializeField] int generatorIndex = 0;
 
     private void Start() {
         chargeSFX = GetComponent<AudioSource>();

@@ -91,3 +91,9 @@ public class EventStartTransition : Event
 {
     public bool isStart;
 }
+
+public class EventChangeCheckpoint: Event
+{
+    public int index;
+    public Transform checkpoint;
+}
