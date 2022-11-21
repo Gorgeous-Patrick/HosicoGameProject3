@@ -1,0 +1,4 @@
+- Reset the pushable blocks
+- Did not see the health system
+- The collider box is sometimes a bit too big
+- Dont die and go back to the first level --> This is frustrating. We can probably have a menu.
