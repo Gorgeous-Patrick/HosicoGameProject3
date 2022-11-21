@@ -9755,9 +9755,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 9.899902
       objectReference: {fileID: 0}
+    - target: {fileID: 3073201334556857711, guid: 8a67e8d6d791005daa7eca6b0ed00ccc, type: 3}
+      propertyPath: m_text
+      value: Ugh. I'm trapped in a mine and my flashlight is running low. Gotta find
+        a charging station...
+      objectReference: {fileID: 0}
     - target: {fileID: 7020283906528278279, guid: 8a67e8d6d791005daa7eca6b0ed00ccc, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8453428457405652426, guid: 8a67e8d6d791005daa7eca6b0ed00ccc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 345
+      objectReference: {fileID: 0}
+    - target: {fileID: 8453428457405652426, guid: 8a67e8d6d791005daa7eca6b0ed00ccc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 105
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853180619799669634, guid: 8a67e8d6d791005daa7eca6b0ed00ccc, type: 3}
+      propertyPath: m_text
+      value: Click!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853180619799669634, guid: 8a67e8d6d791005daa7eca6b0ed00ccc, type: 3}
+      propertyPath: m_margin.y
+      value: 1.9963226
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a67e8d6d791005daa7eca6b0ed00ccc, type: 3}
@@ -46377,6 +46398,10 @@ PrefabInstance:
     - target: {fileID: 6172103313315236970, guid: 793da8f402c4ac34a98bceca5d5860e1, type: 3}
       propertyPath: m_Name
       value: Crossfade
+      objectReference: {fileID: 0}
+    - target: {fileID: 6172103313315236970, guid: 793da8f402c4ac34a98bceca5d5860e1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6172103313315236975, guid: 793da8f402c4ac34a98bceca5d5860e1, type: 3}
       propertyPath: m_Pivot.x
