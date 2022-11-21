@@ -292,8 +292,9 @@ public class PlayerControl : MonoBehaviour
     var original_constraints = rb2d.constraints;
     rb2d.constraints |= RigidbodyConstraints2D.FreezePositionX;
     rb2d.constraints |= RigidbodyConstraints2D.FreezePositionY;
+    pickaxe.SetActive(false);
 
-    // play player death animation
+        // play player death animation
     anim.SetBool("dead", true);
     yield return new WaitForSeconds(2.5f);
 

@@ -3788,11 +3788,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3175463658298902843, guid: e282484d6a97121449cd6747afac8105, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -109.5275
+      value: -109.49
       objectReference: {fileID: 0}
     - target: {fileID: 3175463658298902843, guid: e282484d6a97121449cd6747afac8105, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.58
+      value: -3.53
       objectReference: {fileID: 0}
     - target: {fileID: 3175463658298902843, guid: e282484d6a97121449cd6747afac8105, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3866,7 +3866,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 0.8862745}
-  m_Intensity: 5
+  m_Intensity: 0
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 000000002fcda2a3cbbf253c6507c38f75ebed265d1c303e1187c4f8d76e364b
@@ -4360,6 +4360,10 @@ PrefabInstance:
     - target: {fileID: 3960508519330301004, guid: 1800ab8cca546d944a808a1bdb88851b, type: 3}
       propertyPath: m_Name
       value: Explosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 3960508519330301004, guid: 1800ab8cca546d944a808a1bdb88851b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3960508519330301007, guid: 1800ab8cca546d944a808a1bdb88851b, type: 3}
       propertyPath: m_RootOrder

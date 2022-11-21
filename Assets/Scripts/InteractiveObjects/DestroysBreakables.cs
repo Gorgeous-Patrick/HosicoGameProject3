@@ -10,6 +10,7 @@ public class DestroysBreakables : MonoBehaviour
     public bool isExplosion = false;
   [SerializeField] Transform pickPoint;
   [SerializeField] float pickaxeHitBoxSize = 0.1f;
+    [SerializeField] CircleCollider2D blastRadius;
 
   private void Awake()
   {
@@ -42,14 +43,36 @@ public class DestroysBreakables : MonoBehaviour
         }
   }
 
+    private void Start()
+    {
+        StartCoroutine(ExplosionActivated());
+    }
 
-  /*if (collision.gameObject.CompareTag("BreakableGround"))
-  {
+    private IEnumerator ExplosionActivated()
+    {
+        yield return new WaitForSeconds(0.2f);
+        DestroyTilesArea();
+    }
 
-      Vector2 hitPos = transform.position;
-      hitPos.x = Mathf.Floor(hitPos.x);
-      hitPos.y = Mathf.Floor(hitPos.y);
-      Debug.Log("hit breakable ground at " + hitPos);
-      collision.gameObject.GetComponent<HasCanBeDugScript>().DestroyTileMapAtPoint(hitPos);
-  }*/
+    private void DestroyTilesArea()
+    {
+        int radius = Mathf.RoundToInt(blastRadius.radius);
+        for (var x = -radius; x <= radius; x++)
+        {
+            for (var y = -radius; y < radius; y++)
+            {
+                Vector3 tilePos = new Vector3(transform.position.x + x, transform.position.y + y, 0);
+                float dist = Vector2.Distance(transform.position, tilePos) - 0.001f;
+
+                if (dist <= radius)
+                {
+                    Collider2D overCollider2d = Physics2D.OverlapCircle(tilePos, 0.01f, WhatIsPlatform);
+                    if (overCollider2d != null)
+                    {
+                        overCollider2d.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(tilePos);
+                    }
+                }
+            }
+        }
+    }
 }
