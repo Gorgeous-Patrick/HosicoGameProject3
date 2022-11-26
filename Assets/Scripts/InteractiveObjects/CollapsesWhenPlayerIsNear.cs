@@ -40,6 +40,12 @@ public class CollapsesWhenPlayerIsNear : MonoBehaviour
     }
   }
 
+  void OnTriggerExit2D(Collider2D collisionInfo)
+  {
+    if (generatedObjs.Contains(collisionInfo.gameObject))
+      generatedObjs.Remove(collisionInfo.gameObject);
+  }
+
   IEnumerator coroutine_GC()
   {
     while (true)
