@@ -45,8 +45,9 @@ public class SoftRope : MonoBehaviour
         RopeSegment rs_old = oldseg.GetComponent<RopeSegment>();
         hj2d.connectedBody = oldseg.GetComponent<Rigidbody2D>();
         rs_old.next = newseg;
-        rs_old.prev = oldseg;
+        rs_new.prev = oldseg;
       }
+      oldseg = newseg;
     }
     while (segc > length)
     {
