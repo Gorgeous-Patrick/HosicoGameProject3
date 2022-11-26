@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 [RequireComponent(typeof(FixedJoint2D))]
 public class PlayerControl : MonoBehaviour
@@ -17,11 +18,14 @@ public class PlayerControl : MonoBehaviour
   [SerializeField] bool isInTutorial = false;
 
   [SerializeField] GameObject ropeInContact; // null if not touching any rope
-
   int touchingLadderCnt;
   bool touchingLadder
   {
     get => touchingLadderCnt > 0;
+  }
+  bool touchingRope
+  {
+    get => ropeInContact != null;
   }
 
   bool _flying; // just jumped off ladder or rope?
@@ -47,6 +51,7 @@ public class PlayerControl : MonoBehaviour
       }
     }
   }
+  bool ropeClimbCooling;
 
   [SerializeField] ClimbStatus _climb;
   ClimbStatus climb
@@ -67,7 +72,8 @@ public class PlayerControl : MonoBehaviour
 
   // dir: a direction to detect collision in
   // returns: true iff. the player is next to something in the given direction
-  bool colliding(Direction dir, bool ignoreDynamic = true)
+  bool colliding(Direction dir, bool ignoreDynamic = true) => colliding(dir, transform.position, ignoreDynamic);
+  bool colliding(Direction dir, Vector2 origin, bool ignoreDynamic = true)
   {
     if (dir == Direction.Undefined) return false;
     Vector2 box = new Vector2();
@@ -90,7 +96,7 @@ public class PlayerControl : MonoBehaviour
     var filter = new ContactFilter2D();
     filter.useTriggers = false;
     var hits = new List<RaycastHit2D>();
-    Physics2D.BoxCast(transform.position, box, 0, Utils.dir2vec(dir), filter, hits, rayLength);
+    Physics2D.BoxCast(origin, box, 0, Utils.dir2vec(dir), filter, hits, rayLength);
     // we do not ignore dynamic objects, so as long as there is any collision we return true
     // foreach (var hit in hits)
     //   if (hit.transform.CompareTag("FallingRubble") /*|| (hit.transform.CompareTag("PushableBlock"))*/) return true;
@@ -122,6 +128,7 @@ public class PlayerControl : MonoBehaviour
     hinge.enabled = false;
 
     flying = false;
+    ropeClimbCooling = false;
     climb = ClimbStatus.None;
     touchingLadderCnt = 0;
     ropeInContact = null;
@@ -164,7 +171,7 @@ public class PlayerControl : MonoBehaviour
     // process ladder climbing
     float climbInput = Gameplay.playerInput.Gameplay.Climb.ReadValue<float>();
     // allow player to re-grab the ladder
-    if (climbInput != 0 && flying && touchingLadder) flying = false;
+    if (climbInput != 0 && flying && (touchingLadder || touchingRope)) flying = false;
     Vector2 verticalMovementDelta = new Vector2(0, 0);
     if (climb == ClimbStatus.Ladder)
     {
@@ -174,20 +181,11 @@ public class PlayerControl : MonoBehaviour
     rb2d.velocity += verticalMovementDelta;
 
     // process rope climbing
-    if (climb == ClimbStatus.Rope)
+    if (climb == ClimbStatus.Rope && climbInput != 0)
     {
-      if (climbInput > 0)
-      {
-        GameObject prevRope = hinge.connectedBody.gameObject.GetComponent<RopeSegment>().prev;
-        if (prevRope != null)
-          hinge.connectedBody = prevRope.GetComponent<Rigidbody2D>();
-      }
-      else if (climbInput < 0)
-      {
-        GameObject nextRope = hinge.connectedBody.gameObject.GetComponent<RopeSegment>().next;
-        if (nextRope != null)
-          hinge.connectedBody = nextRope.GetComponent<Rigidbody2D>();
-      }
+      GameObject target = traverseRope(hinge.connectedBody.gameObject, Math.Sign(climbInput) * 5);
+      if (!ropeClimbCooling)
+        StartCoroutine(coroutine_climbRope(target));
     }
 
     // process jumps
@@ -238,12 +236,8 @@ public class PlayerControl : MonoBehaviour
         touchingLadderCnt++;
       else if (c.type == ClimbStatus.Rope)
         ropeInContact = collisionInfo.gameObject;
-      if (!flying)
-      {
-        climb = c.type;
-        if (climb == ClimbStatus.Rope)
-          attachToRope();
-      }
+      if (!flying && c.type == ClimbStatus.Rope && climb != ClimbStatus.Rope)
+        attachToRope();
     }
 
     if (collisionInfo.gameObject.CompareTag("PickaxePickup"))
@@ -258,11 +252,11 @@ public class PlayerControl : MonoBehaviour
     Climbable c = collisionInfo.gameObject.GetComponent<Climbable>();
     if (c != null)
     {
-      flying = false;
       if (c.type == ClimbStatus.Ladder)
       {
+        flying = false;
         touchingLadderCnt--;
-        if (!touchingLadder)
+        if (!touchingLadder && !touchingRope)
           climb = ClimbStatus.None;
       }
       else if (c.type == ClimbStatus.Rope)
@@ -286,10 +280,28 @@ public class PlayerControl : MonoBehaviour
     flying = false;
   }
 
+  IEnumerator coroutine_climbRope(GameObject next)
+  {
+    ropeClimbCooling = true;
+    hinge.connectedBody = next.GetComponent<Rigidbody2D>();
+    float starttime = Time.time;
+    Vector2 startpos = transform.position;
+    float progress = 0f;
+    while (progress < 1.0f)
+    {
+      progress = (Time.time - starttime) / 0.15f;
+      transform.position = Vector2.Lerp(startpos, hinge.connectedBody.transform.position, progress);
+      yield return null;
+    }
+    transform.position = hinge.connectedBody.transform.position;
+    ropeClimbCooling = false;
+  }
+
   void attachToRope()
   {
     climb = ClimbStatus.Rope;
     hinge.connectedBody = ropeInContact.GetComponent<Rigidbody2D>();
+    transform.position = ropeInContact.transform.position;
     hinge.enabled = true;
   }
 
@@ -297,6 +309,19 @@ public class PlayerControl : MonoBehaviour
   {
     climb = ClimbStatus.None;
     hinge.enabled = false;
+  }
+
+  GameObject traverseRope(GameObject seg, int cnt)
+  {
+    GameObject ret = seg;
+    while (cnt != 0)
+    {
+      GameObject next = cnt > 0 ? ret.GetComponent<RopeSegment>().prev : ret.GetComponent<RopeSegment>().next;
+      if (next == null || colliding(Direction.Up, next.transform.position, false)) return ret;
+      ret = next;
+      cnt = cnt > 0 ? cnt - 1 : cnt + 1;
+    }
+    return ret;
   }
 
   // plays out death sequence
