@@ -5,23 +5,26 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/Title.unity
+  - enabled: 0
+    path: Assets/Scenes/Titlecard.unity
     guid: 4b1bf0dbe90361f40ba283a2873bb576
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game Over.unity
     guid: 6514121ea7d676942963a8d0ced37d5e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game Clear.unity
     guid: 77d0e3da5882211498265ebe38d7603a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BasicTutorialScene.unity
     guid: 1bec72eb1db3d844682c3c2d97ab8974
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Puzzle_linear.unity
     guid: a8c1351034f107742a0e63a215457503
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FallingRubbleScene.unity
     guid: 43e32faa13801b34997c6af0980917cb
+  - enabled: 1
+    path: Assets/Scenes/Trailer/Opening.unity
+    guid: 704f7d569abbb1e4784130fb5436bdd6
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: dccbf9f47bdb838ef92d8207bf6c6134, type: 2}
