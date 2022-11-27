@@ -24,7 +24,7 @@ public class LavaLight : MonoBehaviour
         light2D.intensity = Mathf.Sin(2 * Mathf.PI * timer / period) * amplitude + offset;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
