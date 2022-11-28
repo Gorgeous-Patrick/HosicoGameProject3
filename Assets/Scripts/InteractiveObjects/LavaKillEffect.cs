@@ -15,12 +15,20 @@ public class LavaKillEffect : MonoBehaviour
     {
         
     }
+
+    IEnumerator DelayedKillPlayer()
+    {
+        yield return new WaitForSeconds(1);
+        EventBus.Publish(new EventFailure());
+    }
+
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             AudioManager.instance.playSound("12-lava_hurt");
-            EventBus.Publish(new EventFailure());
+            StartCoroutine(DelayedKillPlayer());
         }
     }
 }
