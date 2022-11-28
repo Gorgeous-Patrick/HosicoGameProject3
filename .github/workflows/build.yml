@@ -53,6 +53,8 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: StandaloneLinux64
+          allowDirtyBuild: true
+          
       # Build
       - name: Build Windows Project
         uses: game-ci/unity-builder@v2
@@ -62,6 +64,9 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: StandaloneWindows64
+          allowDirtyBuild: true
+          
+          
       # Build
       - name: Build Mac Project
         uses: game-ci/unity-builder@v2
@@ -71,7 +76,11 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: StandaloneOSX
-      - run : |
+          allowDirtyBuild: true
+          
+          
+      - name: Include Meta Files
+        run : |
           cp ProjectSettings build -r
           cp Assets/DEVBLOG.txt build
           cp Assets/CREDIT.txt build
