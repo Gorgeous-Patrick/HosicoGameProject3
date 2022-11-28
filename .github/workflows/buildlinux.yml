@@ -1,3 +1,4 @@
+name: Linux Build
 on:
   push
 
