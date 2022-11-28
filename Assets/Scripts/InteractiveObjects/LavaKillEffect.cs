@@ -15,4 +15,12 @@ public class LavaKillEffect : MonoBehaviour
     {
         
     }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            AudioManager.instance.playSound("12-lava_hurt");
+            EventBus.Publish(new EventFailure());
+        }
+    }
 }

@@ -24,12 +24,4 @@ public class LavaLight : MonoBehaviour
         light2D.intensity = Mathf.Sin(2 * Mathf.PI * timer / period) * amplitude + offset;
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            AudioManager.instance.playSound("12-lava_hurt");
-            EventBus.Publish(new EventFailure());
-        }
-    }
 }
