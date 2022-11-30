@@ -11,8 +11,8 @@ public class DestroysBreakables : MonoBehaviour
     [SerializeField] Transform pickPoint;
     [SerializeField] float pickaxeHitBoxSize = 0.1f;
     [SerializeField] CircleCollider2D blastRadius;
-    [SerializeField] bool playingSound = false;
-    [SerializeField] int indexTimer = 0;
+    [SerializeField] bool playingSound = false, hasRecentlyDug = false;
+    [SerializeField] int indexTimer = 0, indexTimerDig = 0;
 
     private void Awake() {
         if (pickPoint == null) {
@@ -34,11 +34,13 @@ public class DestroysBreakables : MonoBehaviour
         if (!playingSound) {
             playingSound = true;
             AudioManager.instance.playSound("3-dig_rocks", 1.0f);
-        }
 
-        foreach (var hit in overCollider) {
-            if (hit != null) {
-                hit.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(pickPoint.position);
+            foreach (var hit in overCollider)
+            {
+                if (hit != null)
+                {
+                    hit.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(pickPoint.position);
+                }
             }
         }
     }
@@ -56,6 +58,16 @@ public class DestroysBreakables : MonoBehaviour
                 indexTimer = 0;
             }
         }
+
+        /*if(hasRecentlyDug)
+        {
+            indexTimer++;
+            if (indexTimerDig >= 80)
+            {
+                hasRecentlyDug = false;
+                indexTimerDig = 0;
+            }
+        }*/
     }
 
     private IEnumerator ExplosionActivated()
