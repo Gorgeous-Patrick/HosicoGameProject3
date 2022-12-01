@@ -53,7 +53,7 @@ public class DestroysBreakables : MonoBehaviour
     private void Update() {
         if (playingSound) {
             indexTimer++;
-            if (indexTimer >= 85) {
+            if (indexTimer >= 20) {
                 playingSound = false;
                 indexTimer = 0;
             }
