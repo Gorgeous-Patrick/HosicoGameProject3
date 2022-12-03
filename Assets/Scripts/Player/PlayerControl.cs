@@ -319,7 +319,8 @@ public class PlayerControl : MonoBehaviour
 
         if (e.resetEntireLevel) {
             // fade in UI element
-
+            EventBus.Publish(new EventShowHealthUI { isStart = true, isRed = true });
+            yield return new WaitForSeconds(2.0f);
 
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             PlayerPrefs.SetString("currScene", SceneManager.GetActiveScene().name);
@@ -330,7 +331,7 @@ public class PlayerControl : MonoBehaviour
 
             // fade in UI element
             EventBus.Publish(new EventShowHealthUI { isStart = true });
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(2.0f);
             // fade out UI element
             EventBus.Publish(new EventShowHealthUI { isStart = false });
             yield return new WaitForSeconds(1.0f);
