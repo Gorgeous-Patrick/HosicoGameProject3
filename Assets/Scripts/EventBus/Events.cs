@@ -97,3 +97,9 @@ public class EventChangeCheckpoint: Event
     public int index;
     public Transform checkpoint;
 }
+
+public class EventShowHealthUI : Event
+{
+    public bool isStart;
+    public bool isRed = false;
+}
