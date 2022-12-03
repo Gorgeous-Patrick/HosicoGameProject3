@@ -33,7 +33,7 @@ public class DestroysBreakables : MonoBehaviour
 
         if (!playingSound) {
             playingSound = true;
-            AudioManager.instance.playSound("3-dig_rocks", 1.0f);
+            AudioManager.instance.playSound("3-dig_rocks", 1.0f, pickPoint.position.x, pickPoint.position.y);
 
             foreach (var hit in overCollider)
             {

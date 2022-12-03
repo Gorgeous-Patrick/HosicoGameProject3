@@ -49,7 +49,7 @@ public class MinableTile : MonoBehaviour
         yield return new WaitForSeconds(0.08f);
         if (dugTile != null) 
         {
-            Debug.Log("health of tile: " + tilemapDataDict[cellPos.ToString()]);
+            // Debug.Log("health of tile: " + tilemapDataDict[cellPos.ToString()]);
             if (tilemapDataDict[cellPos.ToString()] > 0)
             {
                 tilemapDataDict[cellPos.ToString()] -= 1;

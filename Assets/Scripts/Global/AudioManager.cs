@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
   Dictionary<string, AudioClip> audioSources;
   [SerializeField] List<AudioClip> audioClips;
   [SerializeField] List<string> audioNames;
+    Vector2 defaultVec2 = Vector2.zero;
 
   void Awake()
   {
@@ -38,9 +39,10 @@ public class AudioManager : MonoBehaviour
     
   }
 
-  public void playSound(string name, float volume = 1.0f)
+  public void playSound(string name, float volume = 1.0f, float xPos = 0, float yPos = 0)
   {
-    AudioSource.PlayClipAtPoint(audioSources[name], Camera.main.transform.position, volume);
+        Vector2 audioPos = new Vector2(xPos, yPos);
+    AudioSource.PlayClipAtPoint(audioSources[name], audioPos, volume);
     Debug.Log("play sound" + name);
   }
 
