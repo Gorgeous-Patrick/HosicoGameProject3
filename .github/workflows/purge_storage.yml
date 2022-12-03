@@ -1,5 +1,6 @@
 name: Remove old artifacts
-
+on:
+  workflow_dispatch: {}
 jobs:
   remove-old-artifacts:
     runs-on: ubuntu-latest
