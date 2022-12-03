@@ -12,15 +12,15 @@ public class Gameplay : MonoBehaviour
   [SerializeField] GameObject _destination;
 
   [SerializeField] float batteryDrainInterval = 7, batteryChargeInterval = 0.1f;
-  [SerializeField] float maxBattery = 1;
+  [SerializeField] int maxBattery = 5;
 
-  [SerializeField] float _batteryLevel = 0;
+  [SerializeField] int _batteryLevel = 0;
   Coroutine batteryDrainCoroutine, batteryChargeCoroutine;
 
   // triggered when player presses E to interact with objects in the scene
   System.Action _funcInteract;
 
-  static public float batteryLevel
+  static public int batteryLevel
   {
     get => instance._batteryLevel;
   }
@@ -67,7 +67,7 @@ public class Gameplay : MonoBehaviour
   {
     if (_batteryLevel == 0)
       _batteryLevel = maxBattery;
-    else maxBattery = _batteryLevel;
+    else maxBattery = (int)_batteryLevel;
     batteryDrainCoroutine = StartCoroutine(coroutine_batteryDrain());
     EventBus.Subscribe<EventHeadlightStatusChange>(handler_EventHeadlightStatusChange);
     EventBus.Subscribe<EventBatteryStatusChange>(handler_EventBatteryStatusChange);
@@ -115,7 +115,7 @@ public class Gameplay : MonoBehaviour
     while (_batteryLevel > 0)
     {
       yield return new WaitForSeconds(batteryDrainInterval);
-      _batteryLevel -= 0.01f;
+      _batteryLevel -= 1;
     }
     // the player failed - for now. planning on changing this
     EventBus.Publish(new EventFailure());
@@ -126,8 +126,8 @@ public class Gameplay : MonoBehaviour
     while (true)
     {
       yield return new WaitForSeconds(batteryChargeInterval);
-      _batteryLevel += 0.03f;
-      if (_batteryLevel > 1) _batteryLevel = 1;
+      _batteryLevel += 1;
+      if (_batteryLevel > maxBattery) _batteryLevel = 1;
     }
   }
 
