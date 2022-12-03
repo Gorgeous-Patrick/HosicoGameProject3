@@ -26,8 +26,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Trailer/Opening.unity
     guid: 704f7d569abbb1e4784130fb5436bdd6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Trailer/Titlecard.unity
     guid: 6412e1f2704ec6943b3bae0bfd9cdc19
+  - enabled: 1
+    path: Assets/Scenes/Trailer/OverviewShot.unity
+    guid: a883c8730adb14b42abc5c7046bb91b6
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: dccbf9f47bdb838ef92d8207bf6c6134, type: 2}

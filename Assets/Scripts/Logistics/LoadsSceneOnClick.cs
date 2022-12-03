@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Unity.Services.Core;
 using Unity.Services.Analytics;
-using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class LoadsSceneOnClick : MonoBehaviour
@@ -21,7 +20,8 @@ public class LoadsSceneOnClick : MonoBehaviour
         }
         catch (ConsentCheckException e)
         {
-          // Something went wrong when checking the GeoIP, check the e.Reason and handle appropriately.
+            // Something went wrong when checking the GeoIP, check the e.Reason and handle appropriately.
+            Debug.Log(e);
         Debug.Log("Analytics Start Error");
         }
     }
