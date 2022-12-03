@@ -101,4 +101,5 @@ public class EventChangeCheckpoint: Event
 public class EventShowHealthUI : Event
 {
     public bool isStart;
+    public bool isRed = false;
 }
