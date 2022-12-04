@@ -28,16 +28,4 @@ public class Generator : MonoBehaviour
       EventBus.Publish(new EventBatteryStatusChange { charging = false });
   }
 
-    void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.tag == "Player") {
-            OnChargingStart();
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D collision) {
-        if (collision.gameObject.tag == "Player") {
-            OnChargingEnd();
-        }
-    }
-
 }
