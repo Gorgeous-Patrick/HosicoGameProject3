@@ -103,3 +103,8 @@ public class EventShowHealthUI : Event
     public bool isStart;
     public bool isRed = false;
 }
+
+public class EventBlinkBatteryBar : Event
+{
+    public int prevBatteryLevel;
+}
