@@ -13,8 +13,10 @@ GameObject:
   - component: {fileID: 4763901491158145466}
   - component: {fileID: 4763901491158145465}
   - component: {fileID: 4522790356479562536}
+  - component: {fileID: -5503739981122157889}
+  - component: {fileID: -5162648891451313635}
   m_Layer: 0
-  m_Name: PushableBlock_DEPRECATE
+  m_Name: PushableBlock
   m_TagString: PushableBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1009106891
-  m_SortingLayer: 2
+  m_SortingLayerID: -121338095
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 42d498f2013f6a8fd9efc5edbf7d470f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -148,3 +150,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RB2D: {fileID: 4763901491158145465}
   fallVelThreshold: -1.5
+  toleranceVal: 0.126
+--- !u!114 &-5503739981122157889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4763901491158144581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b5b7e3056bc4247b40a6c398df8441, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startFlash: 0
+--- !u!114 &-5162648891451313635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4763901491158144581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecce1da82ada52b43aede3e601494338, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  durability: 2
+  canHit: 1
+  onlyDynamite: 0
+  spawnObject: {fileID: 7868340323629280423, guid: 90564383abf0aac4781b7988574ce744, type: 3}
+  countdown: 0
