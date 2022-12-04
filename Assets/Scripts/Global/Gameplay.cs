@@ -102,18 +102,17 @@ public class Gameplay : MonoBehaviour
     IEnumerator coroutine_batteryDrain() {
         while (_batteryLevel > 0) {
             yield return new WaitForSeconds(batteryDrainInterval);
+            EventBus.Publish(new EventBlinkBatteryBar { prevBatteryLevel = _batteryLevel });
             _batteryLevel -= 1;
             Debug.Log("Battery level: " + _batteryLevel);
         }
         // the player failed - for now. planning on changing this
-        Debug.Log("Player failed");
         EventBus.Publish(new EventFailure());
     }
 
     IEnumerator coroutine_batteryCharge() {
         while (true) {
             yield return new WaitForSeconds(batteryChargeInterval);
-            Debug.Log("Charging battery");
             _batteryLevel += 1;
             if (_batteryLevel > maxBattery) _batteryLevel = maxBattery;
         }
