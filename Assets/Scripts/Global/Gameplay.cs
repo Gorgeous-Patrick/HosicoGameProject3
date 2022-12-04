@@ -104,7 +104,6 @@ public class Gameplay : MonoBehaviour
             yield return new WaitForSeconds(batteryDrainInterval);
             EventBus.Publish(new EventBlinkBatteryBar { prevBatteryLevel = _batteryLevel });
             _batteryLevel -= 1;
-            Debug.Log("Battery level: " + _batteryLevel);
         }
         // the player failed - for now. planning on changing this
         EventBus.Publish(new EventFailure());
