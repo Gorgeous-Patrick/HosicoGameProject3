@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class BatteryCellControl : MonoBehaviour
 {
     public int batteryCellId = 0;
+    bool blinking = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +15,25 @@ public class BatteryCellControl : MonoBehaviour
 
     void OnDestroy()
     {
+    }
+
+    void Update()
+    {
+        Color color;
+        if (Gameplay.batteryLevel > batteryCellId)
+        {
+            color = Color.green;
+        }
+        else
+        {
+            color = Color.white;
+        }
+
+        if (!blinking)
+        {
+            GetComponent<Image>().color = color;
+        }
+
     }
 
     void handler_blinkbattery(EventBlinkBatteryBar e) 
@@ -29,6 +49,7 @@ public class BatteryCellControl : MonoBehaviour
 
     IEnumerator BlinkBattery()
     {
+        blinking = true;
         for (int i = 0; i < 3; i++)
         {
             GetComponent<Image>().color = Color.red;
@@ -36,6 +57,6 @@ public class BatteryCellControl : MonoBehaviour
             GetComponent<Image>().color = Color.white;
             yield return new WaitForSeconds(0.1f);
         }
-        enabled = false;
+        blinking = false;
     }
 }
