@@ -12,7 +12,7 @@ public class Gameplay : MonoBehaviour
     [SerializeField] GameObject _destination;
 
     [SerializeField] private float batteryDrainInterval = 7, batteryChargeInterval = 0.1f;
-    [SerializeField] private int maxBattery = 5;
+    [SerializeField] private int _maxBattery = 5;
 
     [SerializeField] private int _batteryLevel = 0;
     Coroutine batteryDrainCoroutine, batteryChargeCoroutine;
@@ -23,6 +23,10 @@ public class Gameplay : MonoBehaviour
     static public float batteryLevel
     {
         get => instance._batteryLevel;
+    }
+    static public int maxBattery
+    {
+        get => instance._maxBattery;
     }
     static public PlayerInput playerInput
     {
@@ -62,8 +66,8 @@ public class Gameplay : MonoBehaviour
 
     void Start() {
         if (_batteryLevel == 0)
-            _batteryLevel = maxBattery;
-        else maxBattery = _batteryLevel;
+            _batteryLevel = _maxBattery;
+        else _maxBattery = _batteryLevel;
         batteryDrainCoroutine = StartCoroutine(coroutine_batteryDrain());
         EventBus.Subscribe<EventHeadlightStatusChange>(handler_EventHeadlightStatusChange);
         EventBus.Subscribe<EventBatteryStatusChange>(handler_EventBatteryStatusChange);
