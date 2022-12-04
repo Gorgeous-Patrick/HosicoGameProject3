@@ -312,12 +312,18 @@ public class PlayerControl : MonoBehaviour
         pickaxe.SetActive(false);
         rb2d.constraints |= RigidbodyConstraints2D.FreezePositionY;
 
+        // disable battery ui
+        this.gameObject.transform.GetChild(3).gameObject.SetActive(false);
+
         // WIP
         // Spotlight on player
         this.gameObject.transform.GetChild(0).gameObject.GetComponent<Light2D>().color = Color.white;
         // zoom camera on player
         // NOTE: requires perspective (vertical) camera
-        Camera.main.transform.GetChild(0).gameObject.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>().m_CameraDistance = 5.0f;
+        CinemachineFramingTransposer CineCamera = Camera.main.transform.GetChild(0).gameObject.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>();
+        if (CineCamera != null) {
+            CineCamera.m_CameraDistance = 5.0f;
+        }
 
         // play player death animation
         anim.SetBool("dead", true);
@@ -339,12 +345,17 @@ public class PlayerControl : MonoBehaviour
             anim.SetBool("dead", false);
             transform.position = CheckpointController.checkpoint;
 
+            // reactivate battery ui
+            this.gameObject.transform.GetChild(3).gameObject.SetActive(true);
+
             // WIP
             // Remove spotlight on player
             this.gameObject.transform.GetChild(0).gameObject.GetComponent<Light2D>().color = new Vector4(0.15f, 0.15f, 0.15f, 1.0f);
             // un-zoom camera on player
             // NOTE: requires perspective (vertical) camera
-            Camera.main.transform.GetChild(0).gameObject.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>().m_CameraDistance = 10.0f;
+            if (CineCamera != null) {
+                CineCamera.m_CameraDistance = 10.0f;
+            }
 
             // fade in UI element
             EventBus.Publish(new EventShowHealthUI { isStart = true });

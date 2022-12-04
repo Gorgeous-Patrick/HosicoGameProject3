@@ -134,7 +134,6 @@ public class Gameplay : MonoBehaviour
             Vector3 LookVector3 = new Vector3(LookVector.x, LookVector.y, -10.0f);
             Vector3 pos = Camera.main.ScreenToWorldPoint(LookVector3) - player.transform.position;
             pos = new Vector3(-1.0f * pos.x, -1.0f * pos.y, pos.z);
-            Debug.Log(pos);
 
             return pos;
         }
