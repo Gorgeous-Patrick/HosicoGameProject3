@@ -29,7 +29,7 @@ public struct ClimbObject
   }
 
   public bool matches(GameObject other) => obj == peel(other);
-  public void setTo(GameObject other)i replaced the 
+  public void setTo(GameObject other)
   {
     type = other.GetComponent<Climbable>().type;
     obj = peel(other);
