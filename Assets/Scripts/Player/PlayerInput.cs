@@ -98,6 +98,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Suicide"",
+                    ""type"": ""Button"",
+                    ""id"": ""91eb78c3-e53b-43fe-9993-b4e3842d1c03"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -232,6 +241,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""UseItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b8370e6c-38b7-4700-84b6-5e07a076fe33"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Suicide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -265,6 +285,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
         m_Gameplay_Climb = m_Gameplay.FindAction("Climb", throwIfNotFound: true);
         m_Gameplay_UseItem = m_Gameplay.FindAction("UseItem", throwIfNotFound: true);
+        m_Gameplay_Suicide = m_Gameplay.FindAction("Suicide", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -332,6 +353,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Interact;
     private readonly InputAction m_Gameplay_Climb;
     private readonly InputAction m_Gameplay_UseItem;
+    private readonly InputAction m_Gameplay_Suicide;
     public struct GameplayActions
     {
         private @PlayerInput m_Wrapper;
@@ -344,6 +366,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
         public InputAction @Climb => m_Wrapper.m_Gameplay_Climb;
         public InputAction @UseItem => m_Wrapper.m_Gameplay_UseItem;
+        public InputAction @Suicide => m_Wrapper.m_Gameplay_Suicide;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -377,6 +400,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @UseItem.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseItem;
                 @UseItem.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseItem;
                 @UseItem.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseItem;
+                @Suicide.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSuicide;
+                @Suicide.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSuicide;
+                @Suicide.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSuicide;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -405,6 +431,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @UseItem.started += instance.OnUseItem;
                 @UseItem.performed += instance.OnUseItem;
                 @UseItem.canceled += instance.OnUseItem;
+                @Suicide.started += instance.OnSuicide;
+                @Suicide.performed += instance.OnSuicide;
+                @Suicide.canceled += instance.OnSuicide;
             }
         }
     }
@@ -428,5 +457,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnClimb(InputAction.CallbackContext context);
         void OnUseItem(InputAction.CallbackContext context);
+        void OnSuicide(InputAction.CallbackContext context);
     }
 }
