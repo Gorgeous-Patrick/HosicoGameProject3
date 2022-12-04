@@ -17,7 +17,7 @@ public class BatteryBar : MonoBehaviour
 
   void Update()
   {
-    img.fillAmount = Gameplay.batteryLevel;
+    img.fillAmount = Gameplay.batteryLevel / 5f;
     foreach (var kv in colors)
       if (Gameplay.batteryLevel <= kv.first)
       {

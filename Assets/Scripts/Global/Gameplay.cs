@@ -123,11 +123,12 @@ public class Gameplay : MonoBehaviour
 
   IEnumerator coroutine_batteryCharge()
   {
+      Debug.Log("charging");
     while (true)
     {
       yield return new WaitForSeconds(batteryChargeInterval);
       _batteryLevel += 1;
-      if (_batteryLevel > maxBattery) _batteryLevel = 1;
+      if (_batteryLevel > maxBattery) _batteryLevel = maxBattery;
     }
   }
 
