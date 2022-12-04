@@ -219,9 +219,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 816397455124719418}
   _destination: {fileID: 5736461762355085423, guid: 861abd03ce106963a8ecc3754507620e, type: 3}
-  batteryDrainInterval: 1.5
+  batteryDrainInterval: 7
   batteryChargeInterval: 0.1
-  maxBattery: 1
+  maxBattery: 5
   _batteryLevel: 0
 --- !u!114 &975899201718563961
 MonoBehaviour:

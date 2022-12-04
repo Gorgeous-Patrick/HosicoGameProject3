@@ -11,10 +11,10 @@ public class Gameplay : MonoBehaviour
     [SerializeField] GameObject _player;
     [SerializeField] GameObject _destination;
 
-    [SerializeField] float batteryDrainInterval = 7, batteryChargeInterval = 0.1f;
-    [SerializeField] float maxBattery = 1;
+    [SerializeField] private float batteryDrainInterval = 7, batteryChargeInterval = 0.1f;
+    [SerializeField] private int maxBattery = 5;
 
-    [SerializeField] float _batteryLevel = 0;
+    [SerializeField] private int _batteryLevel = 0;
     Coroutine batteryDrainCoroutine, batteryChargeCoroutine;
 
     // triggered when player presses E to interact with objects in the scene
@@ -102,17 +102,20 @@ public class Gameplay : MonoBehaviour
     IEnumerator coroutine_batteryDrain() {
         while (_batteryLevel > 0) {
             yield return new WaitForSeconds(batteryDrainInterval);
-            _batteryLevel -= 0.01f;
+            _batteryLevel -= 1;
+            Debug.Log("Battery level: " + _batteryLevel);
         }
         // the player failed - for now. planning on changing this
+        Debug.Log("Player failed");
         EventBus.Publish(new EventFailure());
     }
 
     IEnumerator coroutine_batteryCharge() {
         while (true) {
             yield return new WaitForSeconds(batteryChargeInterval);
-            _batteryLevel += 0.03f;
-            if (_batteryLevel > 1) _batteryLevel = 1;
+            Debug.Log("Charging battery");
+            _batteryLevel += 1;
+            if (_batteryLevel > maxBattery) _batteryLevel = maxBattery;
         }
     }
 

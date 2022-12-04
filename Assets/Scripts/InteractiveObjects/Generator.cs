@@ -11,15 +11,29 @@ public class Generator : MonoBehaviour
         chargeSFX = GetComponent<AudioSource>();
     }
 
-    void OnTriggerEnter2D(Collider2D collision) {
+    void OnChargingStart()
+    {
         if (chargeSFX != null) {
             chargeSFX.Play();
         }
         EventBus.Publish(new EventBatteryStatusChange { charging = true });
     }
 
-    void OnTriggerExit2D(Collider2D collision) {
+    void OnChargingEnd() 
+    {
         EventBus.Publish(new EventBatteryStatusChange { charging = false });
+    }
+
+    void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.tag == "Player") {
+            OnChargingStart();
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision) {
+        if (collision.gameObject.tag == "Player") {
+            OnChargingEnd();
+        }
     }
 
 }
