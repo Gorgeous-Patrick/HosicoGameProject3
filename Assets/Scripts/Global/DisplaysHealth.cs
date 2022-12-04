@@ -20,7 +20,8 @@ public class DisplaysHealth : MonoBehaviour
     private void _changeRed(EventShowHealthUI e) {
         if (e.isRed) {
             if (healthText != null) {
-                anim.SetTrigger("red");
+                if (anim != null)
+                    anim.SetTrigger("red");
             }
         }
     }
