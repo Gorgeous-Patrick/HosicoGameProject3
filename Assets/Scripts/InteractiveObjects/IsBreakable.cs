@@ -23,18 +23,20 @@ public class IsBreakable : MonoBehaviour
     if (!canHit) return;
     durability += delta;
     // plays animation
-    ParticleSystemManager.RequestParticlesAtPositionAndDirection(transform.position, Vector3.up);
-    if (GetComponent<SpriteFlasher>() != null) {
-            GetComponent<SpriteFlasher>().FlashFunc();
+    // ParticleSystemManager.RequestParticlesAtPositionAndDirection(transform.position, Vector3.up);
+    if (GetComponent<SpriteFlasher>() != null)
+    {
+      GetComponent<SpriteFlasher>().FlashFunc();
     }
-        if (durability <= 0)
-        {
-            if (!transform.CompareTag("BreakableGround")) {
-              AudioManager.instance.playSound("3-dig_rocks", 1.0f);
-              Destroy(gameObject);
-            }
-                
-        }
+    if (durability <= 0)
+    {
+      if (!transform.CompareTag("BreakableGround"))
+      {
+        AudioManager.instance.playSound("3-dig_rocks", 1.0f);
+        Destroy(gameObject);
+      }
+
+    }
   }
 
   void OnTriggerStay2D(Collider2D collisionInfo)
