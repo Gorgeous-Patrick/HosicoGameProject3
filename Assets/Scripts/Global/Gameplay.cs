@@ -111,6 +111,7 @@ public class Gameplay : MonoBehaviour
                 continue;
             EventBus.Publish(new EventBlinkBatteryBar { prevBatteryLevel = _batteryLevel });
             yield return new WaitForSeconds(batteryBarBlinkInterval);
+              EventBus.Publish(new EventHeadlightStatusChange { enabled = false });
             _batteryLevel -= 1;
         }
         // the player failed - for now. planning on changing this
