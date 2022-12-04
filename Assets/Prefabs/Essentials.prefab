@@ -439,6 +439,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInTutorial: 0
+  _flying: 0
+  _climb:
+    obj: {fileID: 0}
+    type: 0
   speed: 5
   jumpPower: 6
   climbSpeed: 3

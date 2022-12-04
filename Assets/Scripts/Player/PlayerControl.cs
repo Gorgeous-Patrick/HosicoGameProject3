@@ -359,7 +359,7 @@ public class PlayerControl : MonoBehaviour
     rb2d.constraints |= RigidbodyConstraints2D.FreezePositionY;
 
     // disable battery ui
-    this.gameObject.transform.GetChild(3).gameObject.SetActive(false);
+    // this.gameObject.transform.GetChild(3).gameObject.SetActive(false);
     // WIP
     // Spotlight on player
     this.gameObject.transform.GetChild(0).gameObject.GetComponent<Light2D>().color = Color.white;
@@ -394,7 +394,7 @@ public class PlayerControl : MonoBehaviour
       transform.position = CheckpointController.checkpoint;
 
       // reactivate battery ui
-      this.gameObject.transform.GetChild(3).gameObject.SetActive(true);
+      // this.gameObject.transform.GetChild(3).gameObject.SetActive(true);
 
       // WIP
       // Remove spotlight on player

@@ -127,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 38365020, guid: 28df3d73651b9e4f6bcd99664c0b8da2, type: 3}
   text: enter
-  offset: {x: 2.1, y: 0}
+  offset: {x: 1.9, y: 0.5}
 --- !u!114 &4979313303658943916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,4 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5842849d0807ecf239673f24ad375dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destination: {fileID: 0}
   targetSceneName: Main
+  midTransition: 0
