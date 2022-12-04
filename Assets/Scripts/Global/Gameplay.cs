@@ -12,6 +12,7 @@ public class Gameplay : MonoBehaviour
     [SerializeField] GameObject _destination;
 
     [SerializeField] private float batteryDrainInterval = 7, batteryChargeInterval = 0.1f;
+    [SerializeField] private float batteryBarBlinkInterval = 0.3f;
     [SerializeField] private int _maxBattery = 5;
 
     [SerializeField] private int _batteryLevel = 0;
@@ -106,7 +107,10 @@ public class Gameplay : MonoBehaviour
     IEnumerator coroutine_batteryDrain() {
         while (_batteryLevel > 0) {
             yield return new WaitForSeconds(batteryDrainInterval);
+            if (batteryChargeCoroutine != null)
+                continue;
             EventBus.Publish(new EventBlinkBatteryBar { prevBatteryLevel = _batteryLevel });
+            yield return new WaitForSeconds(batteryBarBlinkInterval);
             _batteryLevel -= 1;
         }
         // the player failed - for now. planning on changing this
