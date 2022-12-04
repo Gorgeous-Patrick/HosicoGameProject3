@@ -6,10 +6,10 @@ public class KillsPlayerOnFalling : MonoBehaviour
 {
   public Rigidbody2D RB2D;  //Set reference in inspector
   public float fallVelThreshold = -0.5f;
+
+    [SerializeField] private float toleranceVal = 0.126f;
   private bool isFalling = false;
 
-    private Vector2 playerBorder = Vector2.zero;
-    private Vector2 rubbleBorder = Vector2.zero;
 
   // Start is called before the first frame update
   void Start()
@@ -33,7 +33,7 @@ public class KillsPlayerOnFalling : MonoBehaviour
   private void OnCollisionEnter2D(Collision2D collision)
   {
         float offsetLeft, offsetRight, playerOffsetLeft, playerOffsetRight, offsetBottom, playerOffsetTop;
-        offsetLeft = offsetRight = playerOffsetLeft= playerOffsetRight = 0;
+        offsetRight = playerOffsetRight = playerOffsetTop = offsetBottom = 0;
 
         // check if the rubble is falling and if the hit object hit is player
         if (collision.transform.CompareTag("Player") && isFalling)
@@ -49,11 +49,11 @@ public class KillsPlayerOnFalling : MonoBehaviour
                 offsetBottom = -gameObject.GetComponent<BoxCollider2D>().size.y / 2;
 
                 // add the offset of the collider to the center of the rubble transform
-                rubbleBorder.x += gameObject.GetComponent<BoxCollider2D>().offset.x;
-                rubbleBorder.y += gameObject.GetComponent<BoxCollider2D>().offset.y;
+                // rubbleBorder.x += gameObject.GetComponent<BoxCollider2D>().offset.x;
+                // rubbleBorder.y += gameObject.GetComponent<BoxCollider2D>().offset.y;
 
                 // save the bottom position to the Vector2 rubbleBorder variable
-                rubbleBorder.y += offsetBottom;
+                // rubbleBorder.y += offsetBottom;
             }
 
             if (collision.gameObject.GetComponent<CapsuleCollider2D>() != null)
@@ -67,23 +67,28 @@ public class KillsPlayerOnFalling : MonoBehaviour
                 playerOffsetTop = collision.gameObject.GetComponent<CapsuleCollider2D>().size.y / 2;
 
                 // add the offset of the collider to the center of the player transform
-                playerBorder.x += collision.gameObject.GetComponent<CapsuleCollider2D>().offset.x;
-                playerBorder.y += collision.gameObject.GetComponent<CapsuleCollider2D>().offset.y;
+                // playerBorder.x += collision.gameObject.GetComponent<CapsuleCollider2D>().offset.x;
+                // playerBorder.y += collision.gameObject.GetComponent<CapsuleCollider2D>().offset.y;
 
                 // save the bottom position to the Vector2 playerBorder variable
-                playerBorder.y += playerOffsetTop;
+                // playerBorder.y += playerOffsetTop;
             }
 
             // check if rubble is above the player (y position)
-            if ((playerBorder.y - rubbleBorder.y) >= 0)
+            if ((collision.transform.position.y + playerOffsetTop - transform.position.y + offsetBottom) <= 0)
             {
-                // check if the player is to the right of the rubble and if the hit is a scratch or a deadly hit
-                bool leftHitCheck = ((playerBorder.x + playerOffsetLeft) - (rubbleBorder.x + offsetRight)) < 0.1f;
-                // check if the player is to the left of the rubble and if the hit is a scratch or a deadly hit
-                bool rightHitCheck = ((playerBorder.x + playerOffsetRight) - (rubbleBorder.x + offsetLeft)) > 0.1f;
-                if (leftHitCheck || rightHitCheck)
+                // add up the size of colliders
+                float distBetweenColliders = offsetRight + playerOffsetRight;
+
+                // find distance between player transform and rubble transform
+                float distBetweenTransforms = Mathf.Abs(collision.transform.position.x - transform.position.x);
+
+                Debug.Log("killTolerance" + distBetweenColliders);
+                Debug.Log("dist: " + distBetweenTransforms);
+
+                // if the player is under the rubble (with some tolerance) -> kill player
+                if (Mathf.Abs(distBetweenColliders - distBetweenTransforms) > toleranceVal)
                 {
-                    // if both either is true, kill player
                     EventBus.Publish(new EventFailure());
                 }
             }
