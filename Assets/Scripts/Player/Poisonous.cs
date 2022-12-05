@@ -10,15 +10,13 @@ public class Poisonous : MonoBehaviour
   void Start()
   {
     ps = GetComponent<ParticleSystem>();
+    ps.trigger.AddCollider(Gameplay.player.transform);
   }
 
   void OnParticleTrigger()
   {
     if (ps.GetTriggerParticles(ParticleSystemTriggerEventType.Inside, new List<ParticleSystem.Particle>()) > 0)
-    {
-      var player = Gameplay.player.GetComponent<InhalesPoisonousGas>();
-      if (player != null) player.inPoison = true;
-    }
+      Gameplay.player.GetComponent<InhalesPoisonousGas>().inPoison = true;
   }
 
 }
