@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -5503739981122157889}
   - component: {fileID: -5162648891451313635}
   m_Layer: 0
-  m_Name: PushableBlock
+  m_Name: Supply Crate
   m_TagString: PushableBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

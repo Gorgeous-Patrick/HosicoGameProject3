@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1261858519
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 1746390736, guid: 025899edaed498545b7bcc4e000fc987, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -131,8 +131,13 @@ MonoBehaviour:
     m_Bits: 512
   durabilityImpact: -1
   isExplosion: 0
+  mineInterval: 0.15
   pickPoint: {fileID: 0}
   pickaxeHitBoxSize: 1
+  blastRadius: {fileID: 0}
+  hasRecentlyDug: 0
+  indexTimer: 0
+  indexTimerDig: 0
 --- !u!50 &5227151964453406554
 Rigidbody2D:
   serializedVersion: 4
@@ -170,4 +175,3 @@ MonoBehaviour:
   angularSpeed: 660
   offset: 120
   swingRange: 90
-  reversed: 0
