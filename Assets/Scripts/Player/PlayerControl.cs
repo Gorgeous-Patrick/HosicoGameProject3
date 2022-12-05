@@ -379,12 +379,14 @@ public class PlayerControl : MonoBehaviour
       // disable battery ui
       batteryCanvas.SetActive(false);
 
-      // Spotlight on player
-      ambientLight.GetComponent<Light2D>().color = Color.white;
-      // zoom camera on player
-      // NOTE: requires perspective (vertical) camera
-      CineCamera.m_CameraDistance = 5.0f;
-
+      if (!e.noZoomIn)
+      {
+        // Spotlight on player
+        ambientLight.GetComponent<Light2D>().color = Color.white;
+        // zoom camera on player
+        // NOTE: requires perspective (vertical) camera
+        CineCamera.m_CameraDistance = 5.0f;
+      }
 
       // play player death animation
       anim.SetBool("dead", true);
@@ -408,20 +410,14 @@ public class PlayerControl : MonoBehaviour
       anim.SetBool("dead", false);
 
       // reactivate battery ui
-      if (batteryCanvas != null)
-      {
-        batteryCanvas.SetActive(true);
-      }
+      batteryCanvas.SetActive(true);
 
-      // Remove spotlight on player
-      if (ambientLight != null)
+      if (!e.noZoomIn)
       {
+        // Remove spotlight on player
         ambientLight.GetComponent<Light2D>().color = new Vector4(0.15f, 0.15f, 0.15f, 1.0f);
-      }
-      // un-zoom camera on player
-      // NOTE: requires perspective (vertical) camera
-      if (CineCamera != null)
-      {
+        // un-zoom camera on player
+        // NOTE: requires perspective (vertical) camera
         CineCamera.m_CameraDistance = 10.0f;
       }
 
