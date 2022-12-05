@@ -22,12 +22,14 @@ public abstract class Event
 
 public class EventFailure : Event
 {
+  public bool noZoomIn = false;
 }
 
 public class EventReset : Event
 {
   public bool resetEntireLevel = false;
   public bool isSuicide = false;
+  public bool noZoomIn = false;
 }
 
 public class EventUpdateHealth : Event

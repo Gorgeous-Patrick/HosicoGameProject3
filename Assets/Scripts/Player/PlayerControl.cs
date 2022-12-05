@@ -377,21 +377,14 @@ public class PlayerControl : MonoBehaviour
       rb2d.constraints |= RigidbodyConstraints2D.FreezePositionY;
 
       // disable battery ui
-      Debug.Log(batteryCanvas);
-      if (batteryCanvas != null)
-      {
-        batteryCanvas.SetActive(false);
-      }
+      batteryCanvas.SetActive(false);
 
-      // Spotlight on player
-      if (ambientLight != null)
+      if (!e.noZoomIn)
       {
+        // Spotlight on player
         ambientLight.GetComponent<Light2D>().color = Color.white;
-      }
-      // zoom camera on player
-      // NOTE: requires perspective (vertical) camera
-      if (CineCamera != null)
-      {
+        // zoom camera on player
+        // NOTE: requires perspective (vertical) camera
         CineCamera.m_CameraDistance = 5.0f;
       }
 
@@ -417,20 +410,14 @@ public class PlayerControl : MonoBehaviour
       anim.SetBool("dead", false);
 
       // reactivate battery ui
-      if (batteryCanvas != null)
-      {
-        batteryCanvas.SetActive(true);
-      }
+      batteryCanvas.SetActive(true);
 
-      // Remove spotlight on player
-      if (ambientLight != null)
+      if (!e.noZoomIn)
       {
+        // Remove spotlight on player
         ambientLight.GetComponent<Light2D>().color = new Vector4(0.15f, 0.15f, 0.15f, 1.0f);
-      }
-      // un-zoom camera on player
-      // NOTE: requires perspective (vertical) camera
-      if (CineCamera != null)
-      {
+        // un-zoom camera on player
+        // NOTE: requires perspective (vertical) camera
         CineCamera.m_CameraDistance = 10.0f;
       }
 
@@ -446,6 +433,7 @@ public class PlayerControl : MonoBehaviour
       yield return new WaitForSeconds(0.25f);
       rb2d.constraints = original_constraints;
       transform.position = CheckpointController.checkpoint;
+      GetComponent<InhalesPoisonousGas>().reset();
       yield return new WaitForSeconds(1.5f);
 
       // enable player movement

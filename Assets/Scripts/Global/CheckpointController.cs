@@ -46,21 +46,21 @@ public class CheckpointController : MonoBehaviour
     invincible = false;
   }
 
-    static public void updateCheckpoint(int index, Vector2 checkpoint)
+  static public void updateCheckpoint(int index, Vector2 checkpoint)
   {
 
     if (index > instance.checkpointIdx)
       instance._checkpoint = checkpoint;
   }
 
-  void handler_EventFailure(EventFailure _)
+  void handler_EventFailure(EventFailure e)
   {
     if (invincible) return;
     invincible = true;
     playerHealth--;
     EventBus.Publish(new EventUpdateHealth { newHealth = playerHealth });
     // !!! We expect the EventReset handler to disable invincible mode
-    EventBus.Publish(new EventReset {resetEntireLevel = playerHealth <= 0});
+    EventBus.Publish(new EventReset {resetEntireLevel = playerHealth <= 0, noZoomIn = e.noZoomIn});
   }
 
 }
