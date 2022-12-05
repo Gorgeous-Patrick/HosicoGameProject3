@@ -355,7 +355,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 653126517
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 480528cb2c846a3e2af5f95b29ff379b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -788,53 +788,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &2767546572354536328
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2772349451626928555}
-  - component: {fileID: 4699466382745977931}
-  m_Layer: 0
-  m_Name: Screenshake Effect Controller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2772349451626928555
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2767546572354536328}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -118.52482, y: -4.7237277, z: -0.009573225}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5365731218002129097}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4699466382745977931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2767546572354536328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57fed25838e5a75e29ca86477506e8cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  amplitude: 0.5
-  k: 0.3
-  dampening_factor: 0.95
 --- !u!1 &3093147440493742171
 GameObject:
   m_ObjectHideFlags: 0
@@ -1885,7 +1838,6 @@ Transform:
   - {fileID: 1864097673502921250}
   - {fileID: 6581030126846563974}
   - {fileID: 204745432626717044}
-  - {fileID: 2772349451626928555}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2591,7 +2543,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6581030126916126187}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -146.14, y: 0.13, z: -10}
+  m_LocalPosition: {x: -109.9, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2823,6 +2775,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6581030127197698797}
   - component: {fileID: 6581030127197698798}
+  - component: {fileID: 3389038522571381987}
   m_Layer: 0
   m_Name: Cinemachine
   m_TagString: Untagged
@@ -2838,7 +2791,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6581030127197698796}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 36.239998, y: -0.13, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2884,6 +2837,18 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 6581030125632117287}
+--- !u!114 &3389038522571381987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6581030127197698796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57fed25838e5a75e29ca86477506e8cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7082396452811718588
 GameObject:
   m_ObjectHideFlags: 0

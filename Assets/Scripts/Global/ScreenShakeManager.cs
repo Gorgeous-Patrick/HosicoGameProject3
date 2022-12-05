@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class ScreenShakeManager : MonoBehaviour
 {
@@ -21,23 +22,23 @@ public class ScreenShakeManager : MonoBehaviour
     }
   }
 
-  public static void perturb()
+  CinemachineVirtualCamera virtualCamera;
+  void Start()
   {
-    instance.transform.localPosition = UnityEngine.Random.onUnitSphere * instance.amplitude;
+    virtualCamera = GetComponent<CinemachineVirtualCamera>();
   }
 
-  [SerializeField] float amplitude = 0.5f;
-  [SerializeField] float k = 0.3f;
-  [SerializeField] float dampening_factor = 0.95f;
-  Vector3 velocity = Vector3.zero;
-
-  void Update()
+  void StartShaking(float amplitude, float frequency)
   {
-    Vector3 displacement = Vector3.zero - transform.localPosition;
-    Vector3 acceleration = k * displacement;
-    velocity += acceleration;
-    velocity *= dampening_factor;
-    transform.localPosition += velocity;
+    CinemachineBasicMultiChannelPerlin noise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+    noise.m_AmplitudeGain = amplitude;
+    noise.m_FrequencyGain = frequency;
   }
 
+  void StopShaking()
+  {
+    CinemachineBasicMultiChannelPerlin noise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+    noise.m_AmplitudeGain = 0;
+    noise.m_FrequencyGain = 0;
+  }
 }
