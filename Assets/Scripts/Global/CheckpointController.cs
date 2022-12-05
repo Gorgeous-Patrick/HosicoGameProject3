@@ -46,7 +46,7 @@ public class CheckpointController : MonoBehaviour
     invincible = false;
   }
 
-    static public void updateCheckpoint(int index, Vector2 checkpoint)
+  static public void updateCheckpoint(int index, Vector2 checkpoint)
   {
 
     if (index > instance.checkpointIdx)

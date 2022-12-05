@@ -379,15 +379,11 @@ public class PlayerControl : MonoBehaviour
       // disable battery ui
       batteryCanvas.SetActive(false);
 
-
-      if (!e.noZoomIn)
-      {
-        // Spotlight on player
-        ambientLight.GetComponent<Light2D>().color = Color.white;
-        // zoom camera on player
-        // NOTE: requires perspective (vertical) camera
-        CineCamera.m_CameraDistance = 5.0f;
-      }
+      // Spotlight on player
+      ambientLight.GetComponent<Light2D>().color = Color.white;
+      // zoom camera on player
+      // NOTE: requires perspective (vertical) camera
+      CineCamera.m_CameraDistance = 5.0f;
 
 
       // play player death animation
