@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollapsesOnQuake : MonoBehaviour
+public class CollapsesOnQuake : Collapses
 {
+
+  protected override Color indicatorColor { get => new Color(255, 255, 0, 0.1f); }
 
   // if the quake strength at this point is lower than the threshold, no collapse will be triggered
   [SerializeField] int threshold;
-
-  // when a collapse is triggered, generate prefabs from this list
-  [SerializeField] List<GameObject> generatedPrefabs;
 
   // affects the amount of prefabs generated in a single collapse
   [SerializeField] int strength;
@@ -41,20 +40,8 @@ public class CollapsesOnQuake : MonoBehaviour
       remaining--;
       countdown = Random.Range(0, 0.5f);
       // TODO: trigger screen shake
-      GameObject generatedObject = Utils.RandomChoice(generatedPrefabs);
-      Vector2 pos = new Vector2(Random.Range(transform.position.x - transform.localScale.x / 2,
-            transform.position.x + transform.localScale.x / 2),
-          Random.Range(transform.position.y - transform.localScale.y / 2,
-            transform.position.y + transform.localScale.y / 2) );
-      Instantiate(generatedObject, pos, Quaternion.Euler(0, 0, Random.Range(0, 360)));
+      generate();
     }
-  }
-
-  // show a yellow shade in the scene editor
-  void OnDrawGizmos()
-  {
-    Gizmos.color = new Color(255, 255, 0, 0.1f);
-    Gizmos.DrawCube(transform.position, transform.localScale);
   }
 
 }
