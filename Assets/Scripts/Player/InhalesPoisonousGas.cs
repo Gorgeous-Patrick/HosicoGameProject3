@@ -8,29 +8,34 @@ public class InhalesPoisonousGas : MonoBehaviour
   public bool inPoison;
 
   [SerializeField] int _health;
-  int health
+  public int health
   {
     get => _health;
     set
     {
-      if (value <= 0)
-        EventBus.Publish(new EventFailure());
-      else if (value >= 100)
+      if (value >= 100)
         _health = 100;
       else
         _health = value;
+      if (value == 0)
+        EventBus.Publish(new EventFailure {noZoomIn = true});
     }
   }
-  [SerializeField] int damage = 10, restoration = 30;
+  [SerializeField] int damage, restoration;
 
   float restoreCountdown, hurtCountdown;
 
   void Start()
   {
-    health = 100;
-    restoreCountdown = hurtCountdown = 1f;
     inPoison = false;
-    EventBus.Subscribe<EventReset>((_) => health = 100);
+    reset();
+  }
+
+  public void reset()
+  {
+    health = 100;
+    restoreCountdown = 1f;
+    hurtCountdown = 0.1f;
   }
 
   // a very dirty solution to work around Unity's limitations
@@ -38,9 +43,9 @@ public class InhalesPoisonousGas : MonoBehaviour
   // and in `LateUpdate`, we know whether the player is being affected by toxic gas
   void LateUpdate()
   {
+    PoisonEffectController.active = (health != 100);
     if (!inPoison)
     {
-      PoisonEffectController.active = false;
       restoreCountdown -= Time.deltaTime;
       if (restoreCountdown <= 0)
       {
@@ -50,11 +55,10 @@ public class InhalesPoisonousGas : MonoBehaviour
     }
     else
     {
-      PoisonEffectController.active = true;
       hurtCountdown -= Time.deltaTime;
       if (hurtCountdown <= 0)
       {
-        hurtCountdown = 1f;
+        hurtCountdown = 0.1f;
         health -= damage;
       }
     }

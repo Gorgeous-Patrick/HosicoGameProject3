@@ -27,6 +27,7 @@ public class PoisonEffectController : MonoBehaviour
   Volume v;
   LensDistortion ld;
   DepthOfField dof;
+  ColorAdjustments ca;
 
   static public bool active
   {
@@ -35,7 +36,6 @@ public class PoisonEffectController : MonoBehaviour
     {
       instance.v.enabled = value;
       instance.enabled = value;
-
     }
   }
 
@@ -44,6 +44,7 @@ public class PoisonEffectController : MonoBehaviour
     v = GetComponent<Volume>();
     v.profile.TryGet(out ld);
     v.profile.TryGet(out dof);
+    v.profile.TryGet(out ca);
     active = false;
   }
 
@@ -51,6 +52,7 @@ public class PoisonEffectController : MonoBehaviour
   {
     ld.intensity.value = Mathf.Sin(Time.time) * 0.4f;
     dof.focalLength.value = Mathf.Sin(Time.time) * dof.focusDistance.value + dof.focusDistance.value;
+    ca.colorFilter.value = Color.HSVToRGB(0.32f, 0.7f, Gameplay.player.GetComponent<InhalesPoisonousGas>().health / 100f);
   }
 
 }
