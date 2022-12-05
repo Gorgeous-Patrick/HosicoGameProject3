@@ -150,7 +150,10 @@ public class PlayerControl : MonoBehaviour
     // WIP
     // process player-initiated reset
     if (Gameplay.playerInput.Gameplay.Suicide.WasReleasedThisFrame())
-      EventBus.Publish(new EventReset {resetEntireLevel = true});
+    {
+      EventBus.Publish(new EventUpdateHealth {newHealth = 0});
+      EventBus.Publish(new EventReset {isSuicide = true});
+    }
 
     // reset movement
     rb2d.velocity = new Vector2(0, climb == ClimbType.Ladder ? 0 : rb2d.velocity.y);
@@ -357,52 +360,55 @@ public class PlayerControl : MonoBehaviour
   // plays out death sequence
   IEnumerator coroutine_Death(EventReset e)
   {
-    // play death grunt
-    AudioManager.instance.playSound("4-player_death", 1.0f);
-
-    // disable player movement
-    Gameplay.playerInput.Gameplay.Disable();
-    var original_constraints = rb2d.constraints;
-    pickaxe.SetActive(false);
-    rb2d.constraints |= RigidbodyConstraints2D.FreezePositionX;
-    rb2d.constraints |= RigidbodyConstraints2D.FreezePositionY;
-
-    // disable battery ui
     GameObject batteryCanvas = GameObject.Find("Battery Canvas");
-    Debug.Log(batteryCanvas);
-    if (batteryCanvas != null)
-    {
-      batteryCanvas.SetActive(false);
-    }
-
-    // Spotlight on player
     GameObject ambientLight = GameObject.Find("Ambient Light");
-    if (ambientLight != null)
-    {
-      ambientLight.GetComponent<Light2D>().color = Color.white;
-    }
-    // zoom camera on player
-    // NOTE: requires perspective (vertical) camera
     CinemachineFramingTransposer CineCamera = Camera.main.transform.GetChild(0).gameObject.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>();
-    if (CineCamera != null)
-    {
-      CineCamera.m_CameraDistance = 5.0f;
-    }
+    RigidbodyConstraints2D original_constraints = rb2d.constraints;
 
-    // play player death animation
-    anim.SetBool("dead", true);
-    yield return new WaitForSeconds(2.5f);
+    if (!e.isSuicide)
+    {
+      // play death grunt
+      AudioManager.instance.playSound("4-player_death", 1.0f);
+
+      // disable player movement
+      Gameplay.playerInput.Gameplay.Disable();
+      pickaxe.SetActive(false);
+      rb2d.constraints |= RigidbodyConstraints2D.FreezePositionX;
+      rb2d.constraints |= RigidbodyConstraints2D.FreezePositionY;
+
+      // disable battery ui
+      Debug.Log(batteryCanvas);
+      if (batteryCanvas != null)
+      {
+        batteryCanvas.SetActive(false);
+      }
+
+      // Spotlight on player
+      if (ambientLight != null)
+      {
+        ambientLight.GetComponent<Light2D>().color = Color.white;
+      }
+      // zoom camera on player
+      // NOTE: requires perspective (vertical) camera
+      if (CineCamera != null)
+      {
+        CineCamera.m_CameraDistance = 5.0f;
+      }
+
+      // play player death animation
+      anim.SetBool("dead", true);
+      yield return new WaitForSeconds(2.5f);
+    }
 
     // call and wait for fade out transition to play out
     EventBus.Publish(new EventStartTransition { isStart = true });
     yield return new WaitForSeconds(1.75f);
 
-    if (e.resetEntireLevel)
+    if (e.resetEntireLevel || e.isSuicide)
     {
       // fade in UI element
-      EventBus.Publish(new EventShowHealthUI { isStart = true, isRed = true });
+      EventBus.Publish(new EventShowHealthUI { isStart = true, isZero = e.resetEntireLevel, isSuicide = e.isSuicide });
       yield return new WaitForSeconds(2.0f);
-
       SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
       PlayerPrefs.SetString("currScene", SceneManager.GetActiveScene().name);
     }
