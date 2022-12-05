@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LavaKillEffect : MonoBehaviour
 {
+    static bool isKilling = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +19,15 @@ public class LavaKillEffect : MonoBehaviour
 
     IEnumerator DelayedKillPlayer()
     {
-        yield return new WaitForSeconds(1);
+        if (isKilling) {
+            yield break;
+        }
+        isKilling = true;
+        Gameplay.playerInput.Disable();
+        yield return new WaitForSeconds(1f);
         EventBus.Publish(new EventFailure());
+        isKilling = false;
+        yield return null;
     }
 
 

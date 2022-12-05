@@ -10,7 +10,6 @@ public class IsExplosion : MonoBehaviour
   void Start()
   {
     EventBus.Publish(new EventQuake{source = transform.position, initialStrength = quakeStrength});
-        EventBus.Publish(new OnCollapseScreenShakeEvent { intensity = 3, time = 2 });
     StartCoroutine(DestroyAfterTime());
   }
 
