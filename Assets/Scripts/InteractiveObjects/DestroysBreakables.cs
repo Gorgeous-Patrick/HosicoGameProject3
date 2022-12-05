@@ -41,24 +41,24 @@ public class DestroysBreakables : MonoBehaviour
   private void breakTileHelper()
   {
     Collider2D[] overCollider = Physics2D.OverlapCircleAll(pickPoint.position, pickaxeHitBoxSize, WhatIsPlatform);
-        Collider2D[] overColliderCrack = Physics2D.OverlapCircleAll(pickPoint.position, pickaxeHitBoxSize + 2, WhatIsPlatform);
+    // Collider2D[] overColliderCrack = Physics2D.OverlapCircleAll(pickPoint.position, pickaxeHitBoxSize + 2, WhatIsPlatform);
 
-        if (cooldown <= 0)
+    if (cooldown <= 0)
     {
       cooldown = mineInterval;
       AudioManager.instance.playSound("3-dig_rocks", mineInterval, pickPoint.position.x, pickPoint.position.y);
       foreach (var hit in overCollider)
         if (hit != null)
         {
-          hit.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(pickPoint.position, 3);
+          hit.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(pickPoint.position);
         }
 
-            foreach (var hit in overColliderCrack)
-                if (hit != null)
-                {
-                    hit.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(pickPoint.position, 1);
-                }
-        }
+      // foreach (var hit in overColliderCrack)
+      //   if (hit != null)
+      //   {
+      //     hit.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(pickPoint.position);
+      //   }
+    }
   }
 
   private void Start()
@@ -96,7 +96,7 @@ public class DestroysBreakables : MonoBehaviour
             Collider2D overCollider2d = Physics2D.OverlapCircle(tilePos, 0.01f, WhatIsPlatform);
             if (overCollider2d != null)
             {
-              overCollider2d.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(tilePos, 1);
+              overCollider2d.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(tilePos);
             }
           }
         }

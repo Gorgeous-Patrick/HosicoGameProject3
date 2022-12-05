@@ -16,18 +16,13 @@ public class MouseInput : MonoBehaviour
 
   private void Update()
   {
-    // if (Input.GetMouseButton(0)) {
-    //   AudioManager.instance.playSound("3-dig_rocks", 1.0f);
-    //   Debug.Log("getmouse0");
-    // }
-    // Debug.Log("hi");
     if (Input.GetMouseButton(0) && cheatModeOn)
-    {     
+    {
       MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
       Collider2D overCollider = Physics2D.OverlapCircle(MousePosition, 0.01f, WhatIsPlatform);
       if (overCollider != null)
       {
-        overCollider.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(MousePosition, 1);
+        overCollider.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(MousePosition);
       }
     }
   }

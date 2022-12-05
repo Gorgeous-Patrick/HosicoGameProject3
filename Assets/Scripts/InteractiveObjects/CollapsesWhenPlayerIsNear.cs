@@ -39,6 +39,7 @@ public class CollapsesWhenPlayerIsNear : Collapses
 
   void OnTriggerEnter2D(Collider2D collisionInfo)
   {
+    // start shaking
   }
 
   void OnTriggerExit2D(Collider2D collisionInfo)
