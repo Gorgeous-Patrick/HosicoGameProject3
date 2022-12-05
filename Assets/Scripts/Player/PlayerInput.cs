@@ -64,7 +64,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ToggleHeadlight"",
+                    ""name"": ""UseHeadlight"",
                     ""type"": ""Button"",
                     ""id"": ""30c9420e-7040-49aa-81da-2c6284180bde"",
                     ""expectedControlType"": ""Button"",
@@ -183,7 +183,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""ToggleHeadlight"",
+                    ""action"": ""UseHeadlight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -281,7 +281,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_Look = m_Gameplay.FindAction("Look", throwIfNotFound: true);
         m_Gameplay_Mine = m_Gameplay.FindAction("Mine", throwIfNotFound: true);
-        m_Gameplay_ToggleHeadlight = m_Gameplay.FindAction("ToggleHeadlight", throwIfNotFound: true);
+        m_Gameplay_UseHeadlight = m_Gameplay.FindAction("UseHeadlight", throwIfNotFound: true);
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
         m_Gameplay_Climb = m_Gameplay.FindAction("Climb", throwIfNotFound: true);
         m_Gameplay_UseItem = m_Gameplay.FindAction("UseItem", throwIfNotFound: true);
@@ -349,7 +349,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Jump;
     private readonly InputAction m_Gameplay_Look;
     private readonly InputAction m_Gameplay_Mine;
-    private readonly InputAction m_Gameplay_ToggleHeadlight;
+    private readonly InputAction m_Gameplay_UseHeadlight;
     private readonly InputAction m_Gameplay_Interact;
     private readonly InputAction m_Gameplay_Climb;
     private readonly InputAction m_Gameplay_UseItem;
@@ -362,7 +362,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         public InputAction @Look => m_Wrapper.m_Gameplay_Look;
         public InputAction @Mine => m_Wrapper.m_Gameplay_Mine;
-        public InputAction @ToggleHeadlight => m_Wrapper.m_Gameplay_ToggleHeadlight;
+        public InputAction @UseHeadlight => m_Wrapper.m_Gameplay_UseHeadlight;
         public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
         public InputAction @Climb => m_Wrapper.m_Gameplay_Climb;
         public InputAction @UseItem => m_Wrapper.m_Gameplay_UseItem;
@@ -388,9 +388,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Mine.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMine;
                 @Mine.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMine;
                 @Mine.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMine;
-                @ToggleHeadlight.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnToggleHeadlight;
-                @ToggleHeadlight.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnToggleHeadlight;
-                @ToggleHeadlight.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnToggleHeadlight;
+                @UseHeadlight.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseHeadlight;
+                @UseHeadlight.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseHeadlight;
+                @UseHeadlight.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnUseHeadlight;
                 @Interact.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnInteract;
@@ -419,9 +419,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Mine.started += instance.OnMine;
                 @Mine.performed += instance.OnMine;
                 @Mine.canceled += instance.OnMine;
-                @ToggleHeadlight.started += instance.OnToggleHeadlight;
-                @ToggleHeadlight.performed += instance.OnToggleHeadlight;
-                @ToggleHeadlight.canceled += instance.OnToggleHeadlight;
+                @UseHeadlight.started += instance.OnUseHeadlight;
+                @UseHeadlight.performed += instance.OnUseHeadlight;
+                @UseHeadlight.canceled += instance.OnUseHeadlight;
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
@@ -453,7 +453,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnMine(InputAction.CallbackContext context);
-        void OnToggleHeadlight(InputAction.CallbackContext context);
+        void OnUseHeadlight(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnClimb(InputAction.CallbackContext context);
         void OnUseItem(InputAction.CallbackContext context);

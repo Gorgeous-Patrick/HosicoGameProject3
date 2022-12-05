@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ToggleHeadlight",
+                    "name": "UseHeadlight",
                     "type": "Button",
                     "id": "30c9420e-7040-49aa-81da-2c6284180bde",
                     "expectedControlType": "Button",
@@ -161,7 +161,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
-                    "action": "ToggleHeadlight",
+                    "action": "UseHeadlight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

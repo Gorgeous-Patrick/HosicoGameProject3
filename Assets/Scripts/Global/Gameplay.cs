@@ -69,7 +69,6 @@ public class Gameplay : MonoBehaviour
         if (_batteryLevel == 0)
             _batteryLevel = _maxBattery;
         else _maxBattery = _batteryLevel;
-        batteryDrainCoroutine = StartCoroutine(coroutine_batteryDrain());
         EventBus.Subscribe<EventHeadlightStatusChange>(handler_EventHeadlightStatusChange);
         EventBus.Subscribe<EventBatteryStatusChange>(handler_EventBatteryStatusChange);
         EventBus.Subscribe<OnChangeGoal>(handler_EventChangeGoal);
@@ -114,8 +113,6 @@ public class Gameplay : MonoBehaviour
               EventBus.Publish(new EventHeadlightStatusChange { enabled = false });
             _batteryLevel -= 1;
         }
-        // the player failed - for now. planning on changing this
-        EventBus.Publish(new EventFailure());
     }
 
     IEnumerator coroutine_batteryCharge() {

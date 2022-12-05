@@ -16,6 +16,7 @@ public class PlayerControl : MonoBehaviour
   FixedJoint2D hinge;
 
   GameObject pickaxe;
+
   bool headlightOn;
   [SerializeField] bool isInTutorial = false;
 
@@ -146,6 +147,7 @@ public class PlayerControl : MonoBehaviour
     anim.SetFloat("velX", rb2d.velocity.x);
     anim.SetFloat("velY", rb2d.velocity.y);
 
+    // WIP
     // process player-initiated reset
     if (Gameplay.playerInput.Gameplay.Suicide.WasReleasedThisFrame())
       EventBus.Publish(new EventReset {resetEntireLevel = true});
@@ -220,10 +222,13 @@ public class PlayerControl : MonoBehaviour
       EventBus.Publish(new EventUseItem());
 
     // process headlight toggle
-    if (Gameplay.playerInput.Gameplay.ToggleHeadlight.WasPressedThisFrame())
+    if (Gameplay.playerInput.Gameplay.UseHeadlight.WasPressedThisFrame())
     {
-      headlightOn = !headlightOn;
-      EventBus.Publish(new EventHeadlightStatusChange { enabled = headlightOn });
+      if (Gameplay.batteryLevel > 0)
+      {
+        headlightOn = !headlightOn;
+        EventBus.Publish(new EventHeadlightStatusChange {enabled = true});
+      }
     }
 
     // process active interaction with objects
