@@ -22,7 +22,7 @@ public class MinableTile : MonoBehaviour
     foreach (var position in destructibleTilemap.cellBounds.allPositionsWithin)
     {
       // Vector2 cellPos2D = new Vector2(position.x, position.y);
-      tilemapDataDict.Add(position.ToString(), 2);
+      tilemapDataDict.Add(position.ToString(), 1);
       //Debug.Log("tilemapPosition: " + cellPos2D.ToString());
     }
 

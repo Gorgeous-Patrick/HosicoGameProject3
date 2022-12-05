@@ -21,26 +21,20 @@ public class DestroysBreakables : MonoBehaviour
   private void Awake()
   {
     if (pickPoint == null)
-    {
       pickPoint = transform;
-    }
   }
 
   private void OnTriggerEnter2D(Collider2D collision)
   {
     if (collision.CompareTag("Player"))
-    {
       EventBus.Publish(new EventFailure());
-    }
     breakTileHelper();
   }
 
   private void OnTriggerStay2D(Collider2D collision)
   {
     if (collision.CompareTag("Player"))
-    {
       EventBus.Publish(new EventFailure());
-    }
     breakTileHelper();
   }
 
