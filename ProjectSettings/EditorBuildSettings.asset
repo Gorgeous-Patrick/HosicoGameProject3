@@ -8,35 +8,26 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Title.unity
     guid: b7eb9a11fbfe11f46b7485934253111a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game Over.unity
     guid: 6514121ea7d676942963a8d0ced37d5e
   - enabled: 1
-    path: Assets/Scenes/BasicTutorialScene.unity
-    guid: 1bec72eb1db3d844682c3c2d97ab8974
-  - enabled: 1
-    path: Assets/Scenes/Puzzle_linear.unity
-    guid: a8c1351034f107742a0e63a215457503
-  - enabled: 1
-    path: Assets/Scenes/FallingRubbleScene.unity
-    guid: 43e32faa13801b34997c6af0980917cb
-  - enabled: 1
     path: Assets/Scenes/Game Clear.unity
     guid: 77d0e3da5882211498265ebe38d7603a
-  - enabled: 1
-    path: Assets/Scenes/Trailer/Opening.unity
-    guid: 704f7d569abbb1e4784130fb5436bdd6
-  - enabled: 1
-    path: Assets/Scenes/Trailer/Titlecard.unity
-    guid: 6412e1f2704ec6943b3bae0bfd9cdc19
-  - enabled: 1
-    path: Assets/Scenes/Trailer/OverviewShot.unity
-    guid: a883c8730adb14b42abc5c7046bb91b6
   - enabled: 1
     path: Assets/Scenes/Formal/Level0.unity
     guid: 97b6e4293be10dcc28bd4927929edf37
   - enabled: 1
     path: Assets/Scenes/Formal/Level2.unity
     guid: 7347792a4a89db95684c2fa8fd43ec4c
+  - enabled: 1
+    path: Assets/Scenes/Formal/Level1.unity
+    guid: ea6deed95e3fdbeb0832343154cafdf6
+  - enabled: 1
+    path: Assets/Scenes/Formal/Level3.unity
+    guid: 01dc6e18acbc3598daf6fec653b28e10
+  - enabled: 1
+    path: Assets/Scenes/Formal/Level4.unity
+    guid: 4f77f45afa55595229c5733c9b9789ad
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: dccbf9f47bdb838ef92d8207bf6c6134, type: 2}
