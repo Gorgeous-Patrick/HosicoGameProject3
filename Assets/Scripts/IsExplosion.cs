@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IsExplosion : MonoBehaviour
 {
-  [SerializeField] float DespawnTime = 1.0f;
+  [SerializeField] float DespawnTime = 0.1f;
   [SerializeField] int quakeStrength = 5;
 
   void Start()

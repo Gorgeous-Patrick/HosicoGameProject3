@@ -78,7 +78,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1261858519
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 5
   m_Sprite: {fileID: 678149076, guid: 6a1c51e759cd8d2439621d7a1d323db7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -108,9 +108,13 @@ MonoBehaviour:
     m_Bits: 512
   durabilityImpact: -2
   isExplosion: 1
+  mineInterval: 0
   pickPoint: {fileID: 3960508519330301007}
   pickaxeHitBoxSize: 5
   blastRadius: {fileID: 3350154774104710385}
+  hasRecentlyDug: 0
+  indexTimer: 0
+  indexTimerDig: 0
 --- !u!114 &853101112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1f07ab86f0be864d98aa6cbe4068405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DespawnTime: 1.25
+  DespawnTime: 0.1
   quakeStrength: 5
 --- !u!114 &1972641759734700366
 MonoBehaviour:
@@ -275,4 +279,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 5
