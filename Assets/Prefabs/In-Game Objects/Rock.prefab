@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7029905564881768118}
   - component: {fileID: 7029905564881768119}
   - component: {fileID: -1551618648141763975}
+  - component: {fileID: -1594558397241619242}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Boulder
@@ -159,4 +160,20 @@ MonoBehaviour:
   durability: 3
   canHit: 1
   onlyDynamite: 0
+  spawnObject: {fileID: 0}
   countdown: 0
+--- !u!114 &-1594558397241619242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7029905564881768116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c26b5da2b9f296f42b055e62cccc0c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RB2D: {fileID: 0}
+  fallVelThreshold: -0.5
+  toleranceVal: 0.126

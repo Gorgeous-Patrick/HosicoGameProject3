@@ -1399,7 +1399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea6f63b42c1d564aa6d52803b380b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneToLoad: BasicTutorialScene
+  SceneToLoad: Level0
   UserConsent: {fileID: 1426687159}
   isClicked: 0
   isButton: 1
