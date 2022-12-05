@@ -719,7 +719,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 0, y: 0, z: 0}
+    m_Scale: {x: 3.65, y: 1.13, z: 0}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -912,7 +912,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
   EmissionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2
@@ -4831,7 +4831,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1261858519
   m_SortingLayer: 7
-  m_SortingOrder: 0
+  m_SortingOrder: -29
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
