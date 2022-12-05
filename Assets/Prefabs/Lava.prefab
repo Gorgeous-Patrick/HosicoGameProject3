@@ -178,7 +178,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 1.78
-  m_PointLightOuterRadius: 11.39
+  m_PointLightOuterRadius: 6
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   period: 1
-  amplitude: 0.2
+  amplitude: 0.05
   timer: 0
 --- !u!114 &4101088079058706686
 MonoBehaviour:
@@ -302,8 +302,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5645540182911100598}
   - component: {fileID: 8338043048812414111}
-  - component: {fileID: 7937667622528918375}
   - component: {fileID: 6810480019751967098}
+  - component: {fileID: 3965024591245152312}
   m_Layer: 0
   m_Name: LavaPostProcessing
   m_TagString: Untagged
@@ -343,19 +343,6 @@ MonoBehaviour:
   blendDistance: 3
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 54e6d295a5f255dd08e81253e531bbce, type: 2}
---- !u!65 &7937667622528918375
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9130776388582620401}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &6810480019751967098
 AudioSource:
   m_ObjectHideFlags: 0
@@ -479,3 +466,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &3965024591245152312
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9130776388582620401}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
