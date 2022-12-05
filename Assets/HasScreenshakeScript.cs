@@ -53,7 +53,6 @@ public class HasScreenshakeScript : MonoBehaviour
 
     IEnumerator Shaking(float intensity, float frequency, float time)
     {
-        yield return new WaitForSeconds(5f);
         StartShaking(intensity, frequency);
         yield return new WaitForSeconds(time);
         StopShaking();
@@ -62,10 +61,5 @@ public class HasScreenshakeScript : MonoBehaviour
     public void ShakingCoroutine(float intensity = 3, float frequency = 5, float time = 0.5f)
     {
         StartCoroutine(Shaking(intensity, frequency, time));
-    }
-
-    void Start()
-    {
-        ShakingCoroutine();
     }
 }
