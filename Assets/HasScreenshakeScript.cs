@@ -35,4 +35,37 @@ public class HasScreenshakeScript : MonoBehaviour
             }
         }
     }
+
+    public void StartShaking(float intensity, float frequency)
+    {
+        Debug.Log("StartShaking");
+        CinemachineBasicMultiChannelPerlin perlin = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        perlin.m_AmplitudeGain = intensity;
+        perlin.m_FrequencyGain = frequency;
+    }
+
+    public void StopShaking()
+    {
+        CinemachineBasicMultiChannelPerlin perlin = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        perlin.m_AmplitudeGain = 0f;
+        perlin.m_FrequencyGain = 0f;
+    }
+
+    IEnumerator Shaking(float intensity, float frequency, float time)
+    {
+        yield return new WaitForSeconds(5f);
+        StartShaking(intensity, frequency);
+        yield return new WaitForSeconds(time);
+        StopShaking();
+    }
+
+    public void ShakingCoroutine(float intensity = 3, float frequency = 5, float time = 0.5f)
+    {
+        StartCoroutine(Shaking(intensity, frequency, time));
+    }
+
+    void Start()
+    {
+        ShakingCoroutine();
+    }
 }
