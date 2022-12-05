@@ -15,6 +15,7 @@ public class LavaLight : MonoBehaviour
     {
         light2D = GetComponent<Light2D>();
         offset = light2D.intensity;
+        timer = Random.Range(0.0f, period);
     }
 
     // Update is called once per frame
