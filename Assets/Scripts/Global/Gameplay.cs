@@ -6,155 +6,184 @@ using UnityEngine.SceneManagement;
 public class Gameplay : MonoBehaviour
 {
 
-    PlayerInput _playerInput;
+  PlayerInput _playerInput;
 
-    [SerializeField] GameObject _player;
-    [SerializeField] GameObject _destination;
+  [SerializeField] GameObject _player;
+  [SerializeField] GameObject _destination;
 
-    [SerializeField] private float batteryDrainInterval = 7, batteryChargeInterval = 0.1f;
-    [SerializeField] private float batteryBarBlinkInterval = 0.3f;
-    [SerializeField] private int _maxBattery = 5;
+  // how long a single battery lasts
+  [SerializeField] float batteryEndurance = 30f;
+  float batteryDrainInterval { get => 1 / batteryEndurance; }
 
-    [SerializeField] private int _batteryLevel = 0;
-    Coroutine batteryDrainCoroutine, batteryChargeCoroutine;
+  // how long it takes to restore a battery
+  [SerializeField] float batteryChargeInterval = 0.2f;
 
-    // triggered when player presses E to interact with objects in the scene
-    System.Action _funcInteract;
+  // for how long the battery indicator blinks
+  [SerializeField] float batteryBarBlinkInterval = 0.3f;
 
-    static public float batteryLevel
+  // maximum number of batteries the player can hold
+  [SerializeField] int _maxBattery = 5;
+
+  [SerializeField] int _batterys = 0;
+  float _batteryLevel;
+  Coroutine batteryDrainCoroutine, batteryChargeCoroutine;
+
+  // triggered when player presses E to interact with objects in the scene
+  System.Action _funcInteract;
+
+  static public float batterys
+  {
+    get => instance._batterys;
+  }
+  static public float batteryLevel
+  {
+    get => instance._batteryLevel;
+  }
+  static public int maxBattery
+  {
+    get => instance._maxBattery;
+  }
+  static public PlayerInput playerInput
+  {
+    get => instance._playerInput;
+  }
+  static public GameObject player
+  {
+    get => instance._player;
+  }
+
+  static public GameObject destination
+  {
+    get => instance._destination;
+  }
+  static public System.Action funcInteract
+  {
+    get => instance._funcInteract;
+    set => instance._funcInteract = value;
+  }
+
+  void OnEnable()
+  {
+    playerInput.Gameplay.Enable();
+  }
+
+  void OnDisable()
+  {
+    playerInput.Gameplay.Disable();
+  }
+
+  void Awake()
+  {
+    if (_instance != null && _instance != this)
+      Destroy(this.gameObject);
+    else
+      _instance = this;
+    _playerInput = new PlayerInput();
+    // EventBus.Subscribe<EventFailure>(handler_EventFailure);
+  }
+
+  void Start()
+  {
+    if (_batterys == 0)
+      _batterys = _maxBattery;
+    else _maxBattery = _batterys;
+    EventBus.Subscribe<EventHeadlightStatusChange>(handler_EventHeadlightStatusChange);
+    EventBus.Subscribe<EventBatteryStatusChange>(handler_EventBatteryStatusChange);
+    EventBus.Subscribe<OnChangeGoal>(handler_EventChangeGoal);
+  }
+
+  void handler_EventHeadlightStatusChange(EventHeadlightStatusChange e)
+  {
+    if (e.enabled == true && batteryDrainCoroutine == null)
     {
-        get => instance._batteryLevel;
+      batteryDrainCoroutine = StartCoroutine(coroutine_batteryDrain());
+      return;
     }
-    static public int maxBattery
+    if (e.enabled == false && batteryDrainCoroutine != null)
     {
-        get => instance._maxBattery;
+      StopCoroutine(batteryDrainCoroutine);
+      batteryDrainCoroutine = null;
+      return;
     }
-    static public PlayerInput playerInput
+  }
+
+  void handler_EventBatteryStatusChange(EventBatteryStatusChange e)
+  {
+    if (e.charging == true && batteryChargeCoroutine == null)
     {
-        get => instance._playerInput;
+      batteryChargeCoroutine = StartCoroutine(coroutine_batteryCharge());
+      return;
     }
-    static public GameObject player
+    if (e.charging == false && batteryChargeCoroutine != null)
     {
-        get => instance._player;
+      if (batteryChargeCoroutine != null)
+        StopCoroutine(batteryChargeCoroutine);
+      batteryChargeCoroutine = null;
+      return;
     }
+  }
 
-    static public GameObject destination
+  void handler_EventChangeGoal(OnChangeGoal e)
+  {
+    _destination = e._nextGoal.gameObject;
+  }
+
+  IEnumerator coroutine_batteryDrain()
+  {
+    _batteryLevel = 1;
+    while (_batteryLevel > 0)
     {
-        get => instance._destination;
+      _batteryLevel -= batteryDrainInterval;
+      yield return new WaitForSeconds(batteryDrainInterval);
     }
-    static public System.Action funcInteract
+    EventBus.Publish(new EventBlinkBatteryBar { prevBatteryLevel = _batterys });
+    yield return new WaitForSeconds(batteryBarBlinkInterval);
+    _batterys -= 1;
+    EventBus.Publish(new EventHeadlightStatusChange { enabled = false });
+  }
+
+  IEnumerator coroutine_batteryCharge()
+  {
+    while (true)
     {
-        get => instance._funcInteract;
-        set => instance._funcInteract = value;
+      yield return new WaitForSeconds(batteryChargeInterval);
+      _batterys += 1;
+      if (_batterys > maxBattery) _batterys = maxBattery;
     }
+  }
 
-    void OnEnable() {
-        playerInput.Gameplay.Enable();
-    }
-
-    void OnDisable() {
-        playerInput.Gameplay.Disable();
-    }
-
-    void Awake() {
-        if (_instance != null && _instance != this)
-            Destroy(this.gameObject);
-        else
-            _instance = this;
-        _playerInput = new PlayerInput();
-        // EventBus.Subscribe<EventFailure>(handler_EventFailure);
-    }
-
-    void Start() {
-        if (_batteryLevel == 0)
-            _batteryLevel = _maxBattery;
-        else _maxBattery = _batteryLevel;
-        EventBus.Subscribe<EventHeadlightStatusChange>(handler_EventHeadlightStatusChange);
-        EventBus.Subscribe<EventBatteryStatusChange>(handler_EventBatteryStatusChange);
-        EventBus.Subscribe<OnChangeGoal>(handler_EventChangeGoal);
-    }
-
-    void handler_EventHeadlightStatusChange(EventHeadlightStatusChange e) {
-        if (e.enabled == true && batteryDrainCoroutine == null) {
-            batteryDrainCoroutine = StartCoroutine(coroutine_batteryDrain());
-            return;
-        }
-        if (e.enabled == false && batteryDrainCoroutine != null) {
-            StopCoroutine(batteryDrainCoroutine);
-            batteryDrainCoroutine = null;
-            return;
-        }
-    }
-
-    void handler_EventBatteryStatusChange(EventBatteryStatusChange e) {
-        if (e.charging == true && batteryChargeCoroutine == null) {
-            batteryChargeCoroutine = StartCoroutine(coroutine_batteryCharge());
-            return;
-        }
-        if (e.charging == false && batteryChargeCoroutine != null) {
-            if (batteryChargeCoroutine != null)
-                StopCoroutine(batteryChargeCoroutine);
-            batteryChargeCoroutine = null;
-            return;
-        }
-    }
-
-    void handler_EventChangeGoal(OnChangeGoal e) {
-        _destination = e._nextGoal.gameObject;
-    }
-
-    IEnumerator coroutine_batteryDrain() {
-        while (_batteryLevel > 0) {
-            yield return new WaitForSeconds(batteryDrainInterval);
-            if (batteryChargeCoroutine != null)
-                continue;
-            EventBus.Publish(new EventBlinkBatteryBar { prevBatteryLevel = _batteryLevel });
-            yield return new WaitForSeconds(batteryBarBlinkInterval);
-              EventBus.Publish(new EventHeadlightStatusChange { enabled = false });
-            _batteryLevel -= 1;
-        }
-    }
-
-    IEnumerator coroutine_batteryCharge() {
-        while (true) {
-            yield return new WaitForSeconds(batteryChargeInterval);
-            _batteryLevel += 1;
-            if (_batteryLevel > maxBattery) _batteryLevel = maxBattery;
-        }
-    }
-
-    // Singleton
-    static Gameplay _instance;
-    public static Gameplay instance
+  // Singleton
+  static Gameplay _instance;
+  public static Gameplay instance
+  {
+    get
     {
-        get
-        {
-            return _instance;
-        }
+      return _instance;
     }
+  }
 
-    static public Vector2 playerLookDirection
+  static public Vector2 playerLookDirection
+  {
+    get
     {
-        get
-        {
-            Vector2 LookVector = playerInput.Gameplay.Look.ReadValue<Vector2>();
-            Vector3 LookVector3 = new Vector3(LookVector.x, LookVector.y, -10.0f);
-            Vector3 pos = Camera.main.ScreenToWorldPoint(LookVector3) - player.transform.position;
-            pos = new Vector3(-1.0f * pos.x, -1.0f * pos.y, pos.z);
+      Vector2 LookVector = playerInput.Gameplay.Look.ReadValue<Vector2>();
+      Vector3 LookVector3 = new Vector3(LookVector.x, LookVector.y, -10.0f);
+      Vector3 pos = Camera.main.ScreenToWorldPoint(LookVector3) - player.transform.position;
+      pos = new Vector3(-1.0f * pos.x, -1.0f * pos.y, pos.z);
 
-            return pos;
-        }
+      return pos;
     }
+  }
 
-    static public Inventory inventory
-    {
-        get => instance._player.GetComponent<Inventory>();
-    }
+  static public Inventory inventory
+  {
+    get => instance._player.GetComponent<Inventory>();
+  }
 
-    // void handler_EventFailure(EventFailure obj)
-    // {
-    //   _batteryLevel = maxBattery;
-    //   StartCoroutine(coroutine_DelayedBatteryDrain());
-    // }
+  // void handler_EventFailure(EventFailure obj)
+  // {
+  //   _batteryLevel = maxBattery;
+  //   StartCoroutine(coroutine_DelayedBatteryDrain());
+  // }
 
 }

@@ -20,7 +20,7 @@ public class BatteryCellControl : MonoBehaviour
     void Update()
     {
         Color color;
-        if (Gameplay.batteryLevel > batteryCellId)
+        if (Gameplay.batterys > batteryCellId)
         {
             color = Color.green;
         }
@@ -43,7 +43,7 @@ public class BatteryCellControl : MonoBehaviour
             StartCoroutine(BlinkBattery());
             Debug.Log("Blinking Battery");
             Debug.Log("Battery Cell Id: " + batteryCellId);
-            Debug.Log("Current Battery Level: " + Gameplay.batteryLevel);
+            Debug.Log("Current Battery Level: " + Gameplay.batterys);
         }
     }
 

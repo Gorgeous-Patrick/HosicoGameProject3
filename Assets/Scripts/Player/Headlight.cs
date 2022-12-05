@@ -23,7 +23,7 @@ public class Headlight : MonoBehaviour
 
   void Update()
   {
-    light2d.intensity = minIntensity + Gameplay.batteryLevel * (maxIntensity - minIntensity);
+    light2d.intensity = minIntensity + Gameplay.batterys * (maxIntensity - minIntensity);
   }
 
   void handler_EventHeadlightStatusChange(EventHeadlightStatusChange e)

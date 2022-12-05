@@ -224,7 +224,7 @@ public class PlayerControl : MonoBehaviour
     // process headlight toggle
     if (Gameplay.playerInput.Gameplay.UseHeadlight.WasPressedThisFrame())
     {
-      if (Gameplay.batteryLevel > 0)
+      if (Gameplay.batterys > 0)
       {
         headlightOn = !headlightOn;
         EventBus.Publish(new EventHeadlightStatusChange {enabled = true});
