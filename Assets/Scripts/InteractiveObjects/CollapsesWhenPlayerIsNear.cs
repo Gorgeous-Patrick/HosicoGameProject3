@@ -21,6 +21,7 @@ public class CollapsesWhenPlayerIsNear : Collapses
     StartCoroutine(coroutine_GC());
   }
 
+
   void OnTriggerStay2D(Collider2D collisionInfo)
   {
     if (collisionInfo.gameObject.tag != "Player") return;
@@ -29,7 +30,6 @@ public class CollapsesWhenPlayerIsNear : Collapses
     if (countdown <= 0)
     {
       countdown = Random.Range(GenerationIntervalLowerBound, GenerationIntervalUpperBound);
-      // TODO: trigger screen shake
       if (generatedObjs.Count >= maxChildren) return;
             OnCollapse?.Invoke();
             EventBus.Publish(new OnCollapseScreenShakeEvent { intensity = 2.2f, time = 1.5f });
@@ -37,9 +37,17 @@ public class CollapsesWhenPlayerIsNear : Collapses
     }
   }
 
+  void OnTriggerEnter2D(Collider2D collisionInfo)
+  {
+  }
+
   void OnTriggerExit2D(Collider2D collisionInfo)
   {
-    if (generatedObjs.Contains(collisionInfo.gameObject))
+    if (collisionInfo.gameObject.tag == "Player")
+    {
+      // stop shaking
+    }
+    else if (generatedObjs.Contains(collisionInfo.gameObject))
       generatedObjs.Remove(collisionInfo.gameObject);
   }
 

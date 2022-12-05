@@ -57,7 +57,16 @@ public class PlayerControl : MonoBehaviour
   }
   ClimbObject lastClimb;
 
-  bool ropeClimbCooling;
+  bool _ropeClimbCooling;
+  bool ropeClimbCooling
+  {
+    get => _ropeClimbCooling;
+    set
+    {
+      _ropeClimbCooling = value;
+      anim.SetBool("climbingRope", value);
+    }
+  }
 
   [SerializeField] ClimbObject _climb;
   ClimbType climb
