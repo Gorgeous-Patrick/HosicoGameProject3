@@ -146,6 +146,10 @@ public class PlayerControl : MonoBehaviour
     anim.SetFloat("velX", rb2d.velocity.x);
     anim.SetFloat("velY", rb2d.velocity.y);
 
+    // process player-initiated reset
+    if (Gameplay.playerInput.Gameplay.Suicide.WasReleasedThisFrame())
+      EventBus.Publish(new EventReset {resetEntireLevel = true});
+
     // reset movement
     rb2d.velocity = new Vector2(0, climb == ClimbType.Ladder ? 0 : rb2d.velocity.y);
 
