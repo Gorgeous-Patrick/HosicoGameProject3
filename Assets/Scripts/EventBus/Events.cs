@@ -26,7 +26,8 @@ public class EventFailure : Event
 
 public class EventReset : Event
 {
-  public bool resetEntireLevel;
+  public bool resetEntireLevel = false;
+  public bool isSuicide = false;
 }
 
 public class EventUpdateHealth : Event
@@ -89,22 +90,23 @@ public class EventUseItem: Event
 
 public class EventStartTransition : Event
 {
-    public bool isStart;
+  public bool isStart;
 }
 
 public class EventChangeCheckpoint: Event
 {
-    public int index;
-    public Transform checkpoint;
+  public int index;
+  public Transform checkpoint;
 }
 
 public class EventShowHealthUI : Event
 {
-    public bool isStart;
-    public bool isRed = false;
+  public bool isStart;
+  public bool isZero = false;
+  public bool isSuicide = false;
 }
 
 public class EventBlinkBatteryBar : Event
 {
-    public int prevBatteryLevel;
+  public int prevBatteryLevel;
 }

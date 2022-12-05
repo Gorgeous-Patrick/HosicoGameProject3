@@ -17,6 +17,11 @@ public abstract class Collapses : MonoBehaviour
   {
     Gizmos.color = indicatorColor;
     Gizmos.DrawCube(transform.position, areaSize);
+
+    ParticleSystem ps = GetComponent<ParticleSystem>();
+    if (ps == null) return;
+    var s = ps.shape;
+    s.scale = areaSize;
   }
 
   protected GameObject generate()

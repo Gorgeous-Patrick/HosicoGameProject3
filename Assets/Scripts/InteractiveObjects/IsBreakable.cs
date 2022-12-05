@@ -5,51 +5,59 @@ using UnityEngine;
 public class IsBreakable : MonoBehaviour
 {
 
-    [SerializeField] int durability = 3; // takew how many hits to be destroyed
-    [SerializeField] bool canHit = true;
-    float toughness = 0.3f; // larger: takes more time to mine
-    [SerializeField] bool onlyDynamite = false;
-    [SerializeField] GameObject spawnObject;
+  [SerializeField] int durability = 3; // takew how many hits to be destroyed
+  [SerializeField] bool canHit = true;
+  float toughness = 0.3f; // larger: takes more time to mine
+  [SerializeField] bool onlyDynamite = false;
+  [SerializeField] GameObject spawnObject;
 
-    // indicates the time remaining until next durability decrement
-    [SerializeField] float countdown;
+  // indicates the time remaining until next durability decrement
+  [SerializeField] float countdown;
 
-    void Start() {
-        countdown = toughness;
+  void Start()
+  {
+    countdown = toughness;
+  }
+
+  void alterDurability(int delta)
+  {
+    if (!canHit) return;
+    durability += delta;
+    // plays animation
+    ParticleSystemManager.RequestParticlesAtPositionAndDirection(transform.position, Vector3.up);
+    if (GetComponent<SpriteFlasher>() != null)
+    {
+      GetComponent<SpriteFlasher>().FlashFunc();
     }
+    if (durability <= 0)
+    {
+      if (!transform.CompareTag("BreakableGround"))
+      {
+        AudioManager.instance.playSound("3-dig_rocks", 1.0f);
 
-    void alterDurability(int delta) {
-        if (!canHit) return;
-        durability += delta;
-        // plays animation
-        // ParticleSystemManager.RequestParticlesAtPositionAndDirection(transform.position, Vector3.up);
-        if (GetComponent<SpriteFlasher>() != null) {
-            GetComponent<SpriteFlasher>().FlashFunc();
+        // spawns pickup before destroying
+        if (spawnObject != null)
+        {
+          GameObject.Instantiate(spawnObject, transform.position, Quaternion.identity);
         }
-        if (durability <= 0) {
-            if (!transform.CompareTag("BreakableGround")) {
-                AudioManager.instance.playSound("3-dig_rocks", 1.0f);
 
-                // spawns pickup before destroying
-                if (spawnObject != null) {
-                    GameObject.Instantiate(spawnObject, transform.position, Quaternion.identity);
-                }
+        // destroy object
+        Destroy(gameObject);
+      }
 
-                // destroy object
-                Destroy(gameObject);
-            }
-
-        }
     }
+  }
 
-    void OnTriggerStay2D(Collider2D collisionInfo) {
-        DestroysBreakables breaker = collisionInfo.gameObject.GetComponent<DestroysBreakables>();
-        if (breaker == null || (onlyDynamite && !breaker.isExplosion)) return;
-        countdown -= Time.deltaTime;
-        if (countdown <= 0 || breaker.isExplosion) {
-            countdown = toughness;
-            alterDurability(breaker.durabilityImpact);
-        }
+  void OnTriggerStay2D(Collider2D collisionInfo)
+  {
+    DestroysBreakables breaker = collisionInfo.gameObject.GetComponent<DestroysBreakables>();
+    if (breaker == null || (onlyDynamite && !breaker.isExplosion)) return;
+    countdown -= Time.deltaTime;
+    if (countdown <= 0 || breaker.isExplosion)
+    {
+      countdown = toughness;
+      alterDurability(breaker.durabilityImpact);
     }
+  }
 
 }
