@@ -832,9 +832,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fed25838e5a75e29ca86477506e8cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amplitude: 0.5
-  k: 0.3
-  dampening_factor: 0.95
 --- !u!1 &3093147440493742171
 GameObject:
   m_ObjectHideFlags: 0
@@ -2347,7 +2344,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6581030125765147074
 RectTransform:
   m_ObjectHideFlags: 0
