@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1f07ab86f0be864d98aa6cbe4068405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DespawnTime: 0.1
+  DespawnTime: 1
   quakeStrength: 5
 --- !u!114 &1972641759734700366
 MonoBehaviour:
@@ -279,4 +279,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 3.5
