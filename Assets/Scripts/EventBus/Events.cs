@@ -22,6 +22,7 @@ public abstract class Event
 
 public class EventFailure : Event
 {
+  public bool noZoomIn = false;
 }
 
 public class EventReset : Event
