@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 4153966765269250019}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -140.66, y: 0.9225756, z: 0.011219408}
-  m_LocalScale: {x: 3.59, y: 1.33, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generatedPrefabs:
   - {fileID: 7029905564881768116, guid: 5bdeeec39957fcc3786edbee287ce8b4, type: 3}
+  areaSize: {x: 0, y: 0}
   GenerationIntervalLowerBound: 1
   GenerationIntervalUpperBound: 3
   maxChildren: 5
