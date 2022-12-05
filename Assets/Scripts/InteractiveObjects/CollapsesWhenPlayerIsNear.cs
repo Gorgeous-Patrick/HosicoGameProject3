@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CollapsesWhenPlayerIsNear : Collapses
 {
-
+    public UnityEvent OnCollapse = new UnityEvent();
   protected override Color indicatorColor { get => new Color(255, 0, 0, 0.1f); }
 
   [SerializeField] float GenerationIntervalLowerBound, GenerationIntervalUpperBound;
@@ -30,7 +31,9 @@ public class CollapsesWhenPlayerIsNear : Collapses
       countdown = Random.Range(GenerationIntervalLowerBound, GenerationIntervalUpperBound);
       // TODO: trigger screen shake
       if (generatedObjs.Count >= maxChildren) return;
-      generatedObjs.Add(generate());
+            OnCollapse?.Invoke();
+            EventBus.Publish(new OnCollapseScreenShakeEvent { intensity = 2.2f, time = 1.5f });
+            generatedObjs.Add(generate());
     }
   }
 

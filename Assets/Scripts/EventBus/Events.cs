@@ -112,3 +112,9 @@ public class EventBlinkBatteryBar : Event
 {
   public int prevBatteryLevel;
 }
+
+public class OnCollapseScreenShakeEvent : Event 
+{
+    public float intensity, time;
+}
+
