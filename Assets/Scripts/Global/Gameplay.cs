@@ -12,8 +12,8 @@ public class Gameplay : MonoBehaviour
   [SerializeField] GameObject _destination;
 
   // how long a single battery lasts
-  [SerializeField] float batteryEndurance = 30f;
-  float batteryDrainInterval { get => 1 / batteryEndurance; }
+  [SerializeField] int batteryEndurance = 20;
+  float batteryDrainSpeed { get => 1 / (float)batteryEndurance; }
 
   // how long it takes to restore a battery
   [SerializeField] float batteryChargeInterval = 0.2f;
@@ -27,6 +27,11 @@ public class Gameplay : MonoBehaviour
   [SerializeField] int _batterys = 0;
   float _batteryLevel;
   Coroutine batteryDrainCoroutine, batteryChargeCoroutine;
+
+  public bool batteryDraining
+  {
+    get => instance.batteryDrainCoroutine != null;
+  }
 
   // triggered when player presses E to interact with objects in the scene
   System.Action _funcInteract;
@@ -133,8 +138,8 @@ public class Gameplay : MonoBehaviour
     _batteryLevel = 1;
     while (_batteryLevel > 0)
     {
-      _batteryLevel -= batteryDrainInterval;
-      yield return new WaitForSeconds(batteryDrainInterval);
+      _batteryLevel -= batteryDrainSpeed;
+      yield return new WaitForSeconds(1);
     }
     EventBus.Publish(new EventBlinkBatteryBar { prevBatteryLevel = _batterys });
     yield return new WaitForSeconds(batteryBarBlinkInterval);

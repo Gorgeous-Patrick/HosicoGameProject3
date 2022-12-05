@@ -48,11 +48,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 1864097673502921252}
   _destination: {fileID: 5736461762355085423, guid: 861abd03ce106963a8ecc3754507620e, type: 3}
-  batteryEndurance: 30
-  batteryChargeInterval: 0.1
+  batteryEndurance: 25
+  batteryChargeInterval: 0.2
   batteryBarBlinkInterval: 0.3
   _maxBattery: 5
   _batterys: 0
+  _batteryLevel: 0
 --- !u!114 &975899201718563961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fab0fd987de95381b84cb548b913b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumIntensityRatio: 0.3
+  minimumIntensityRatio: 0.2
 --- !u!1 &1654612644791679473
 GameObject:
   m_ObjectHideFlags: 0

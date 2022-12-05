@@ -5,58 +5,54 @@ using UnityEngine.UI;
 
 public class BatteryCellControl : MonoBehaviour
 {
-    public int batteryCellId = 0;
-    bool blinking = false;
-    // Start is called before the first frame update
-    void Start()
+  public int batteryCellId = 0;
+  bool blinking = false;
+
+  void Start()
+  {
+    EventBus.Subscribe<EventBlinkBatteryBar>(handler_blinkbattery);
+  }
+
+  void Update()
+  {
+    Color color;
+    if (Gameplay.batterys > batteryCellId)
     {
-        EventBus.Subscribe<EventBlinkBatteryBar>(handler_blinkbattery);
+      color = Color.green;
+    }
+    else
+    {
+      color = Color.white;
     }
 
-    void OnDestroy()
+    if (!blinking)
     {
+      GetComponent<Image>().color = color;
     }
 
-    void Update()
+  }
+
+  void handler_blinkbattery(EventBlinkBatteryBar e)
+  {
+    if (e.prevBatteryLevel == batteryCellId + 1)
     {
-        Color color;
-        if (Gameplay.batterys > batteryCellId)
-        {
-            color = Color.green;
-        }
-        else
-        {
-            color = Color.white;
-        }
-
-        if (!blinking)
-        {
-            GetComponent<Image>().color = color;
-        }
-
+      StartCoroutine(BlinkBattery());
+      Debug.Log("Blinking Battery");
+      Debug.Log("Battery Cell Id: " + batteryCellId);
+      Debug.Log("Current Battery Level: " + Gameplay.batterys);
     }
+  }
 
-    void handler_blinkbattery(EventBlinkBatteryBar e) 
+  IEnumerator BlinkBattery()
+  {
+    blinking = true;
+    for (int i = 0; i < 3; i++)
     {
-        if (e.prevBatteryLevel == batteryCellId + 1)
-        {
-            StartCoroutine(BlinkBattery());
-            Debug.Log("Blinking Battery");
-            Debug.Log("Battery Cell Id: " + batteryCellId);
-            Debug.Log("Current Battery Level: " + Gameplay.batterys);
-        }
+      GetComponent<Image>().color = Color.red;
+      yield return new WaitForSeconds(0.1f);
+      GetComponent<Image>().color = Color.white;
+      yield return new WaitForSeconds(0.1f);
     }
-
-    IEnumerator BlinkBattery()
-    {
-        blinking = true;
-        for (int i = 0; i < 3; i++)
-        {
-            GetComponent<Image>().color = Color.red;
-            yield return new WaitForSeconds(0.1f);
-            GetComponent<Image>().color = Color.white;
-            yield return new WaitForSeconds(0.1f);
-        }
-        blinking = false;
-    }
+    blinking = false;
+  }
 }
