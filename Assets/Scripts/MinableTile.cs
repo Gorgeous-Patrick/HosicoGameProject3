@@ -36,7 +36,7 @@ public class MinableTile : MonoBehaviour
     }*/
   }
 
-  public void DestroyTileMapAtPoint( Vector3 Pos)
+  public void DestroyTileMapAtPoint(Vector3 Pos)
   {
     ParticleSystemManager.RequestParticlesAtPositionAndDirection(Pos, Vector3.up);
     Vector3Int cellPos = destructibleTilemap.WorldToCell(Pos);
