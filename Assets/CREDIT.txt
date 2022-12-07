@@ -36,4 +36,6 @@ Audio Sources
 	Exploring a Cave: https://opengameart.org/content/exploring-a-cave
 	Cave In: https://opengameart.org/content/cave-in
 	Falling Rock: https://opengameart.org/content/falling-rock
+	logs: https://opengameart.org/content/wood-log-pixel-art
+	grill: https://opengameart.org/content/elevator-grate
 	Freelancer - Cavelit ambience BGM - Robbie Moore robbiegm@umich.edu
