@@ -98674,6 +98674,14 @@ PrefabInstance:
       propertyPath: isInTutorial
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 975899201718563961, guid: 43c1d1e0cc02f052bb30e77268d4e200, type: 3}
+      propertyPath: audioClips.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8ae426a1e0fe8521ca31e7351a4d2232, type: 3}
+    - target: {fileID: 975899201718563961, guid: 43c1d1e0cc02f052bb30e77268d4e200, type: 3}
+      propertyPath: audioNames.Array.data[4]
+      value: 4-player_death
+      objectReference: {fileID: 0}
     - target: {fileID: 1427057267801755384, guid: 43c1d1e0cc02f052bb30e77268d4e200, type: 3}
       propertyPath: m_IsActive
       value: 0
