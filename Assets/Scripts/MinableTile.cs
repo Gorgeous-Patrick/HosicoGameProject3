@@ -22,7 +22,7 @@ public class MinableTile : MonoBehaviour
     foreach (var position in destructibleTilemap.cellBounds.allPositionsWithin)
     {
       // Vector2 cellPos2D = new Vector2(position.x, position.y);
-      tilemapDataDict.Add(position.ToString(), 1);
+      tilemapDataDict.Add(position.ToString(), 2);
       //Debug.Log("tilemapPosition: " + cellPos2D.ToString());
     }
 
@@ -36,7 +36,7 @@ public class MinableTile : MonoBehaviour
     }*/
   }
 
-  public void DestroyTileMapAtPoint(Vector3 Pos)
+  public void DestroyTileMapAtPoint(Vector3 Pos, int dmg)
   {
     ParticleSystemManager.RequestParticlesAtPositionAndDirection(Pos, Vector3.up);
     Vector3Int cellPos = destructibleTilemap.WorldToCell(Pos);
@@ -44,9 +44,9 @@ public class MinableTile : MonoBehaviour
     if (dugTile != null)
     {
       // Debug.Log("health of tile: " + tilemapDataDict[cellPos.ToString()]);
-      if (tilemapDataDict[cellPos.ToString()] > 0)
+      if (tilemapDataDict[cellPos.ToString()] > dmg)
       {
-        tilemapDataDict[cellPos.ToString()] -= 1;
+        tilemapDataDict[cellPos.ToString()] -= dmg;
         destructibleTilemap.SetTile(cellPos, crackedTile);
       }
       else destructibleTilemap.SetTile(cellPos, null);

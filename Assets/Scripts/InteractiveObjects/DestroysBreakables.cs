@@ -41,7 +41,6 @@ public class DestroysBreakables : MonoBehaviour
   private void breakTileHelper()
   {
     Collider2D[] overCollider = Physics2D.OverlapCircleAll(pickPoint.position, pickaxeHitBoxSize, WhatIsPlatform);
-    // Collider2D[] overColliderCrack = Physics2D.OverlapCircleAll(pickPoint.position, pickaxeHitBoxSize + 2, WhatIsPlatform);
 
     if (cooldown <= 0)
     {
@@ -50,14 +49,8 @@ public class DestroysBreakables : MonoBehaviour
       foreach (var hit in overCollider)
         if (hit != null)
         {
-          hit.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(pickPoint.position);
+          hit.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(pickPoint.position, 1);
         }
-
-      // foreach (var hit in overColliderCrack)
-      //   if (hit != null)
-      //   {
-      //     hit.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(pickPoint.position);
-      //   }
     }
   }
 
@@ -75,7 +68,7 @@ public class DestroysBreakables : MonoBehaviour
 
   private IEnumerator ExplosionActivated()
   {
-    yield return new WaitForSeconds(0.2f);
+    yield return new WaitForSeconds(0.02f);
     DestroyTilesArea();
   }
 
@@ -96,9 +89,17 @@ public class DestroysBreakables : MonoBehaviour
             Collider2D overCollider2d = Physics2D.OverlapCircle(tilePos, 0.01f, WhatIsPlatform);
             if (overCollider2d != null)
             {
-              overCollider2d.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(tilePos);
+              overCollider2d.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(tilePos, 3);
             }
           }
+          else if (dist <= (radius + 2))
+            {
+                Collider2D overCollider2d = Physics2D.OverlapCircle(tilePos, 2f, WhatIsPlatform);
+                if (overCollider2d != null)
+                {
+                    overCollider2d.transform.GetComponent<MinableTile>().DestroyTileMapAtPoint(tilePos, 1);
+                }
+            }
         }
       }
     }
