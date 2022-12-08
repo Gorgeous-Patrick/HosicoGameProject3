@@ -641,7 +641,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 25b0a10722003c26584a1d0957b90d39, type: 3}
-    m_FontSize: 60
+    m_FontSize: 62
     m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 5
@@ -1721,7 +1721,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Voiced by Paul Nastelin
+  m_Text: 'Voiced by Paul Nastelin
+
+    Music by Robert Moore'
 --- !u!222 &1062876679
 CanvasRenderer:
   m_ObjectHideFlags: 0
