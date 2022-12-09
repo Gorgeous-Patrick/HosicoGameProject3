@@ -224,8 +224,6 @@ public class PlayerControl : MonoBehaviour
     {
       if (climb != ClimbType.None)
         StartCoroutine(coroutine_jumpOff());
-      // fix jumping on spikes issue - pull the player down a little bit so that they touch the spikes
-      transform.position += new Vector3(0, -0.02f);
       rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
       rb2d.velocity += new Vector2(0, jumpPower);
       StartCoroutine(coroutine_jumpAnim());

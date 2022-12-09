@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 1864097673502921252}
   _destination: {fileID: 5736461762355085423, guid: 861abd03ce106963a8ecc3754507620e, type: 3}
-  batteryEndurance: 25
+  batteryEndurance: 8
   batteryChargeInterval: 0.2
   batteryBarBlinkInterval: 0.3
   _maxBattery: 5
