@@ -31,9 +31,8 @@ public class CollapsesWhenPlayerIsNear : Collapses
     {
       countdown = Random.Range(GenerationIntervalLowerBound, GenerationIntervalUpperBound);
       if (generatedObjs.Count >= maxChildren) return;
-            OnCollapse?.Invoke();
-            EventBus.Publish(new OnCollapseScreenShakeEvent { intensity = 2.2f, time = 1.5f });
-            generatedObjs.Add(generate());
+      OnCollapse?.Invoke();
+      generatedObjs.Add(generate());
     }
   }
 

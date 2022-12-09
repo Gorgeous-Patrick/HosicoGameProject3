@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CollapsesOnQuake : Collapses
 {
+
+    public UnityEvent OnCollapseShake;
 
   protected override Color indicatorColor { get => new Color(255, 255, 0, 0.1f); }
 
@@ -39,7 +42,7 @@ public class CollapsesOnQuake : Collapses
     {
       remaining--;
       countdown = Random.Range(0, 0.5f);
-      // TODO: trigger screen shake
+      OnCollapseShake?.Invoke();
       generate();
     }
   }
