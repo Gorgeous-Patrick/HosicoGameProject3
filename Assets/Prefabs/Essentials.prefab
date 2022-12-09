@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeathSprite: {fileID: 0}
-  maxHealth: 3
+  maxHealth: 5
 --- !u!1 &1592791747426970559
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,7 +433,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  isInTutorial: 0
+  hasHeadlight: 1
+  hasPickaxe: 1
   _flying: 0
   _climb:
     obj: {fileID: 0}

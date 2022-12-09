@@ -13874,8 +13874,9 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
   targetSceneName: Game Clear
+  Background: {fileID: 1055876906}
 --- !u!1 &694522348
 GameObject:
   m_ObjectHideFlags: 0
@@ -14831,6 +14832,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1055876906 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5994778529081256272, guid: 43c1d1e0cc02f052bb30e77268d4e200, type: 3}
+  m_PrefabInstance: {fileID: 1894268358}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1070477544
 GameObject:
   m_ObjectHideFlags: 0
