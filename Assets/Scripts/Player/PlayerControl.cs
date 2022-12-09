@@ -87,6 +87,7 @@ public class PlayerControl : MonoBehaviour
   }
 
   float gravityScale;
+  bool justStarted = true;
 
   [SerializeField] float speed = 5f, jumpPower = 7f, climbSpeed = 3f;
 
@@ -152,6 +153,7 @@ public class PlayerControl : MonoBehaviour
     ropeClimbCooling = false;
     _climb = new ClimbObject { type = ClimbType.None, obj = null };
     GetComponent<InhalesPoisonousGas>().reset();
+        StartCoroutine(StartRoutine());
   }
 
   void Update()
@@ -470,4 +472,10 @@ public class PlayerControl : MonoBehaviour
     }
     EventBus.Publish(new EventToggleInvincibility { invincible = false });
   }
+
+  IEnumerator StartRoutine()
+    {
+        yield return new WaitForSeconds(0.2f);
+        justStarted = false;
+    }
 }
