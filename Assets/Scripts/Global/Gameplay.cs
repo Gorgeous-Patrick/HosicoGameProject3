@@ -12,7 +12,7 @@ public class Gameplay : MonoBehaviour
   [SerializeField] GameObject _destination;
 
   // how long a single battery lasts
-  [SerializeField] int batteryEndurance = 20;
+  [SerializeField] int batteryEndurance;
   float batteryDrainSpeed { get => 1 / (float)batteryEndurance; }
 
   // how long it takes to restore a battery
