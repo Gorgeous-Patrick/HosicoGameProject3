@@ -13,6 +13,8 @@ Sprites
 	Fantasy Wooden (UI): https://assetstore.unity.com/packages/2d/gui/fantasy-wooden-gui-free-103811
 	Cave Pictures (Game Over screen): https://opengameart.org/content/cave-picturesicons
 	CCO Light Icons: https://opengameart.org/content/cc0-light-icons
+	logs: https://opengameart.org/content/wood-log-pixel-art
+	grill: https://opengameart.org/content/elevator-grate
 Images
 	Ocean Sunrise: https://opengameart.org/content/ocean-sunrise
 Fonts
@@ -36,6 +38,5 @@ Audio Sources
 	Exploring a Cave: https://opengameart.org/content/exploring-a-cave
 	Cave In: https://opengameart.org/content/cave-in
 	Falling Rock: https://opengameart.org/content/falling-rock
-	logs: https://opengameart.org/content/wood-log-pixel-art
-	grill: https://opengameart.org/content/elevator-grate
+	explosion for dynamite: https://opengameart.org/content/rockbreaking
 	Freelancer - Cavelit ambience BGM - Robbie Moore robbiegm@umich.edu

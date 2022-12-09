@@ -21,7 +21,7 @@ public class Dynamite : MonoBehaviour
         yield return new WaitForSeconds(explodeDelay);
         if (explosion != null)
             Instantiate(explosion, transform.position, Quaternion.identity);
-            AudioManager.instance.playSound("2-dynamite_explode", 1.0f);
+            // AudioManager.instance.playSound("2-dynamite_explode", 1.0f);
         
         Destroy(this.gameObject);
     }

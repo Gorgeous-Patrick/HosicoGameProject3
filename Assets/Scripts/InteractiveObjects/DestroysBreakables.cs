@@ -79,7 +79,7 @@ public class DestroysBreakables : MonoBehaviour
       int radius = Mathf.RoundToInt(blastRadius.radius);
       for (var x = -radius; x <= radius; x++)
       {
-        for (var y = -radius; y < radius; y++)
+        for (var y = -radius; y <= radius; y++)
         {
           Vector3 tilePos = new Vector3(transform.position.x + x, transform.position.y + y, 0);
           float dist = Vector2.Distance(transform.position, tilePos) - 0.001f;
