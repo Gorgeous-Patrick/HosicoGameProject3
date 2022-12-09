@@ -46,7 +46,7 @@ public class InhalesPoisonousGas : MonoBehaviour
       hurtCountdown -= Time.deltaTime;
       if (hurtCountdown <= 0)
       {
-        hurtCountdown = 0.1f;
+        hurtCountdown = 0.2f;
         health -= damage;
       }
     }
