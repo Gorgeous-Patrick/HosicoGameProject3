@@ -52,6 +52,7 @@ public class PoisonEffectController : MonoBehaviour
   {
     ld.intensity.value = Mathf.Sin(Time.time) * 0.4f;
     dof.focalLength.value = Mathf.Sin(Time.time) * dof.focusDistance.value + dof.focusDistance.value;
+        Debug.Log(Gameplay.player.GetComponent<InhalesPoisonousGas>().health);
     ca.colorFilter.value = Color.HSVToRGB(0.32f, 0.7f, Gameplay.player.GetComponent<InhalesPoisonousGas>().health / 100f);
   }
 
