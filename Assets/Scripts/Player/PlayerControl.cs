@@ -21,8 +21,8 @@ public class PlayerControl : MonoBehaviour
   GameObject pickaxe;
 
   bool headlightOn;
-  [SerializeField] bool isInTutorial = false;
-  // [SerializeField] AudioClip deathSound;
+  [SerializeField] bool hasHeadlight = true;
+  [SerializeField] bool hasPickaxe = true;
 
   List<GameObject> ropeInContact = new List<GameObject>();
   List<GameObject> ladderInContact = new List<GameObject>();
@@ -231,7 +231,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     // process mining
-    if (Gameplay.playerInput.Gameplay.Mine.WasPressedThisFrame() && !isInTutorial)
+    if (Gameplay.playerInput.Gameplay.Mine.WasPressedThisFrame() && hasPickaxe)
       pickaxe.SetActive(true);
     if (Gameplay.playerInput.Gameplay.Mine.WasReleasedThisFrame())
       pickaxe.SetActive(false);
@@ -241,7 +241,7 @@ public class PlayerControl : MonoBehaviour
       EventBus.Publish(new EventUseItem());
 
     // process headlight toggle
-    if (Gameplay.playerInput.Gameplay.UseHeadlight.WasPressedThisFrame())
+    if (Gameplay.playerInput.Gameplay.UseHeadlight.WasPressedThisFrame() && hasHeadlight)
     {
       if (Gameplay.batterys > 0)
       {
@@ -281,12 +281,6 @@ public class PlayerControl : MonoBehaviour
           attachToRope();
         }
       }
-    }
-
-    if (collisionInfo.gameObject.CompareTag("PickaxePickup"))
-    {
-      isInTutorial = false;
-      collisionInfo.gameObject.GetComponent<DisableAfterSeconds>().StartDisable();
     }
   }
 
