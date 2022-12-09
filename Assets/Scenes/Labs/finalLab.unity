@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 147558059473174749, guid: 43c1d1e0cc02f052bb30e77268d4e200, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 816397455124719420, guid: 43c1d1e0cc02f052bb30e77268d4e200, type: 3}
       propertyPath: m_LocalPosition.x
       value: -114.83
@@ -137,6 +141,30 @@ PrefabInstance:
     - target: {fileID: 816397455124719420, guid: 43c1d1e0cc02f052bb30e77268d4e200, type: 3}
       propertyPath: m_LocalPosition.y
       value: -1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213579517123336186, guid: 43c1d1e0cc02f052bb30e77268d4e200, type: 3}
+      propertyPath: OnPlayerDeathPlay.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213579517123336186, guid: 43c1d1e0cc02f052bb30e77268d4e200, type: 3}
+      propertyPath: OnPlayerDeathPlay.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213579517123336186, guid: 43c1d1e0cc02f052bb30e77268d4e200, type: 3}
+      propertyPath: OnPlayerDeathPlay.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 907748492}
+    - target: {fileID: 1213579517123336186, guid: 43c1d1e0cc02f052bb30e77268d4e200, type: 3}
+      propertyPath: OnPlayerDeathPlay.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213579517123336186, guid: 43c1d1e0cc02f052bb30e77268d4e200, type: 3}
+      propertyPath: OnPlayerDeathPlay.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.AudioSource, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213579517123336186, guid: 43c1d1e0cc02f052bb30e77268d4e200, type: 3}
+      propertyPath: OnPlayerDeathPlay.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1427057267801755384, guid: 43c1d1e0cc02f052bb30e77268d4e200, type: 3}
       propertyPath: m_IsActive
@@ -289,6 +317,11 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
+--- !u!82 &907748492 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 147558059473174749, guid: 43c1d1e0cc02f052bb30e77268d4e200, type: 3}
+  m_PrefabInstance: {fileID: 907748489}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1168649629
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,10 +5,13 @@ using UnityEngine.SceneManagement;
 using System;
 using Cinemachine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(FixedJoint2D))]
 public class PlayerControl : MonoBehaviour
 {
+  public UnityEvent OnPlayerDeathPlay = new UnityEvent();
+
   Rigidbody2D rb2d;
   Collider2D c2d;
   Animator anim;
@@ -19,7 +22,7 @@ public class PlayerControl : MonoBehaviour
 
   bool headlightOn;
   [SerializeField] bool isInTutorial = false;
-  [SerializeField] AudioClip deathSound;
+  // [SerializeField] AudioClip deathSound;
 
   List<GameObject> ropeInContact = new List<GameObject>();
   List<GameObject> ladderInContact = new List<GameObject>();
@@ -379,12 +382,14 @@ public class PlayerControl : MonoBehaviour
 
     if (!e.isSuicide)
     {
-      // play death grunt
-      //udioManager.instance.playSound("4-player_death", 10.0f);
-      if (deathSound != null)
-      {
-        AudioSource.PlayClipAtPoint(deathSound, transform.position, 10.0f);
-      }
+        // play death grunt
+        //udioManager.instance.playSound("4-player_death", 10.0f);
+        /*if (deathSound != null)
+        {
+                    // AudioSource.PlayClipAtPoint(deathSound, transform.position, 10.0f);
+                    OnPlayerDeathPlay?.Invoke();
+        } */
+      OnPlayerDeathPlay?.Invoke();
 
       // disable player movement
       Gameplay.playerInput.Gameplay.Disable();
@@ -410,6 +415,7 @@ public class PlayerControl : MonoBehaviour
       // play player death animation
       anim.SetBool("dead", true);
       yield return new WaitForSeconds(2.5f);
+            // OnPlayerRespawnStop?.Invoke();
     }
 
     // call and wait for fade out transition to play out
