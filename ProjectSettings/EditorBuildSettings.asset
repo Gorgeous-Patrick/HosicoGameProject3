@@ -29,5 +29,8 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Trailer/Trailer_Opening_corridor.unity
     guid: 42af527fce48cd14e9b20430d7a3ec07
+  - enabled: 0
+    path: Assets/Scenes/Trailer/Titlecard.unity
+    guid: 6412e1f2704ec6943b3bae0bfd9cdc19
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: dccbf9f47bdb838ef92d8207bf6c6134, type: 2}

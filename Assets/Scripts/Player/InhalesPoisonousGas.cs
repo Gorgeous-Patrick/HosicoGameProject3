@@ -17,13 +17,11 @@ public class InhalesPoisonousGas : MonoBehaviour
         _health = 100;
       else
         _health = value;
-      if (value == 0)
-        EventBus.Publish(new EventFailure {noZoomIn = true});
     }
   }
   [SerializeField] int damage, restoration;
 
-  float restoreCountdown, hurtCountdown;
+  [SerializeField] float restoreCountdown, hurtCountdown;
 
   void Start()
   {
@@ -66,5 +64,14 @@ public class InhalesPoisonousGas : MonoBehaviour
     // their particles collide with the player in the next frame
     inPoison = false;
   }
+
+    private void Update()
+    {
+        if (health == 0)
+        {
+            EventBus.Publish(new EventFailure { noZoomIn = true });
+            reset();
+        }
+    }
 
 }

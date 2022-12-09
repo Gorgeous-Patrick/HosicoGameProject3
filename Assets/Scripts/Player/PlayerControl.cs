@@ -19,6 +19,7 @@ public class PlayerControl : MonoBehaviour
 
     bool headlightOn;
     [SerializeField] bool isInTutorial = false;
+    [SerializeField] AudioClip deathSound;
 
     List<GameObject> ropeInContact = new List<GameObject>();
     List<GameObject> ladderInContact = new List<GameObject>();
@@ -342,7 +343,10 @@ public class PlayerControl : MonoBehaviour
 
         if (!e.isSuicide) {
             // play death grunt
-            AudioManager.instance.playSound("4-player_death", 1.0f);
+            //udioManager.instance.playSound("4-player_death", 10.0f);
+            if (deathSound != null) {
+                AudioSource.PlayClipAtPoint(deathSound, transform.position, 10.0f);
+            }
 
             // disable player movement
             Gameplay.playerInput.Gameplay.Disable();
