@@ -93,6 +93,7 @@ public class EventUseItem: Event
 public class EventStartTransition : Event
 {
   public bool isStart;
+  public bool isExtendedStart = false;
 }
 
 public class EventChangeCheckpoint: Event
@@ -113,7 +114,7 @@ public class EventBlinkBatteryBar : Event
   public int prevBatteryLevel;
 }
 
-public class OnCollapseScreenShakeEvent : Event 
+public class OnCollapseScreenShakeEvent : Event
 {
     public float intensity, time;
 }

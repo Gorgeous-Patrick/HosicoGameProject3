@@ -18,7 +18,10 @@ public class TransitionTriggerManager : MonoBehaviour
         if (anim == null) {
             return;
         }
-
+        // fade to black, but extended
+        if (e.isExtendedStart) {
+            anim.SetTrigger("start_extend");
+        }
         // fade to black
         if (e.isStart) {
             anim.SetTrigger("start");

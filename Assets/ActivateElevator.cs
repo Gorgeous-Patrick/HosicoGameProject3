@@ -52,8 +52,11 @@ public class ActivateElevator : MonoBehaviour
 
     IEnumerator TransitionCoroutine()
     {
-        EventBus.Publish<EventStartTransition>(new EventStartTransition { isStart = true });
-        yield return new WaitForSeconds(1.75f);
+        // buy more time for elevator to go beyond screen edge
+        yield return new WaitForSeconds(1.5f);
+
+        EventBus.Publish<EventStartTransition>(new EventStartTransition { isExtendedStart = true });
+        yield return new WaitForSeconds(2.5f);
 
         // load target scene
         SceneManager.LoadScene(targetSceneName);
