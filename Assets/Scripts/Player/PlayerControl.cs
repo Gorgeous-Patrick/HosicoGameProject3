@@ -125,6 +125,12 @@ public class PlayerControl : MonoBehaviour
         c2d = GetComponent<Collider2D>();
         sr = GetComponent<SpriteRenderer>();
         EventBus.Subscribe<EventReset>((e) => StartCoroutine(coroutine_Death(e)));
+        EventBus.Subscribe<EventFailure>(ResetPlayer);
+    }
+
+    private void ResetPlayer(EventFailure obj)
+    {
+        detachFromClimbables();
     }
 
     void Start() {
