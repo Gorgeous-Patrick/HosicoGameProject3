@@ -7,11 +7,10 @@ public class InhalesPoisonousGas : MonoBehaviour
 
   public bool inPoison;
 
-  [SerializeField] int _health;
   public int health;
   [SerializeField] int damage, restoration;
 
-  [SerializeField] float restoreCountdown, hurtCountdown;
+  float restoreCountdown, hurtCountdown;
 
   void Start()
   {
@@ -22,7 +21,7 @@ public class InhalesPoisonousGas : MonoBehaviour
   public void reset()
   {
     health = 100;
-    restoreCountdown = 1f;
+    restoreCountdown = 0.1f;
     hurtCountdown = 0.1f;
   }
 
@@ -37,7 +36,7 @@ public class InhalesPoisonousGas : MonoBehaviour
       restoreCountdown -= Time.deltaTime;
       if (restoreCountdown <= 0)
       {
-        restoreCountdown = 1f;
+        restoreCountdown = 0.1f;
         health += restoration;
         if (health > 100) health = 100;
       }
@@ -51,14 +50,10 @@ public class InhalesPoisonousGas : MonoBehaviour
         health -= damage;
       }
     }
-
-    if (health <= 50)
-        {
-            EventBus.Publish(new EventFailure());
-        }
-        // we reset inPoison and wait for toxic gas objects to overwrite this value if
-        // their particles collide with the player in the next frame
-        inPoison = false;
+    if (health <= 0) EventBus.Publish(new EventFailure {noZoomIn = true});
+    // we reset inPoison and wait for toxic gas objects to overwrite this value if
+    // their particles collide with the player in the next frame
+    inPoison = false;
   }
 
 }
