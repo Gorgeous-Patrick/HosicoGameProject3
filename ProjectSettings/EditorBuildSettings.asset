@@ -19,13 +19,16 @@ EditorBuildSettings:
     guid: ea6deed95e3fdbeb0832343154cafdf6
   - enabled: 1
     path: Assets/Scenes/Formal/Level2.unity
-    guid: 7347792a4a89db95684c2fa8fd43ec4c
+    guid: 88361baa996dd6c4a832e52eeb038c83
   - enabled: 1
     path: Assets/Scenes/Formal/Level3.unity
     guid: f41eb414ca759262fa5704f2d5e399bf
   - enabled: 1
     path: Assets/Scenes/Formal/Level4.unity
     guid: 47ada06a42dd66b41ae281fe846f3b94
+  - enabled: 1
+    path: Assets/Scenes/Formal/ElevatorRoom.unity
+    guid: aec214591fa81d1409fb6295219a666b
   - enabled: 0
     path: Assets/Scenes/Trailer/Trailer_Opening_corridor.unity
     guid: 42af527fce48cd14e9b20430d7a3ec07

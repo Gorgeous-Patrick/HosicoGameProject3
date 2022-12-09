@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SkipLevel : MonoBehaviour
 {
+    [SerializeField] bool cheatMode = false;
+
     // Update is called once per frame
     void Update() {
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
@@ -27,6 +29,9 @@ public class SkipLevel : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha7)) {
             SceneManager.LoadScene(6);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha8)) {
+            SceneManager.LoadScene(7);
         }
     }
 }
