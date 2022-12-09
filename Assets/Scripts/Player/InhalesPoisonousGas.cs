@@ -50,7 +50,7 @@ public class InhalesPoisonousGas : MonoBehaviour
         health -= damage;
       }
     }
-    if (health <= 0) EventBus.Publish(new EventFailure {noZoomIn = true});
+    if (health <= 39) EventBus.Publish(new EventFailure {noZoomIn = true});
     // we reset inPoison and wait for toxic gas objects to overwrite this value if
     // their particles collide with the player in the next frame
     inPoison = false;

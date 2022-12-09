@@ -356,7 +356,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 653126517
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 480528cb2c846a3e2af5f95b29ff379b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -531,8 +531,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inPoison: 1
   health: 0
-  damage: 4
-  restoration: 15
+  damage: 2
+  restoration: 5
 --- !u!114 &8289715997980055003
 MonoBehaviour:
   m_ObjectHideFlags: 0
