@@ -176,4 +176,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RB2D: {fileID: 7029905564881768118}
   fallVelThreshold: -0.5
-  toleranceVal: 0.129
+  toleranceVal: 0.15
