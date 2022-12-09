@@ -8,6 +8,6 @@ public class SetsResolution : MonoBehaviour
     void Start()
     {
         Debug.Log("Starting scene...");
-        // Screen.SetResolution(1920, 1080, true);
+        Screen.SetResolution(1920, 1080, true);
     }
 }
