@@ -378,12 +378,6 @@ public class PlayerControl : MonoBehaviour
     if (!e.isSuicide)
     {
       // play death grunt
-      //udioManager.instance.playSound("4-player_death", 10.0f);
-      /*if (deathSound != null)
-      {
-                  // AudioSource.PlayClipAtPoint(deathSound, transform.position, 10.0f);
-                  OnPlayerDeathPlay?.Invoke();
-      } */
       OnPlayerDeathPlay?.Invoke();
 
       // disable player movement
