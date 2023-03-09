@@ -1,6 +1,7 @@
 name: Windows Build
 on:
   push
+runs-on: self-hosted
 
 jobs:
   BuildWindows: 

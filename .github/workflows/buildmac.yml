@@ -1,6 +1,7 @@
 name: Mac Build
 on:
   push
+runs-on: self-hosted
 
 jobs:
   BuildMac: 

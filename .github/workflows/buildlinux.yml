@@ -1,6 +1,7 @@
 name: Linux Build
 on:
   push
+runs-on: self-hosted
 
 jobs:
   BuildLinux: 

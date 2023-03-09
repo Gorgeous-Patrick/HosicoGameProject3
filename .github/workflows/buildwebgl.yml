@@ -1,6 +1,7 @@
 name: WebGL Build
 on:
   push
+runs-on: self-hosted
 
 jobs:
   BuildWebGL: 
