@@ -1,11 +1,11 @@
 name: WebGL Build
 on:
   push
-runs-on: self-hosted
 
 jobs:
   BuildWebGL: 
     runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
