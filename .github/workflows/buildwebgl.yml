@@ -8,6 +8,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with: 
+          lfs: "true"
 
       # Git LFS
       - name: Create LFS file list
@@ -20,11 +22,6 @@ jobs:
           path: .git/lfs
           key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
 
-      - name: Git LFS Pull
-        run: |
-          git lfs pull
-          git add .
-          git reset --hard
 
       # Cache
       - uses: actions/cache@v2
